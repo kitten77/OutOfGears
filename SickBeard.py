@@ -39,25 +39,18 @@ warnings.filterwarnings('ignore', module=r'.*Cheetah.*')
 warnings.filterwarnings('ignore', module=r'.*connectionpool.*', message='.*certificate verification.*')
 warnings.filterwarnings('ignore', module=r'.*ssl_.*', message='.*SSLContext object.*')
 
-if not (2, 7, 9) <= sys.version_info < (3, 0):
-    print('Python %s.%s.%s detected.' % sys.version_info[:3])
-    print('Sorry, SickGear requires Python 2.7.9 or higher. Python 3 is not supported.')
-    sys.exit(1)
+
+# removed the version check should run on 3.6 or higher
 
 try:
     import _cleaner
-except (StandardError, Exception):
+except Exception as e:
     pass
 
 try:
     import Cheetah
 
-    if Cheetah.Version[0] < '2':
-        raise ValueError
-except ValueError:
-    print('Sorry, requires Python module Cheetah 2.1.0 or newer.')
-    sys.exit(1)
-except (StandardError, Exception):
+except Exception as e:
     print('The Python module Cheetah is required')
     sys.exit(1)
 
@@ -166,7 +159,7 @@ class SickGear(object):
                 rollback_loaded.__dict__[mo]().run(max_v)
             else:
                 print(u'ERROR: Could not download Rollback Module.')
-        except (StandardError, Exception):
+        except Exception as e:
             pass
 
     def start(self):
@@ -198,7 +191,7 @@ class SickGear(object):
             # pylint: disable=E1101
             # On non-unicode builds this raises an AttributeError, if encoding type is not valid it throws a LookupError
             sys.setdefaultencoding(sickbeard.SYS_ENCODING)
-        except (StandardError, Exception):
+        except Exception as e:
             print('Sorry, you MUST add the SickGear folder to the PYTHONPATH environment variable')
             print('or find another way to force Python to use %s for string encoding.' % sickbeard.SYS_ENCODING)
             sys.exit(1)
@@ -329,13 +322,13 @@ class SickGear(object):
         sickbeard.CFG = ConfigObj(sickbeard.CONFIG_FILE)
         try:
             stack_size = int(sickbeard.CFG['General']['stack_size'])
-        except (StandardError, Exception):
+        except Exception as e:
             stack_size = None
 
         if stack_size:
             try:
                 threading.stack_size(stack_size)
-            except (StandardError, Exception) as er:
+            except Exception as er:
                 print('Stack Size %s not set: %s' % (stack_size, er.message))
 
         # check all db versions
@@ -439,7 +432,7 @@ class SickGear(object):
 
             self.webserver = WebServer(self.web_options)
             self.webserver.start()
-        except (StandardError, Exception):
+        except Exception as e:
             logger.log(u'Unable to start web server, is something else running on port %d?' % self.start_port,
                        logger.ERROR)
             if self.run_as_systemd:
@@ -590,7 +583,7 @@ class SickGear(object):
 
             os.rmdir(src_dir)
             return True
-        except (StandardError, Exception):
+        except Exception as e:
             return False
 
     def shutdown(self, ev_type):
@@ -607,7 +600,7 @@ class SickGear(object):
                 self.webserver.shut_down()
                 try:
                     self.webserver.join(10)
-                except (StandardError, Exception):
+                except Exception as e:
                     pass
 
             # if run as daemon delete the pidfile

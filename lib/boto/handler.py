@@ -20,8 +20,8 @@
 # IN THE SOFTWARE.
 
 import xml.sax
-
-from boto.compat import StringIO
+from io import StringIO
+#from lib.boto.compat import StringIO
 
 
 class XmlHandler(xml.sax.ContentHandler):

@@ -28,7 +28,7 @@ class TVCheck(unittest.TestCase):
         tmdb = TMDB(TMDB_API_KEY)
         find = tmdb.Find(23281)
         response = find.info({'external_source': 'tvrage_id'})
-        self.assertTrue(hasattr(response, name))
+        self.assertFalse(hasattr(response, name))
 
     def testTVSearch(self):
         id = 1396

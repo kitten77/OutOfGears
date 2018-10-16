@@ -23,8 +23,8 @@
 # IN THE SOFTWARE.
 #
 
-from boto.regioninfo import RegionInfo, get_regions
-from boto.regioninfo import connect
+from lib.boto.regioninfo import RegionInfo, get_regions
+from lib.boto.regioninfo import connect
 
 
 class S3RegionInfo(RegionInfo):

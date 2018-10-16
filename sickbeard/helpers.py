@@ -18,6 +18,13 @@
 
 from __future__ import print_function
 from __future__ import with_statement
+#added for py3 support
+try:
+    import urlparse
+
+except ImportError:
+    import urllib.parse as urlparse
+
 
 import base64
 import codecs
@@ -33,12 +40,13 @@ import stat
 import tempfile
 import time
 import traceback
-import urlparse
+
+
 import uuid
 import subprocess
 import sys
 
-import adba
+import lib.adba
 import requests
 import requests.exceptions
 from cfscrape import CloudflareScraper

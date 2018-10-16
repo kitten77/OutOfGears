@@ -843,7 +843,7 @@ FOURCC = {
 }
 
 # make it fool prove
-for code, value in FOURCC.items():
+for code, value in list(FOURCC.items()):
     if not code.upper() in FOURCC:
         FOURCC[code.upper()] = value
     if code.endswith(' '):

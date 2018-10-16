@@ -24,9 +24,9 @@ import os
 import re
 import warnings
 
-import boto
+#import lib.boto as boto
 
-from boto.compat import expanduser, ConfigParser, NoOptionError, NoSectionError, StringIO
+from lib.boto.compat import expanduser, ConfigParser, NoOptionError, NoSectionError
 
 
 # By default we use two locations for the boto configurations,

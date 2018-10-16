@@ -24,9 +24,9 @@ import boto
 import os
 import sys
 import textwrap
-from boto.s3.deletemarker import DeleteMarker
-from boto.exception import BotoClientError
-from boto.exception import InvalidUriError
+from lib.boto.s3.deletemarker import DeleteMarker
+from lib.boto.exception import BotoClientError
+from lib.boto.exception import InvalidUriError
 
 
 class StorageUri(object):

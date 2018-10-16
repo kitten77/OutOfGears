@@ -19,11 +19,11 @@
 # along with SickGear.  If not, see <http://www.gnu.org/licenses/>.
 
 from __future__ import print_function
-if __name__ == '__main__':
-    import glob
-    import unittest
-    import sys
+import glob
+import unittest
+import sys
 
+class all_test(unittest.TestCase):
     test_file_strings = [x for x in glob.glob('*_tests.py') if x not in __file__]
     module_strings = [file_string[0:len(file_string) - 3] for file_string in test_file_strings]
     suites = [unittest.defaultTestLoader.loadTestsFromName(file_string) for file_string in module_strings]
@@ -39,3 +39,6 @@ if __name__ == '__main__':
     text_runner = unittest.TextTestRunner().run(testSuite)
     if not text_runner.wasSuccessful():
         sys.exit(-1)
+
+if __name__ == '__main__':
+    unittest.main()

@@ -24,8 +24,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 #
-from boto.pyami.config import Config, BotoConfigLocations
-from boto.storage_uri import BucketStorageUri, FileStorageUri
+from lib.boto.pyami.config import Config, BotoConfigLocations
+from lib.boto.storage_uri import BucketStorageUri, FileStorageUri
 import boto.plugin
 import datetime
 import os
@@ -35,8 +35,8 @@ import sys
 import logging
 import logging.config
 
-from boto.compat import urlparse
-from boto.exception import InvalidUriError
+from lib.boto.compat import urlparse
+from lib.boto.exception import InvalidUriError
 
 __version__ = '2.49.0'
 Version = __version__  # for backware compatibility

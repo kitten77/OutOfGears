@@ -22,8 +22,9 @@ import platform
 import re
 import traceback
 import uuid
+from functools import reduce
 
-import logger
+import sickbeard.logger
 import sickbeard
 
 try:
@@ -122,6 +123,7 @@ class Quality:
         level = 0
         is_repack = False
         if is_anime:
+            ### FIX what where huh long from where to where
             if isinstance(version, (int, long)):
                 level = (0, version - 1)[1 < version]
         elif isinstance(extra_no_name, basestring):
@@ -277,9 +279,9 @@ class Quality:
         from sickbeard.exceptions import ex
         if ek.ek(os.path.isfile, filename):
 
-            from hachoir.parser import createParser
-            from hachoir.metadata import extractMetadata
-            from hachoir.stream import InputStreamError
+            from lib.hachoir.parser import createParser
+            from lib.hachoir.metadata import extractMetadata
+            from lib.hachoir.stream import InputStreamError
 
             parser = height = None
             msg = u'Hachoir can\'t parse file "%s" content quality because it found error: %s'

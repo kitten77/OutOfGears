@@ -103,10 +103,10 @@ class AniDBMaper:
 
     def checkMapping(self,verbos=False):
         
-        print "------"
-        print "File F: "+ str(self.checkMapFileF(verbos))
-        print "------"
-        print "File A: "+ str(self.checkMapFileA(verbos))
+        print("------")
+        print("File F: "+ str(self.checkMapFileF(verbos)))
+        print("------")
+        print("File A: "+ str(self.checkMapFileA(verbos)))
         
     
     def checkMapFileF(self,verbos=False):
@@ -129,10 +129,10 @@ class AniDBMaper:
         mask_re = getCodes(bits)
         bits_re = getBits(mask_re)
         if verbos:
-            print mask
-            print mask_re
-            print bits
-            print bits_re
-            print "bits are:"+ str((bits_re == bits))
-            print "map is :"+ str((sorted(mask_re) == sorted(mask)))
+            print(mask)
+            print(mask_re)
+            print(bits)
+            print(bits_re)
+            print("bits are:"+ str((bits_re == bits)))
+            print("map is :"+ str((sorted(mask_re) == sorted(mask))))
         return (bits_re == bits) and sorted(mask_re) == sorted(mask)
