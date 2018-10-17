@@ -28,8 +28,8 @@ import sickbeard
 from lib.dateutil.parser import parse
 from lib.cachecontrol import CacheControl, caches
 
-from tvdb_ui import BaseUI, ConsoleUI
-from tvdb_exceptions import (
+from lib.tvdb_api.tvdb_ui import BaseUI, ConsoleUI
+from lib.tvdb_api.tvdb_exceptions import (
     tvdb_error, tvdb_shownotfound, tvdb_seasonnotfound, tvdb_episodenotfound,
     tvdb_attributenotfound, tvdb_tokenexpired)
 
@@ -67,12 +67,12 @@ def retry(ExceptionToCheck, tries=4, delay=3, backoff=2, logger=None):
             while mtries > 1:
                 try:
                     return f(*args, **kwargs)
-                except ExceptionToCheck, e:
+                except ExceptionToCheck as e:
                     msg = '%s, Retrying in %d seconds...' % (str(e), mdelay)
                     if logger:
                         logger.warning(msg)
                     else:
-                        print msg
+                        print(msg)
                     time.sleep(mdelay)
                     if isinstance(e, tvdb_tokenexpired) and not auth_error:
                         auth_error += 1
@@ -148,7 +148,7 @@ class Show(dict):
             return dict.__getitem__(self.data, key)
 
         # Data wasn't found, raise appropriate error
-        if isinstance(key, (int, long)) or isinstance(key, basestring) and key.isdigit():
+        if isinstance(key, (int)) or isinstance(key, str) and key.isdigit():
             # Episode number x was not found
             raise tvdb_seasonnotfound('Could not find season %s' % (repr(key)))
         else:
@@ -316,13 +316,13 @@ class Episode(dict):
         if None is term:
             raise TypeError('must supply string to search for (contents)')
 
-        term = unicode(term).lower()
+        term = term.lower()
         for cur_key, cur_value in self.iteritems():
-            cur_key, cur_value = unicode(cur_key).lower(), unicode(cur_value).lower()
+            cur_key, cur_value = cur_key.lower(), cur_value.lower()
             if None is not key and cur_key != key:
                 # Do not search this key
                 continue
-            if cur_value.find(unicode(term).lower()) > -1:
+            if cur_value.find(term.lower()) > -1:
                 return self
 
 
@@ -467,7 +467,7 @@ class Tvdb:
             self.config['cache_location'] = self._get_temp_dir()
         elif cache is False:
             self.config['cache_enabled'] = False
-        elif isinstance(cache, basestring):
+        elif isinstance(cache, str):
             self.config['cache_enabled'] = True
             self.config['cache_location'] = cache
         else:
@@ -607,7 +607,7 @@ class Tvdb:
                 self.not_found = True
             elif 404 != e.response.status_code:
                 raise tvdb_error
-        except (StandardError, Exception):
+        except Exception:
             raise tvdb_error
 
         map_show = {'airstime': 'airs_time', 'airsdayofweek': 'airs_dayofweek', 'imdbid': 'imdb_id',
@@ -625,18 +625,18 @@ class Tvdb:
                         v = self.config['url_artworkPrefix'] % v
                     elif 'genre' == k:
                         keep_data['genre_list'] = v
-                        v = '|%s|' % '|'.join([clean_data(c) for c in v if isinstance(c, basestring)])
+                        v = '|%s|' % '|'.join([clean_data(c) for c in v if isinstance(c, str)])
                     elif 'gueststars' == k:
                         keep_data['gueststars_list'] = v
-                        v = '|%s|' % '|'.join([clean_data(c) for c in v if isinstance(c, basestring)])
+                        v = '|%s|' % '|'.join([clean_data(c) for c in v if isinstance(c, str)])
                     elif 'writers' == k:
                         keep_data[k] = v
-                        v = '|%s|' % '|'.join([clean_data(c) for c in v if isinstance(c, basestring)])
+                        v = '|%s|' % '|'.join([clean_data(c) for c in v if isinstance(c, str)])
                     elif 'firstaired' == k:
                         if v:
                             try:
                                 v = parse(v, fuzzy=True).strftime('%Y-%m-%d')
-                            except (StandardError, Exception):
+                            except Exception:
                                 v = None
                         else:
                             v = None
@@ -739,7 +739,7 @@ class Tvdb:
                                           language=self.config['language'])
             if series_found:
                 return series_found.values()[0]
-        except (StandardError, Exception):
+        except Exception:
             pass
 
         return []
@@ -793,7 +793,7 @@ class Tvdb:
                     if None is k or None is v:
                         continue
 
-                    k, v = k.lower(), v.lower() if isinstance(v, (str, unicode)) else v
+                    k, v = k.lower(), v.lower() if isinstance(v, str) else v
                     if k == 'filename':
                         k = 'bannerpath'
                         banners[btype][btype2][bid]['bannerpath'] = self.config['url_artworkPrefix'] % v
@@ -804,7 +804,7 @@ class Tvdb:
                         k = 'bannertype'
                     banners[btype][btype2][bid][k] = v
 
-        except (StandardError, Exception):
+        except Exception:
             pass
 
         self._set_show_data(sid, '_banners', banners, add=True)
@@ -830,7 +830,7 @@ class Tvdb:
                                      'country': None,  # not supported by tvdb
                                      },
                           })
-        except (StandardError, Exception):
+        except Exception:
             pass
         self._set_show_data(sid, 'actors', a)
 
@@ -1011,7 +1011,7 @@ class Tvdb:
             if not isinstance(arg, bool):
                 arg = None
 
-        if isinstance(key, (int, long)):
+        if isinstance(key, int):
             # Item is integer, treat as show id
             if key not in self.shows or (not self.shows[key].ep_loaded and arg in (None, True)):
                 self._get_show_data(key, self.config['language'], (True, arg)[arg is not None])
@@ -1038,8 +1038,8 @@ def main():
     logging.basicConfig(level=logging.DEBUG)
 
     tvdb_instance = Tvdb(interactive=True, cache=False)
-    print tvdb_instance['Lost']['seriesname']
-    print tvdb_instance['Lost'][1][4]['episodename']
+    print(tvdb_instance['Lost']['seriesname'])
+    print(tvdb_instance['Lost'][1][4]['episodename'])
 
 
 if '__main__' == __name__:

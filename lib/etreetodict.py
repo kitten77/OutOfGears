@@ -133,9 +133,9 @@ def ConvertXmlToDict(root, dictclass=XmlDictObject):
     Converts an XML String to a dictionary
     """
 
-    if isinstance(root, basestring):
+    if isinstance(root, str):
         root = ElementTree.fromstring(root)
     elif not isinstance(root, ElementTree.Element):
-        raise TypeError, 'Expected string'
+        raise TypeError('Expected string')
 
     return dictclass({root.tag: _ConvertXmlToDictRecurse(root, dictclass)})

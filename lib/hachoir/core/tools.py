@@ -263,7 +263,7 @@ controlchars = tuple({
                          ord("\a"): r"\a",
                          ord("\b"): r"\b",
                      }.get(code, '\\x%02x' % code)
-                     for code in xrange(128)
+                     for code in range(128)
                      )
 
 

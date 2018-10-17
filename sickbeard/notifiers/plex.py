@@ -17,7 +17,6 @@
 # along with SickGear.  If not, see <http://www.gnu.org/licenses/>.
 
 import urllib
-import urllib2
 import base64
 import re
 import xml.etree.cElementTree as XmlEtree
@@ -51,7 +50,7 @@ class PLEXNotifier(Notifier):
             return False
 
         for key in command:
-            if type(command[key]) == unicode:
+            if type(command[key]) == str:
                 command[key] = command[key].encode('utf-8')
 
         enc_command = urllib.urlencode(command)
@@ -59,7 +58,7 @@ class PLEXNotifier(Notifier):
 
         url = 'http://%s/xbmcCmds/xbmcHttp/?%s' % (host, enc_command)
         try:
-            req = urllib2.Request(url)
+            req = urllib.request(url)
             if password:
                 base64string = base64.encodestring('%s:%s' % (username, password))[:-1]
                 authheader = 'Basic %s' % base64string
@@ -68,14 +67,14 @@ class PLEXNotifier(Notifier):
             else:
                 self._log_debug(u'Contacting via url: ' + url)
 
-            response = urllib2.urlopen(req)
+            response = urllib.request.urlopen(req)
             result = response.read().decode(sickbeard.SYS_ENCODING)
             response.close()
 
             self._log_debug(u'HTTP response: ' + result.replace('\n', ''))
             return True
 
-        except (urllib2.URLError, IOError) as e:
+        except (urllib.URLError, IOError) as e:
             self._log_warning(u'Couldn\'t contact Plex at ' + fixStupidEncodings(url) + ' ' + ex(e))
             return False
 
@@ -165,7 +164,7 @@ class PLEXNotifier(Notifier):
         if username and password:
 
             self._log_debug(u'Fetching plex.tv credentials for user: ' + username)
-            req = urllib2.Request('https://plex.tv/users/sign_in.xml', data='')
+            req = urllib.request('https://plex.tv/users/sign_in.xml', data='')
             authheader = 'Basic %s' % base64.encodestring('%s:%s' % (username, password))[:-1]
             req.add_header('Authorization', authheader)
             req.add_header('X-Plex-Device-Name', 'SickGear')
@@ -175,12 +174,12 @@ class PLEXNotifier(Notifier):
             token_arg = False
 
             try:
-                response = urllib2.urlopen(req)
+                response = urllib.request.urlopen(req)
                 auth_tree = XmlEtree.parse(response)
                 token = auth_tree.findall('.//authentication-token')[0].text
                 token_arg = '?X-Plex-Token=' + token
 
-            except urllib2.URLError as e:
+            except urllib.URLError as e:
                 self._log(u'Error fetching credentials from plex.tv for user %s: %s' % (username, ex(e)))
 
             except (ValueError, IndexError) as e:

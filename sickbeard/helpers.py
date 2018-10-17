@@ -72,7 +72,7 @@ from sickbeard import encodingKludge as ek
 
 from lib.cachecontrol import CacheControl, caches
 from lib.scandir.scandir import scandir
-from itertools import izip, cycle
+from itertools import cycle
 
 
 def indentXML(elem, level=0):
@@ -948,10 +948,10 @@ def encrypt(data, encryption_version=0, decrypt=False):
     # Version 1: Simple XOR encryption (this is not very secure, but works)
     if encryption_version == 1:
         if decrypt:
-            return ''.join(chr(ord(x) ^ ord(y)) for (x, y) in izip(base64.decodestring(data), cycle(unique_key1)))
+            return ''.join(chr(ord(x) ^ ord(y)) for (x, y) in zip(base64.decodestring(data), cycle(unique_key1)))
         else:
             return base64.encodestring(
-                ''.join(chr(ord(x) ^ ord(y)) for (x, y) in izip(data, cycle(unique_key1)))).strip()
+                ''.join(chr(ord(x) ^ ord(y)) for (x, y) in zip(data, cycle(unique_key1)))).strip()
     # Version 0: Plain text
     else:
         return data

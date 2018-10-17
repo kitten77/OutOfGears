@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with SickGear.  If not, see <http://www.gnu.org/licenses/>.
 
-import generic
+import sickbeard.metadata.generic
 import datetime
 
 import sickbeard
@@ -24,9 +24,9 @@ from sickbeard import logger, exceptions, helpers
 from sickbeard.exceptions import ex
 
 import xml.etree.cElementTree as etree
+from sickbeard.metadata.generic import GenericMetadata
 
-
-class KODIMetadata(generic.GenericMetadata):
+class KODIMetadata(GenericMetadata):
     """
     Metadata generation class for Kodi.
 
@@ -57,7 +57,7 @@ class KODIMetadata(generic.GenericMetadata):
                  season_all_poster=False,
                  season_all_banner=False):
 
-        generic.GenericMetadata.__init__(self,
+        sickbeard.metadata.generic.GenericMetadata.__init__(self,
                                          show_metadata,
                                          episode_metadata,
                                          fanart,
@@ -176,7 +176,7 @@ class KODIMetadata(generic.GenericMetadata):
 
         genre = etree.SubElement(tv_node, 'genre')
         if getattr(myShow, 'genre', None) is not None:
-            if isinstance(myShow['genre'], basestring):
+            if isinstance(myShow['genre'], str):
                 genre.text = ' / '.join(x.strip() for x in myShow['genre'].split('|') if x.strip())
 
         premiered = etree.SubElement(tv_node, 'premiered')
@@ -240,7 +240,7 @@ class KODIMetadata(generic.GenericMetadata):
 
             try:
                 myEp = myShow[curEpToWrite.season][curEpToWrite.episode]
-            except (StandardError, Exception):
+            except Exception:
                 logger.log(u'Unable to find episode ' + str(curEpToWrite.season) + 'x' + str(
                     curEpToWrite.episode) + ' on ' + sickbeard.indexerApi(
                     ep_obj.show.indexer).name + '.. has it been removed? Should I delete from db?')
@@ -328,7 +328,7 @@ class KODIMetadata(generic.GenericMetadata):
                 rating.text = rating_text
 
             gueststar_text = getattr(myEp, 'gueststars', None)
-            if isinstance(gueststar_text, basestring):
+            if isinstance(gueststar_text, str):
                 for actor in (x.strip() for x in gueststar_text.split('|') if x.strip()):
                     cur_actor = etree.SubElement(episode, 'actor')
                     cur_actor_name = etree.SubElement(cur_actor, 'name')

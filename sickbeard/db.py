@@ -28,7 +28,7 @@ import sickbeard
 from sickbeard import encodingKludge as ek
 from sickbeard import logger
 from sickbeard.exceptions import ex
-import helpers
+import sickbeard.helpers as helpers
 
 
 db_lock = threading.Lock()
@@ -65,7 +65,7 @@ def mass_upsert_sql(table_name, value_dict, key_dict, sanitise=True):
 
     # sanity: remove k, v pairs in keyDict from valueDict
     if sanitise:
-        value_dict = dict(filter(lambda (k, _): k not in key_dict.keys(), value_dict.items()))
+        value_dict = dict(filter(lambda k, x: k not in key_dict.keys(), value_dict.items()))
 
     cl.append(['UPDATE [%s] SET %s WHERE %s' %
                (table_name, ', '.join(gen_params(value_dict)), ' AND '.join(gen_params(key_dict))),

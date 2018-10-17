@@ -21,25 +21,25 @@ from hachoir.field.helper import (isString, isInteger,
                                   writeIntoFile, createOrphanField)
 
 # FieldSet classes
-from hachoir.field.fake_array import FakeArray
-from hachoir.field.basic_field_set import (BasicFieldSet,
+from lib.hachoir.field.fake_array import FakeArray
+from lib.hachoir.field.basic_field_set import (BasicFieldSet,
                                            ParserError, MatchError)
-from hachoir.field.generic_field_set import GenericFieldSet
-from hachoir.field.seekable_field_set import SeekableFieldSet, RootSeekableFieldSet
-from hachoir.field.field_set import FieldSet
-from hachoir.field.static_field_set import StaticFieldSet
-from hachoir.field.parser import Parser
-from hachoir.field.vector import GenericVector, UserVector
+from lib.hachoir.field.generic_field_set import GenericFieldSet
+from lib.hachoir.field.seekable_field_set import SeekableFieldSet, RootSeekableFieldSet
+from lib.hachoir.field.field_set import FieldSet
+from lib.hachoir.field.static_field_set import StaticFieldSet
+from lib.hachoir.field.parser import Parser
+from lib.hachoir.field.vector import GenericVector, UserVector
 
 # Complex types
-from hachoir.field.float import Float32, Float64, Float80
-from hachoir.field.timestamp import (GenericTimestamp,
+from lib.hachoir.field.float import Float32, Float64, Float80
+from lib.hachoir.field.timestamp import (GenericTimestamp,
                                      TimestampUnix32, TimestampUnix64, TimestampMac32, TimestampUUID60, TimestampWin64,
                                      DateTimeMSDOS32, TimeDateMSDOS32, TimedeltaWin64)
 
 # Special Field classes
-from hachoir.field.link import Link, Fragment
-from hachoir.field.fragment import FragmentGroup, CustomFragment
+from lib.hachoir.field.link import Link, Fragment
+from lib.hachoir.field.fragment import FragmentGroup, CustomFragment
 
 available_types = (
     Bit, Bits, RawBits,

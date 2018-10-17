@@ -16,8 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with SickGear.  If not, see <http://www.gnu.org/licenses/>.
 
-import generic
-import xbmc_12plus
+from sickbeard.metadata import generic
+from sickbeard.metadata import xbmc_12plus
 
 import os
 

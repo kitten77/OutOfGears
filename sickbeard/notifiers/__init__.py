@@ -16,31 +16,31 @@
 # You should have received a copy of the GNU General Public License
 # along with SickGear.  If not, see <http://www.gnu.org/licenses/>.
 
-import emby
-import kodi
-import plex
-import xbmc
-import nmj
-import nmjv2
-import synoindex
-import synologynotifier
-import pytivo
+import sickbeard.notifiers.emby
+import sickbeard.notifiers.kodi
+import sickbeard.notifiers.plex
+# import xbmc
+import sickbeard.notifiers.nmj
+import sickbeard.notifiers.nmjv2
+import sickbeard.notifiers.synoindex
+import sickbeard.notifiers.synologynotifier
+import sickbeard.notifiers.pytivo
 
-import boxcar2
+import sickbeard.notifiers.boxcar2
 # import pushalot
-import pushbullet
-import pushover
-import growl
-import prowl
+import sickbeard.notifiers.pushbullet
+import sickbeard.notifiers.pushover
+import sickbeard.notifiers.growl
+import sickbeard.notifiers.prowl
 from . import libnotify
 
 from lib import libtrakt
-import trakt
-import slack
-import discordapp
-import gitter
-import tweet
-import emailnotify
+import sickbeard.notifiers.trakt
+import sickbeard.notifiers.slack
+import sickbeard.notifiers.discordapp
+import sickbeard.notifiers.gitter
+import sickbeard.notifiers.tweet
+import sickbeard.notifiers.emailnotify
 
 import sickbeard
 

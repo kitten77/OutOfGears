@@ -22,7 +22,6 @@ import base64
 import socket
 import time
 import urllib
-import urllib2
 
 import sickbeard
 from sickbeard.exceptions import ex
@@ -44,12 +43,12 @@ class PushoverNotifier(Notifier):
         # get devices from pushover
         result = False
         try:
-            req = urllib2.Request(DEVICE_URL)
-            handle = urllib2.urlopen(req, data)
+            req = urllib.request(DEVICE_URL)
+            handle = urllib.request.urlopen(req, data)
             if handle:
                 result = handle.read()
             handle.close()
-        except (urllib2.URLError, socket.timeout):
+        except (urllib.URLError, socket.timeout):
             pass
 
         return ('{}', result)[bool(result)]
@@ -84,11 +83,11 @@ class PushoverNotifier(Notifier):
         # send the request to pushover
         result = None
         try:
-            req = urllib2.Request(API_URL)
-            handle = urllib2.urlopen(req, urllib.urlencode(params))
+            req = urllib.Request(API_URL)
+            handle = urllib.urlopen(req, urllib.urlencode(params))
             handle.close()
 
-        except urllib2.URLError as e:
+        except urllib.URLError as e:
             # HTTP status 404 if the provided email address isn't a Pushover user.
             if 404 == e.code:
                 result = 'Username is wrong/not a Pushover email. Pushover will send an email to it'
@@ -121,7 +120,7 @@ class PushoverNotifier(Notifier):
                     result = 'Unable to connect to API, service unavailable'
 
                 else:
-                    result = 'Http response code "%s"' % response.status
+                    result = 'Http response code "%s"' % urllib.response.status
 
                 self._log_error(result)
 

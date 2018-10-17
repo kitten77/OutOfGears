@@ -24,18 +24,18 @@ __version__ = '1.0.1'
 
 import calendar
 import datetime
-import httplib
+import http.client as httplib
 import os
-import rfc822
+import email.utils as rfc822
 import sys
 import tempfile
 import textwrap
 import time
 import urllib
-import urllib2
-import urlparse
+# import urllib2
+import urllib.parse as urlparse
 import gzip
-import StringIO
+from io import StringIO
 
 try:
     # Python >= 2.6
@@ -49,7 +49,7 @@ except ImportError:
             # Google App Engine
             from django.utils import simplejson
         except ImportError:
-            raise ImportError, "Unable to load a json library"
+            raise ImportError("Unable to load a json library")
 
 # parse_qsl moved to urlparse module in v2.6
 try:
@@ -2351,7 +2351,7 @@ class Api(object):
                 any HTTP requests.    Defaults to False. [Optional]
         '''
         self.SetCache(cache)
-        self._urllib = urllib2
+        self._urllib = urllib
         self._cache_timeout = Api.DEFAULT_CACHE_TIMEOUT
         self._input_encoding = input_encoding
         self._use_gzip = use_gzip_compression
@@ -3423,7 +3423,7 @@ class Api(object):
         json = self._FetchUrl(url, parameters = parameters)
         try:
             data = self._ParseAndCheckTwitter(json)
-        except TwitterError, e:
+        except TwitterError as e:
                 _, e, _ = sys.exc_info()
                 t = e.args[0]
                 if len(t) == 1 and ('code' in t[0]) and (t[0]['code'] == 34):
@@ -4177,7 +4177,7 @@ class Api(object):
         url = '%s/account/verify_credentials.json' % self.base_url
         try:
             json = self._FetchUrl(url, no_cache = True)
-        except urllib2.HTTPError, http_error:
+        except urllib2.HTTPError as http_error:
             if http_error.code == httplib.UNAUTHORIZED:
                 return None
             else:
@@ -4549,8 +4549,8 @@ class Api(object):
                     response = opener.open(url, encoded_post_data)
                     url_data = self._DecompressGzippedResponse(response)
                     self._cache.Set(key, url_data)
-                except urllib2.HTTPError, e:
-                    print e
+                except urllib2.HTTPError as e:
+                    print(e)
                 opener.close()
             else:
                 url_data = self._cache.Get(key)
@@ -4616,7 +4616,7 @@ class _FileCache(object):
                          os.getenv('USERNAME') or \
                          os.getlogin() or \
                          'nobody'
-        except (AttributeError, IOError, OSError), e:
+        except (AttributeError, IOError, OSError) as e:
             return 'nobody'
 
     def _GetTmpCachePath(self):

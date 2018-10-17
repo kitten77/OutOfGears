@@ -22,7 +22,7 @@ import re
 
 import sickbeard
 
-import generic
+from sickbeard.metadata import generic
 
 from sickbeard import logger, exceptions, helpers
 from sickbeard import encodingKludge as ek

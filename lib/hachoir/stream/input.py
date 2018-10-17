@@ -1,13 +1,13 @@
-from hachoir.core.endian import BIG_ENDIAN, LITTLE_ENDIAN, MIDDLE_ENDIAN
-from hachoir.core.error import info
-from hachoir.core.log import Logger
-from hachoir.core.bits import str2long
-from hachoir.core.i18n import getTerminalCharset
-from hachoir.core.tools import lowerBound
-from hachoir.core.tools import alignValue
+from lib.hachoir.core.endian import BIG_ENDIAN, LITTLE_ENDIAN, MIDDLE_ENDIAN
+from lib.hachoir.core.error import info
+from lib.hachoir.core.log import Logger
+from lib.hachoir.core.bits import str2long
+from lib.hachoir.core.i18n import getTerminalCharset
+from lib.hachoir.core.tools import lowerBound
+from lib.hachoir.core.tools import alignValue
 from errno import ESPIPE
 from weakref import ref as weakref_ref
-from hachoir.stream import StreamError
+from lib.hachoir.stream import StreamError
 
 
 class InputStreamError(StreamError):
@@ -383,7 +383,7 @@ class InputPipe(object):
             self._append(data)
         block, offset = divmod(self.address, 1 << self.buffer_size)
         data = ''.join(self._get(index)
-                       for index in xrange(block, (end - 1 >> self.buffer_size) + 1)
+                       for index in range(block, (end - 1 >> self.buffer_size) + 1)
                        )[offset:offset + size]
         self._flush()
         self.address += len(data)
@@ -407,7 +407,7 @@ class InputIOStream(InputStream):
                     input = InputPipe(input, self._setSize)
                 else:
                     charset = getTerminalCharset()
-                    errmsg = unicode(str(err), charset)
+                    errmsg = err
                     source = args.get("source", "<inputio:%r>" % input)
                     raise InputStreamError(
                         "Unable to get size of %s: %s" % (source, errmsg))

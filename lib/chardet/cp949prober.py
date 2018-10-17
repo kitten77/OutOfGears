@@ -1,4 +1,5 @@
 ######################## BEGIN LICENSE BLOCK ########################
+
 # The Original Code is mozilla.org code.
 #
 # The Initial Developer of the Original Code is

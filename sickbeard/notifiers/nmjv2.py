@@ -21,7 +21,6 @@ import re
 import telnetlib
 import time
 import urllib
-import urllib2
 import xml.dom.minidom
 from xml.dom.minidom import parseString
 import xml.etree.cElementTree as XmlEtree
@@ -46,10 +45,10 @@ class NMJv2Notifier(BaseNotifier):
         try:
             base_url = 'http://%s:8008/' % host
 
-            req = urllib2.Request('%s%s%s' % (base_url, 'file_operation?', urllib.urlencode(
+            req = urllib.request('%s%s%s' % (base_url, 'file_operation?', urllib.urlencode(
                 dict(arg0='list_user_storage_file', arg1='', arg2=instance, arg3=20, arg4='true', arg5='true',
                      arg6='true', arg7='all', arg8='name_asc', arg9='false', arg10='false'))))
-            handle = urllib2.urlopen(req)
+            handle = urllib.request.urlopen(req)
             response = handle.read()
             xml_data = parseString(response)
 
@@ -57,10 +56,10 @@ class NMJv2Notifier(BaseNotifier):
             for node in xml_data.getElementsByTagName('path'):
                 xml_tag = node.toxml()
 
-                reqdb = urllib2.Request('%s%s%s' % (base_url, 'metadata_database?', urllib.urlencode(
+                reqdb = urllib.request('%s%s%s' % (base_url, 'metadata_database?', urllib.urlencode(
                     dict(arg0='check_database',
                          arg1=xml_tag.replace('<path>', '').replace('</path>', '').replace('[=]', '')))))
-                handledb = urllib2.urlopen(reqdb)
+                handledb = urllib.request.urlopen(reqdb)
                 responsedb = handledb.read()
                 xml_db = parseString(responsedb)
 
@@ -114,15 +113,15 @@ class NMJv2Notifier(BaseNotifier):
                 dict(arg0='scanner_start', arg1=sickbeard.NMJv2_DATABASE, arg2='background', arg3='')))
             self._log_debug(u'Try to mount network drive via url: %s' % host)
 
-            prereq = urllib2.Request(url_scandir)
-            req = urllib2.Request(url_updatedb)
+            prereq = urllib.request(url_scandir)
+            req = urllib.request(url_updatedb)
 
-            handle1 = urllib2.urlopen(prereq)
+            handle1 = urllib.request.urlopen(prereq)
             response1 = handle1.read()
 
             time.sleep(300.0 / 1000.0)
 
-            handle2 = urllib2.urlopen(req)
+            handle2 = urllib.request.urlopen(req)
             response2 = handle2.read()
         except IOError as e:
             self._log_warning(u'Couldn\'t contact popcorn hour on host %s: %s' % (host, e))

@@ -1,5 +1,5 @@
-from hachoir.core.i18n import getTerminalCharset, guessBytesCharset, _
-from hachoir.stream import InputIOStream, InputSubStream, InputStreamError
+from lib.hachoir.core.i18n import getTerminalCharset, guessBytesCharset, _
+from lib.hachoir.stream import InputIOStream, InputSubStream, InputStreamError
 
 
 def FileInputStream(filename, real_filename=None, **args):
@@ -16,7 +16,7 @@ def FileInputStream(filename, real_filename=None, **args):
         real_filename = filename
     try:
         inputio = open(real_filename, 'rb')
-    except IOError, err:
+    except IOError as err:
         charset = getTerminalCharset()
         errmsg = unicode(str(err), charset)
         raise InputStreamError(_(

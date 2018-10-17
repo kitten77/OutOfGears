@@ -19,7 +19,7 @@ import os
 import sickbeard
 import time
 
-from indexer_config import initConfig, indexerConfig
+from sickbeard.indexers.indexer_config import initConfig, indexerConfig
 from sickbeard.helpers import proxy_setting
 
 

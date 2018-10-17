@@ -18,7 +18,7 @@
 
 import os
 
-import generic
+from sickbeard.metadata import generic
 
 from sickbeard import encodingKludge as ek
 

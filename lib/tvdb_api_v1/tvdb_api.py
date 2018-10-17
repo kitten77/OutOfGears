@@ -8,13 +8,15 @@
 import traceback
 from functools import wraps
 
+from lib.tvdb_api.tvdb_api import Tvdb
+
 __author__ = 'dbr/Ben'
 __version__ = '1.9'
 
 import os
 import time
 import getpass
-import StringIO
+from io import StringIO
 import tempfile
 import warnings
 import logging
@@ -31,8 +33,8 @@ from lib.dateutil.parser import parse
 from lib.cachecontrol import CacheControl, caches
 
 from lib.etreetodict import ConvertXmlToDict
-from tvdb_ui import BaseUI, ConsoleUI
-from tvdb_exceptions import (tvdb_error_v1, tvdb_shownotfound_v1,
+from .tvdb_ui import BaseUI, ConsoleUI
+from .tvdb_exceptions import (tvdb_error_v1, tvdb_shownotfound_v1,
                              tvdb_seasonnotfound_v1, tvdb_episodenotfound_v1, tvdb_attributenotfound_v1)
 
 from sickbeard import logger
@@ -67,12 +69,12 @@ def retry(ExceptionToCheck, tries=4, delay=3, backoff=2, logr=None):
             while mtries > 1:
                 try:
                     return f(*args, **kwargs)
-                except ExceptionToCheck, e:
+                except ExceptionToCheck as e:
                     msg = 'TVDB_API :: %s, Retrying in %d seconds...' % (str(e), mdelay)
                     if logr:
                         logger.log(msg, logger.WARNING)
                     else:
-                        print msg
+                        print(msg)
                     time.sleep(mdelay)
                     mtries -= 1
                     mdelay *= backoff
@@ -301,13 +303,13 @@ class Episode(dict):
         if None is term:
             raise TypeError('must supply string to search for (contents)')
 
-        term = unicode(term).lower()
+        term = term.lower()
         for cur_key, cur_value in self.items():
-            cur_key, cur_value = unicode(cur_key).lower(), unicode(cur_value).lower()
+            cur_key, cur_value = cur_key.lower(), cur_value.lower()
             if None is not key and cur_key != key:
                 # Do not search this key
                 continue
-            if cur_value.find(unicode(term).lower()) > -1:
+            if cur_value.find(term.lower()) > -1:
                 return self
 
 
@@ -457,7 +459,7 @@ class TvdbV1:
             self.config['cache_location'] = self._get_temp_dir()
         elif cache is False:
             self.config['cache_enabled'] = False
-        elif isinstance(cache, basestring):
+        elif isinstance(cache, str):
             self.config['cache_enabled'] = True
             self.config['cache_location'] = cache
         else:
@@ -553,11 +555,11 @@ class TvdbV1:
 
         try:
             resp = session.get(url.strip(), params=params)
-        except requests.exceptions.HTTPError, e:
+        except requests.exceptions.HTTPError as e:
             raise tvdb_error_v1('HTTP error %s while loading URL %s' % (e.errno, url))
-        except requests.exceptions.ConnectionError, e:
+        except requests.exceptions.ConnectionError as e:
             raise tvdb_error_v1('Connection error %s while loading URL %s' % (e.message, url))
-        except requests.exceptions.Timeout, e:
+        except requests.exceptions.Timeout as e:
             raise tvdb_error_v1('Connection timed out %s while loading URL %s' % (e.message, url))
         except Exception:
             raise tvdb_error_v1('Unknown exception while loading URL %s: %s' % (url, traceback.format_exc()))
@@ -569,7 +571,7 @@ class TvdbV1:
                     and 'FirstAired' in te['Data']['Series']:
                 try:
                     value = parse(te['Data']['Series']['FirstAired'], fuzzy=True).strftime('%Y-%m-%d')
-                except (StandardError, Exception):
+                except Exception:
                     value = None
                 te['Data']['Series']['firstaired'] = value
             return te
@@ -588,7 +590,7 @@ class TvdbV1:
             else:
                 try:
                     return process_data(resp.content.strip())
-                except (StandardError, Exception):
+                except Exception:
                     return dict([(u'data', None)])
 
     def _getetsrc(self, url, params=None, language=None):
@@ -597,7 +599,7 @@ class TvdbV1:
         try:
             src = self._load_url(url, params=params, language=language).values()[0]
             return src
-        except (StandardError, Exception):
+        except Exception:
             return []
 
     def _set_item(self, sid, seas, ep, attrib, value):
@@ -648,7 +650,7 @@ class TvdbV1:
                     series_found['Series'] = [series_found['Series']]
                 series_found['Series'] = [{k.lower(): v for k, v in s.iteritems()} for s in series_found['Series']]
                 return series_found.values()[0]
-        except (StandardError, Exception):
+        except Exception:
             pass
 
         return []
@@ -730,7 +732,7 @@ class TvdbV1:
                         self.log('Transforming %s to %s' % (k, new_key))
                         new_url = self._get_url_artwork(v)
                         banners[btype][btype2][bid][new_key] = new_url
-        except (StandardError, Exception):
+        except Exception:
             pass
 
         self._set_show_data(sid, '_banners', banners)
@@ -781,7 +783,7 @@ class TvdbV1:
                                      'country': None,  # not supported by tvdb
                                      },
                           })
-        except (StandardError, Exception):
+        except Exception:
             pass
         self._set_show_data(sid, 'actors', a)
 
@@ -874,12 +876,12 @@ class TvdbV1:
                     self._set_item(sid, seas_no, ep_no, k, v)
 
             if self.config['dvdorder']:
-                num_dvd, num_network = [len(dvd_order[x]) for x in 'dvd', 'network']
+                num_dvd, num_network = [len(dvd_order[x]) for x in ('dvd', 'network')]
                 num_all = num_dvd + num_network
                 if num_all:
                     self.log('Of %s episodes, %s use the DVD order, and %s use the network aired order' % (
                         num_all, num_dvd, num_network))
-                    for ep_numbers in [', '.join(dvd_order['dvd'][i:i + 5]) for i in xrange(0, num_dvd, 5)]:
+                    for ep_numbers in [', '.join(dvd_order['dvd'][i:i + 5]) for i in range(0, num_dvd, 5)]:
                         self.log('Using DVD order: %s' % ep_numbers)
 
         return True
@@ -912,7 +914,7 @@ class TvdbV1:
             if not isinstance(arg, bool):
                 arg = None
 
-        if isinstance(key, (int, long)):
+        if isinstance(key, int):
             # Item is integer, treat as show id
             if key not in self.shows:
                 self._get_show_data(key, self.config['language'], (True, arg)[arg is not None])
@@ -939,8 +941,8 @@ def main():
     logging.basicConfig(level=logging.DEBUG)
 
     tvdb_instance = Tvdb(interactive=True, cache=False)
-    print tvdb_instance['Lost']['seriesname']
-    print tvdb_instance['Lost'][1][4]['episodename']
+    print(tvdb_instance['Lost']['seriesname'])
+    print(tvdb_instance['Lost'][1][4]['episodename'])
 
 
 if '__main__' == __name__:

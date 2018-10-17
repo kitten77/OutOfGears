@@ -22,7 +22,7 @@ import re
 
 import sickbeard
 
-import generic
+import sickbeard.metadata.generic
 
 from sickbeard import logger, exceptions, helpers
 from sickbeard import encodingKludge as ek
@@ -31,9 +31,9 @@ from sickbeard.exceptions import ex
 
 import xml.etree.cElementTree as etree
 from six import iteritems
+from sickbeard.metadata.generic import GenericMetadata
 
-
-class MediaBrowserMetadata(generic.GenericMetadata):
+class MediaBrowserMetadata(GenericMetadata):
     """
     Metadata generation class for Media Browser 2.x/3.x - Standard Mode.
 
@@ -60,7 +60,7 @@ class MediaBrowserMetadata(generic.GenericMetadata):
                  season_all_poster=False,
                  season_all_banner=False):
 
-        generic.GenericMetadata.__init__(self,
+        GenericMetadata.__init__(self,
                                          show_metadata,
                                          episode_metadata,
                                          fanart,
@@ -431,7 +431,7 @@ class MediaBrowserMetadata(generic.GenericMetadata):
 
             try:
                 myEp = myShow[curEpToWrite.season][curEpToWrite.episode]
-            except (StandardError, Exception):
+            except Exception as e:
                 logger.log(u"Unable to find episode " + str(curEpToWrite.season) + "x" + str(
                     curEpToWrite.episode) + " on " + sickbeard.indexerApi(
                     ep_obj.show.indexer).name + ".. has it been removed? Should I delete from db?")

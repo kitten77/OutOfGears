@@ -19,7 +19,6 @@
 import re
 import telnetlib
 import urllib
-import urllib2
 import xml.etree.cElementTree as XmlEtree
 
 import sickbeard
@@ -42,7 +41,7 @@ class NMJNotifier(BaseNotifier):
         result, terminal = False, None
         try:
             terminal = telnetlib.Telnet(host)
-        except (StandardError, Exception):
+        except Exception:
             self._log_warning(u'Unable to get a telnet session to %s' % host)
 
         if result:
@@ -101,9 +100,9 @@ class NMJNotifier(BaseNotifier):
         # if a mount URL is provided then attempt to open a handle to that URL
         if mount:
             try:
-                req = urllib2.Request(mount)
+                req = urllib.request(mount)
                 self._log_debug(u'Try to mount network drive via url: %s' % mount)
-                urllib2.urlopen(req)
+                urllib.request.urlopen(req)
             except IOError as e:
                 if hasattr(e, 'reason'):
                     self._log_warning(u'Could not contact Popcorn Hour on host %s: %s' % (host, e.reason))
@@ -121,9 +120,9 @@ class NMJNotifier(BaseNotifier):
 
         # send the request to the server
         try:
-            req = urllib2.Request(update_url)
+            req = urllib.request(update_url)
             self._log_debug(u'Sending scan update command via url: %s' % update_url)
-            handle = urllib2.urlopen(req)
+            handle = urllib.request.urlopen(req)
             response = handle.read()
         except IOError as e:
             if hasattr(e, 'reason'):

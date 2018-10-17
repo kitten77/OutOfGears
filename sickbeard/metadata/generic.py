@@ -991,13 +991,13 @@ class GenericMetadata():
                         url = u'%s%s%s' % (base_url, max_size, art['file_path'])
                         itemlist += [[tmdb_show['id'], art_likes, url]]
 
-                    itemlist.sort(lambda a, b: cmp((a[1]), (b[1])), reverse=True)
+                    itemlist.sort(lambda a, b: __cmp__((a[1]), (b[1])), reverse=True)
                     return itemlist
 
                 elif tmdb_show[types[image_type]]:
                     return [[tmdb_show['id'], tmdb_show['vote_average'], '%s%s%s' % (base_url, max_size, tmdb_show[types[image_type]])]]
 
-        except (StandardError, Exception):
+        except Exception as e:
             pass
 
         logger.log(u'Could not find any %s images on TMDB for %s' % (image_type, show.name), logger.DEBUG)
@@ -1007,7 +1007,7 @@ class GenericMetadata():
             tvdb_id = show.ids.get(indexer_config.INDEXER_TVDB, {}).get('id', None)
             if tvdb_id:
                 return self._fanart_urls(tvdb_id, image_type, lang, thumb)
-        except (StandardError, Exception):
+        except Exception as e:
             pass
 
         logger.log(u'Could not find any %s images on Fanart.tv for %s' % (image_type, show.name), logger.DEBUG)
@@ -1038,7 +1038,7 @@ class GenericMetadata():
 
                     itemlist += [[art_id, art_likes, url]]
 
-                itemlist.sort(lambda a, b: cmp((a[1], a[0]), (b[1], b[0])), reverse=True)
+                itemlist.sort(lambda a, b: __cmp__((a[1], a[0]), (b[1], b[0])), reverse=True)
                 return itemlist
 
         except Exception as e:
