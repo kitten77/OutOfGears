@@ -27,11 +27,11 @@ Exception classes - Subclassing allows you to check for specific errors
 import base64
 import xml.sax
 
-import boto
+import lib.boto as boto
 
-from boto import handler
-from boto.compat import json, StandardError
-from boto.resultset import ResultSet
+from lib.boto import handler
+from lib.boto.compat import json, StandardError
+from lib.boto.resultset import ResultSet
 
 
 class BotoClientError(StandardError):

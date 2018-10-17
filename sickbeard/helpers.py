@@ -18,6 +18,13 @@
 
 from __future__ import print_function
 from __future__ import with_statement
+#added for py3 support
+try:
+    import urlparse
+
+except ImportError:
+    import urllib.parse as urlparse
+
 
 import base64
 import codecs
@@ -33,12 +40,13 @@ import stat
 import tempfile
 import time
 import traceback
-import urlparse
+
+
 import uuid
 import subprocess
 import sys
 
-import adba
+import lib.adba
 import requests
 import requests.exceptions
 from cfscrape import CloudflareScraper
@@ -64,7 +72,7 @@ from sickbeard import encodingKludge as ek
 
 from lib.cachecontrol import CacheControl, caches
 from lib.scandir.scandir import scandir
-from itertools import izip, cycle
+from itertools import cycle
 
 
 def indentXML(elem, level=0):
@@ -940,10 +948,10 @@ def encrypt(data, encryption_version=0, decrypt=False):
     # Version 1: Simple XOR encryption (this is not very secure, but works)
     if encryption_version == 1:
         if decrypt:
-            return ''.join(chr(ord(x) ^ ord(y)) for (x, y) in izip(base64.decodestring(data), cycle(unique_key1)))
+            return ''.join(chr(ord(x) ^ ord(y)) for (x, y) in zip(base64.decodestring(data), cycle(unique_key1)))
         else:
             return base64.encodestring(
-                ''.join(chr(ord(x) ^ ord(y)) for (x, y) in izip(data, cycle(unique_key1)))).strip()
+                ''.join(chr(ord(x) ^ ord(y)) for (x, y) in zip(data, cycle(unique_key1)))).strip()
     # Version 0: Plain text
     else:
         return data

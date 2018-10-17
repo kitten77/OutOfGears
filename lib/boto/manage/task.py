@@ -20,11 +20,11 @@
 # IN THE SOFTWARE.
 #
 
-import boto
-from boto.sdb.db.property import StringProperty, DateTimeProperty, IntegerProperty
-from boto.sdb.db.model import Model
+import lib.boto as boto
+from lib.boto.sdb.db.property import StringProperty, DateTimeProperty, IntegerProperty
+from lib.boto.sdb.db.model import Model
 import datetime, subprocess, time
-from boto.compat import StringIO
+from io import StringIO
 
 def check_hour(val):
     if val == '*':

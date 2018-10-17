@@ -14,8 +14,8 @@ WARNING: Loading this module indirectly calls initLocale() which sets
          settings.
 """
 
-import hachoir.core.config as config
-import hachoir.core
+import lib.hachoir.core.config as config
+# import lib.hachoir.core
 import locale
 from os import path
 import sys
@@ -78,7 +78,7 @@ class UnicodeStdout(object):
         self.device.flush()
 
     def write(self, text):
-        if isinstance(text, unicode):
+        if isinstance(text, str):
             text = text.encode(self.charset, 'replace')
         self.device.write(text)
 
@@ -114,14 +114,14 @@ initLocale.is_done = False
 
 
 def _dummy_gettext(text):
-    return unicode(text)
+    return text
 
 
 def _dummy_ngettext(singular, plural, count):
     if 1 < abs(count) or not count:
-        return unicode(plural)
+        return plural
     else:
-        return unicode(singular)
+        return singular
 
 
 def _initGettext():
@@ -153,10 +153,9 @@ def _initGettext():
 
     # TODO: translate_unicode lambda function really sucks!
     # => find native function to do that
-    unicode_gettext = lambda text: \
-        unicode(translate(text), charset)
+    unicode_gettext = lambda text: translate(text)
     unicode_ngettext = lambda singular, plural, count: \
-        unicode(ngettext(singular, plural, count), charset)
+        ngettext(singular, plural, count), charset
     return (unicode_gettext, unicode_ngettext)
 
 
@@ -200,14 +199,14 @@ def guessBytesCharset(bytes, default=None):
 
     # Pure ASCII?
     try:
-        text = unicode(bytes, 'ASCII', 'strict')
+        text = bytes.decode()
         return 'ASCII'
     except UnicodeDecodeError:
         pass
 
     # Valid UTF-8?
     try:
-        text = unicode(bytes, 'UTF-8', 'strict')
+        text = bytes.decode()
         return 'UTF-8'
     except UnicodeDecodeError:
         pass

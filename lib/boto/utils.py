@@ -42,8 +42,8 @@ Some handy utility functions used by several classes.
 import subprocess
 import time
 import logging.handlers
-import boto
-import boto.provider
+import lib.boto as boto
+import lib.boto.provider
 import tempfile
 import random
 import smtplib
@@ -57,17 +57,17 @@ import email.encoders
 import gzip
 import threading
 import locale
-from boto.compat import six, StringIO, urllib, encodebytes
+from lib.boto.compat import six, StringIO, urllib, encodebytes
 
 from contextlib import contextmanager
 
 from hashlib import md5, sha512
 _hashfn = sha512
 
-from boto.compat import json
+from lib.boto.compat import json
 
 try:
-    from boto.compat.json import JSONDecodeError
+    from lib.boto.compat.json import JSONDecodeError
 except ImportError:
     JSONDecodeError = ValueError
 

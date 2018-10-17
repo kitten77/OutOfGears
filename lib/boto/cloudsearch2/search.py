@@ -21,9 +21,9 @@
 # IN THE SOFTWARE.
 #
 from math import ceil
-from boto.compat import json, map, six
-import requests
-from boto.cloudsearchdomain.layer1 import CloudSearchDomainConnection
+from lib.boto.compat import json, map, six
+import request as requests
+from lib.boto.cloudsearchdomain.layer1 import CloudSearchDomainConnection
 
 SIMPLE = 'simple'
 STRUCTURED = 'structured'

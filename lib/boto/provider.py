@@ -27,18 +27,18 @@ This class encapsulates the provider-specific header differences.
 """
 
 import os
-from boto.compat import six
+from lib.boto.compat import six
 from datetime import datetime
 
-import boto
-from boto import config
-from boto.compat import expanduser
-from boto.pyami.config import Config
-from boto.exception import InvalidInstanceMetadataError
-from boto.gs.acl import ACL
-from boto.gs.acl import CannedACLStrings as CannedGSACLStrings
-from boto.s3.acl import CannedACLStrings as CannedS3ACLStrings
-from boto.s3.acl import Policy
+import lib.boto as boto
+from lib.boto import config
+from lib.boto.compat import expanduser
+from lib.boto.pyami.config import Config
+from lib.boto.exception import InvalidInstanceMetadataError
+from lib.boto.gs.acl import ACL
+from lib.boto.gs.acl import CannedACLStrings as CannedGSACLStrings
+from lib.boto.s3.acl import CannedACLStrings as CannedS3ACLStrings
+from lib.boto.s3.acl import Policy
 
 
 HEADER_PREFIX_KEY = 'header_prefix'

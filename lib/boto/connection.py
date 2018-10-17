@@ -53,26 +53,26 @@ import time
 import xml.sax
 import copy
 
-from boto import auth
-from boto import auth_handler
-import boto
-import boto.utils
-import boto.handler
-import boto.cacerts
+from lib.boto import auth
+from lib.boto import auth_handler
+import lib.boto as boto
+import lib.boto.utils
+import lib.boto.handler
+import lib.boto.cacerts
 
-from boto import config, UserAgent
-from boto.compat import six, http_client, urlparse, quote, encodebytes
-from boto.exception import AWSConnectionError
-from boto.exception import BotoClientError
-from boto.exception import BotoServerError
-from boto.exception import PleaseRetryException
-from boto.provider import Provider
-from boto.resultset import ResultSet
+from lib.boto import config, UserAgent
+from lib.boto.compat import six, http_client, urlparse, quote, encodebytes
+from lib.boto.exception import AWSConnectionError
+from lib.boto.exception import BotoClientError
+from lib.boto.exception import BotoServerError
+from lib.boto.exception import PleaseRetryException
+from lib.boto.provider import Provider
+from lib.boto.resultset import ResultSet
 
 HAVE_HTTPS_CONNECTION = False
 try:
     import ssl
-    from boto import https_connection
+    from lib.boto import https_connection
     # Google App Engine runs on Python 2.5 so doesn't have ssl.SSLError.
     if hasattr(ssl, 'SSLError'):
         HAVE_HTTPS_CONNECTION = True

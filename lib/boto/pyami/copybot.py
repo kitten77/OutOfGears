@@ -19,9 +19,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 #
-import boto
-from boto.pyami.scriptbase import ScriptBase
-import os, StringIO
+import lib.boto as boto
+from lib.boto.pyami.scriptbase import ScriptBase
+import os
+from io import StringIO
 
 class CopyBot(ScriptBase):
 

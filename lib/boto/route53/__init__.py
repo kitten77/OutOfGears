@@ -23,9 +23,9 @@
 
 # this is here for backward compatibility
 # originally, the Route53Connection class was defined here
-from boto.route53.connection import Route53Connection
-from boto.regioninfo import RegionInfo, get_regions
-from boto.regioninfo import connect
+from lib.boto.route53.connection import Route53Connection
+from lib.boto.regioninfo import RegionInfo, get_regions
+from lib.boto.regioninfo import connect
 
 
 class Route53RegionInfo(RegionInfo):

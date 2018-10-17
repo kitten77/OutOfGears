@@ -23,7 +23,7 @@
 Represents a VPC Peering Connection.
 """
 
-from boto.ec2.ec2object import TaggedEC2Object
+from lib.boto.ec2.ec2object import TaggedEC2Object
 
 class VpcInfo(object):
     def __init__(self):

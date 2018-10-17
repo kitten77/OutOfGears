@@ -22,14 +22,16 @@
 # IN THE SOFTWARE.
 #
 
-import boto
-from boto.compat import json
-from boto.cloudsearch.optionstatus import OptionStatus
-from boto.cloudsearch.optionstatus import IndexFieldStatus
-from boto.cloudsearch.optionstatus import ServicePoliciesStatus
-from boto.cloudsearch.optionstatus import RankExpressionStatus
-from boto.cloudsearch.document import DocumentServiceConnection
-from boto.cloudsearch.search import SearchConnection
+#unused
+# import lib.boto as boto
+# from lib.boto.compat import json
+
+from lib.boto.cloudsearch.optionstatus import OptionStatus
+from lib.boto.cloudsearch.optionstatus import IndexFieldStatus
+from lib.boto.cloudsearch.optionstatus import ServicePoliciesStatus
+from lib.boto.cloudsearch.optionstatus import RankExpressionStatus
+from lib.boto.cloudsearch.document import DocumentServiceConnection
+from lib.boto.cloudsearch.search import SearchConnection
 
 def handle_bool(value):
     if value in [True, 'true', 'True', 'TRUE', 1]:

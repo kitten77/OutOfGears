@@ -22,9 +22,9 @@
 
 # this is here for backward compatibility
 # originally, the IAMConnection class was defined here
-from boto.iam.connection import IAMConnection
-from boto.regioninfo import RegionInfo, get_regions
-from boto.regioninfo import connect
+from lib.boto.iam.connection import IAMConnection
+from lib.boto.regioninfo import RegionInfo, get_regions
+from lib.boto.regioninfo import connect
 
 
 class IAMRegionInfo(RegionInfo):

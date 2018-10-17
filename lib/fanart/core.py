@@ -82,5 +82,5 @@ class Request(object):
                                 image_urls[image_type].append({u'id': image_id, u'url': image_url, u'likes': image_likes, u'lang': image_lang})
 
                         return image_urls
-        except Exception, e:
+        except Exception as e:
             pass

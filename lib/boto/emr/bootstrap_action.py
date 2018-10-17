@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-from boto.compat import six
+from lib.boto.compat import six
 
 class BootstrapAction(object):
     def __init__(self, name, path, bootstrap_action_args):

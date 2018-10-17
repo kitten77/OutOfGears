@@ -23,22 +23,22 @@ import re
 import urllib
 import xml.sax
 
-import boto
-from boto import handler
-from boto.resultset import ResultSet
-from boto.exception import GSResponseError
-from boto.exception import InvalidAclError
-from boto.gs.acl import ACL, CannedACLStrings
-from boto.gs.acl import SupportedPermissions as GSPermissions
-from boto.gs.bucketlistresultset import VersionedBucketListResultSet
-from boto.gs.cors import Cors
-from boto.gs.encryptionconfig import EncryptionConfig
-from boto.gs.lifecycle import LifecycleConfig
-from boto.gs.key import Key as GSKey
-from boto.s3.acl import Policy
-from boto.s3.bucket import Bucket as S3Bucket
-from boto.utils import get_utf8_value
-from boto.compat import six
+import lib.boto as boto
+from lib.boto import handler
+from lib.boto.resultset import ResultSet
+from lib.boto.exception import GSResponseError
+from lib.boto.exception import InvalidAclError
+from lib.boto.gs.acl import ACL, CannedACLStrings
+from lib.boto.gs.acl import SupportedPermissions as GSPermissions
+from lib.boto.gs.bucketlistresultset import VersionedBucketListResultSet
+from lib.boto.gs.cors import Cors
+from lib.boto.gs.encryptionconfig import EncryptionConfig
+from lib.boto.gs.lifecycle import LifecycleConfig
+from lib.boto.gs.key import Key as GSKey
+from lib.boto.s3.acl import Policy
+from lib.boto.s3.bucket import Bucket as S3Bucket
+from lib.boto.utils import get_utf8_value
+from lib.boto.compat import six
 
 # constants for http query args
 DEF_OBJ_ACL = 'defaultObjectAcl'

@@ -19,7 +19,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-from boto.compat import unquote_str
+from lib.boto.compat import unquote_str
 
 def bucket_lister(bucket, prefix='', delimiter='', marker='', headers=None,
                   encoding_type=None):

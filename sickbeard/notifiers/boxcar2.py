@@ -20,7 +20,6 @@
 
 import time
 import urllib
-import urllib2
 
 import sickbeard
 from sickbeard.exceptions import ex
@@ -65,11 +64,11 @@ class Boxcar2Notifier(Notifier):
         # send the request to boxcar2
         result = None
         try:
-            req = urllib2.Request('https://new.boxcar.io/api/notifications')
-            handle = urllib2.urlopen(req, data)
+            req = urllib.request('https://new.boxcar.io/api/notifications')
+            handle = urllib.request.urlopen(req, data)
             handle.close()
 
-        except urllib2.URLError as e:
+        except urllib.URLError as e:
             if not hasattr(e, 'code'):
                 self._log_error(u'Notification failed: %s' % ex(e))
             else:

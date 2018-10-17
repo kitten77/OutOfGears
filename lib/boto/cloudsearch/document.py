@@ -22,10 +22,10 @@
 # IN THE SOFTWARE.
 #
 
-import boto.exception
-from boto.compat import json
-import requests
-import boto
+import lib.boto.exception as exception
+from lib.boto.compat import json
+import request as requests
+import lib.boto as boto
 
 class SearchServiceException(Exception):
     pass
@@ -211,7 +211,7 @@ class CommitResponse(object):
     :param doc_service: Object containing the documents posted and methods to
         retry
 
-    :raises: :class:`boto.exception.BotoServerError`
+    :raises: :class:`exception.BotoServerError`
     :raises: :class:`boto.cloudsearch.document.SearchServiceException`
     :raises: :class:`boto.cloudsearch.document.EncodingError`
     :raises: :class:`boto.cloudsearch.document.ContentTooLongError`
@@ -228,7 +228,7 @@ class CommitResponse(object):
         except:
             boto.log.error('Error indexing documents.\nResponse Content:\n{0}\n\n'
                 'SDF:\n{1}'.format(_body, self.sdf))
-            raise boto.exception.BotoServerError(self.response.status_code, '',
+            raise exception.BotoServerError(self.response.status_code, '',
                 body=_body)
 
         self.status = self.content['status']

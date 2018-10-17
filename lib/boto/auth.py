@@ -27,11 +27,11 @@ Handles authentication required to AWS and GS
 """
 
 import base64
-import boto
-import boto.auth_handler
-import boto.exception
-import boto.plugin
-import boto.utils
+import lib.boto as boto
+# import boto.auth_handler
+# import boto.exception
+# import boto.plugin
+# import boto.utils
 import copy
 import datetime
 from email.utils import formatdate
@@ -39,9 +39,9 @@ import hmac
 import os
 import posixpath
 
-from boto.compat import urllib, encodebytes, parse_qs_safe, urlparse
-from boto.auth_handler import AuthHandler
-from boto.exception import BotoClientError
+from lib.boto.compat import urllib, encodebytes, parse_qs_safe, urlparse
+from lib.boto.auth_handler import AuthHandler
+# from boto.exception import BotoClientError
 
 try:
     from hashlib import sha1 as sha

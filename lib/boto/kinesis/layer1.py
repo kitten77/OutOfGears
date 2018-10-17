@@ -21,14 +21,14 @@
 #
 
 import base64
-import boto
+import lib.boto as boto
 
-from boto.connection import AWSQueryConnection
-from boto.regioninfo import RegionInfo
-from boto.exception import JSONResponseError
-from boto.kinesis import exceptions
-from boto.compat import json
-from boto.compat import six
+from lib.boto.connection import AWSQueryConnection
+from lib.boto.regioninfo import RegionInfo
+from lib.boto.exception import JSONResponseError
+from lib.boto.kinesis import exceptions
+from lib.boto.compat import json
+from lib.boto.compat import six
 
 
 class KinesisConnection(AWSQueryConnection):

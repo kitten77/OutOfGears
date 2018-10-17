@@ -21,8 +21,8 @@
 
 import uuid
 
-from boto.compat import urllib
-from boto.resultset import ResultSet
+from lib.boto.compat import urllib
+from lib.boto.resultset import ResultSet
 
 
 class InvalidationBatch(object):

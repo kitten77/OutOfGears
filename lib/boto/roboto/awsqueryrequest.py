@@ -21,11 +21,11 @@
 # IN THE SOFTWARE.
 import sys
 import os
-import boto
+import lib.boto as boto
 import optparse
 import copy
-import boto.exception
-import boto.roboto.awsqueryservice
+import lib.boto.exception
+import lib.boto.roboto.awsqueryservice
 
 import bdb
 import traceback
@@ -71,20 +71,20 @@ class Line(object):
             print(self.line)
             self.printed = True
 
-class RequiredParamError(boto.exception.BotoClientError):
+class RequiredParamError(lib.boto.exeception.BotoClientError):
 
     def __init__(self, required):
         self.required = required
         s = 'Required parameters are missing: %s' % self.required
         super(RequiredParamError, self).__init__(s)
 
-class EncoderError(boto.exception.BotoClientError):
+class EncoderError(lib.boto.exeception.BotoClientError):
 
     def __init__(self, error_msg):
         s = 'Error encoding value (%s)' % error_msg
         super(EncoderError, self).__init__(s)
 
-class FilterError(boto.exception.BotoClientError):
+class FilterError(lib.boto.exeception.BotoClientError):
 
     def __init__(self, filters):
         self.filters = filters
@@ -457,7 +457,7 @@ class AWSQueryRequest(object):
         except self.ServiceClass.ResponseError as err:
             print('Error(%s): %s' % (err.error_code, err.error_message))
             sys.exit(1)
-        except boto.roboto.awsqueryservice.NoCredentialsError as err:
+        except lib.boto.roboto.awsqueryservice.NoCredentialsError as err:
             print('Unable to find credentials.')
             sys.exit(1)
         except Exception as e:
@@ -482,7 +482,7 @@ class AWSQueryRequest(object):
                 if isinstance(item, dict):
                     for field_name in item:
                         line.append(item[field_name])
-                elif isinstance(item, basestring):
+                elif isinstance(item):
                     line.append(item)
                 line.print_it()
 

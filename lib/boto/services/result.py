@@ -21,8 +21,8 @@
 # IN THE SOFTWARE.
 import os
 from datetime import datetime, timedelta
-from boto.utils import parse_ts
-import boto
+from lib.boto.utils import parse_ts
+import lib.boto as boto
 
 class ResultProcessor(object):
 

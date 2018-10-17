@@ -23,12 +23,12 @@
 import time
 from binascii import crc32
 
-import boto
-from boto.connection import AWSAuthConnection
-from boto.exception import DynamoDBResponseError
-from boto.provider import Provider
-from boto.dynamodb import exceptions as dynamodb_exceptions
-from boto.compat import json
+import lib.boto as boto
+from lib.boto.connection import AWSAuthConnection
+from lib.boto.exception import DynamoDBResponseError
+from lib.boto.provider import Provider
+from lib.boto.dynamodb import exceptions as dynamodb_exceptions
+from lib.boto.compat import json
 
 
 class Layer1(AWSAuthConnection):

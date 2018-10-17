@@ -1,7 +1,7 @@
-from cStringIO import StringIO
-from hachoir.core.endian import BIG_ENDIAN, LITTLE_ENDIAN
-from hachoir.core.bits import long2raw
-from hachoir.stream import StreamError
+from io import StringIO
+from lib.hachoir.core.endian import BIG_ENDIAN, LITTLE_ENDIAN
+from lib.hachoir.core.bits import long2raw
+from lib.hachoir.stream import StreamError
 from errno import EBADF
 
 MAX_READ_NBYTES = 2 ** 16
@@ -163,7 +163,7 @@ class OutputStream(object):
             self._output.seek(0)
             try:
                 return self._output.read(nbytes)
-            except IOError, err:
+            except IOError as err:
                 if err[0] == EBADF:
                     raise OutputStreamError("Stream doesn't support read() operation")
         finally:

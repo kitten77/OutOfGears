@@ -24,8 +24,8 @@
 Represents an OptionGroup
 """
 
-from boto.rds.dbsecuritygroup import DBSecurityGroup
-from boto.resultset import ResultSet
+from lib.boto.rds.dbsecuritygroup import DBSecurityGroup
+from lib.boto.resultset import ResultSet
 
 
 class OptionGroup(object):

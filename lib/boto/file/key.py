@@ -25,7 +25,7 @@
 import os, shutil
 import sys
 
-from boto.compat import StringIO
+from io import StringIO
 
 class Key(object):
 

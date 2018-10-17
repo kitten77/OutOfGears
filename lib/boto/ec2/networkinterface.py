@@ -23,10 +23,10 @@
 """
 Represents an EC2 Elastic Network Interface
 """
-from boto.exception import BotoClientError
-from boto.ec2.ec2object import TaggedEC2Object
-from boto.resultset import ResultSet
-from boto.ec2.group import Group
+from lib.boto.exception import BotoClientError
+from lib.boto.ec2.ec2object import TaggedEC2Object
+from lib.boto.resultset import ResultSet
+from lib.boto.ec2.group import Group
 
 
 class Attachment(object):

@@ -18,14 +18,17 @@
 # WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
+
+### SG TODO this will crash if it's run under py3 need fixing!
+
 from __future__ import print_function
 
-from boto.sdb.db.model import Model
-from boto.sdb.db.property import StringProperty, IntegerProperty, ListProperty, ReferenceProperty, CalculatedProperty
-from boto.manage.server import Server
-from boto.manage import propget
-import boto.utils
-import boto.ec2
+from lib.boto.sdb.db.model import Model
+from lib.boto.sdb.db.property import StringProperty, IntegerProperty, ListProperty, ReferenceProperty, CalculatedProperty
+from lib.boto.manage.server import Server
+from lib.boto.manage import propget
+import lib.boto.utils as boto_utils
+import lib.boto.ec2 as boto_ec2
 import time
 import traceback
 from contextlib import closing
@@ -37,7 +40,7 @@ class CommandLineGetter(object):
     def get_region(self, params):
         if not params.get('region', None):
             prop = self.cls.find_property('region_name')
-            params['region'] = propget.get(prop, choices=boto.ec2.regions)
+            params['region'] = propget.get(prop, choices=boto_ec2.regions)
 
     def get_zone(self, params):
         if not params.get('zone', None):
@@ -116,7 +119,7 @@ class Volume(Model):
     @classmethod
     def create_from_volume_id(cls, region_name, volume_id, name):
         vol = None
-        ec2 = boto.ec2.connect_to_region(region_name)
+        ec2 = boto_ec2.connect_to_region(region_name)
         rs = ec2.get_all_volumes([volume_id])
         if len(rs) == 1:
             v = rs[0]
@@ -156,7 +159,7 @@ class Volume(Model):
         if self.server:
             return self.server.ec2
         if not hasattr(self, 'ec2') or self.ec2 is None:
-            self.ec2 = boto.ec2.connect_to_region(self.region_name)
+            self.ec2 = boto_ec2.connect_to_region(self.region_name)
         return self.ec2
 
     def _volume_state(self):
@@ -191,7 +194,7 @@ class Volume(Model):
         for snapshot in rs:
             if snapshot.volume_id in all_vols:
                 if snapshot.progress == '100%':
-                    snapshot.date = boto.utils.parse_ts(snapshot.start_time)
+                    snapshot.date = boto_utils.parse_ts(snapshot.start_time)
                     snapshot.keep = True
                     snaps.append(snapshot)
         snaps.sort(cmp=lambda x, y: cmp(x.date, y.date))

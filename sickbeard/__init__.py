@@ -1957,8 +1957,7 @@ def save_config():
         cfg_lc = cfg.lower()
         cfg_keys += [cfg]
         new_config[cfg] = {}
-        for (k, v) in filter(lambda (_, y): any([y]) or (
-                cfg_lc in ('kodi', 'xbmc', 'synoindex') and _ in ('always_on',)), items):
+        for (k, v) in filter(lambda x, y: any([y]) or (cfg_lc in ('kodi', 'xbmc', 'synoindex') and x in ('always_on',)), items):
             k = '%s' in k and (k % cfg_lc) or (cfg_lc + '_' + k)
             # correct for cases where keys are named in an inconsistent manner to parent stanza
             k = k.replace('blackhole_', '').replace('sabnzbd_', 'sab_')

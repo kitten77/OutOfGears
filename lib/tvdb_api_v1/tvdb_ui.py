@@ -27,7 +27,7 @@ cannot be found).
 A simple example callback, which returns a random series:
 
 >>> import random
->>> from tvdb_ui import BaseUI
+>>> from lib.tvdb_api_v1.tvdb_ui import BaseUI
 >>> class RandomUI(BaseUI):
 ...    def selectSeries(self, allSeries):
 ...            import random
@@ -35,20 +35,19 @@ A simple example callback, which returns a random series:
 
 Then to use it..
 
->>> from tvdb_api import Tvdb
+>>> from lib.tvdb_api_v1.tvdb_api import Tvdb
 >>> t = Tvdb(custom_ui = RandomUI)
 >>> random_matching_series = t['Lost']
 >>> type(random_matching_series)
 <class 'tvdb_api.Show'>
 """
+from lib.tvdb_api.tvdb_exceptions import tvdb_userabort
 
 __author__ = "dbr/Ben"
 __version__ = "1.9"
 
 import logging
 import warnings
-
-from tvdb_exceptions import tvdb_userabort_v1
 
 def log():
     return logging.getLogger(__name__)
@@ -80,7 +79,7 @@ class ConsoleUI(BaseUI):
         else:
             toshow = allSeries
 
-        print "TVDB Search Results:"
+        print("TVDB Search Results:")
         for i, cshow in enumerate(toshow):
             i_show = i + 1 # Start at more human readable number 1 (not 0)
             log().debug('Showing allSeries[%s], series %s)' % (i_show, allSeries[i]['seriesname']))
@@ -89,31 +88,31 @@ class ConsoleUI(BaseUI):
             else:
                 extra = ""
 
-            print "%s -> %s [%s] # http://thetvdb.com/?tab=series&id=%s&lid=%s%s" % (
+            print("%s -> %s [%s] # http://thetvdb.com/?tab=series&id=%s&lid=%s%s" % (
                 i_show,
                 cshow['seriesname'].encode("UTF-8", "ignore"),
                 cshow['language'].encode("UTF-8", "ignore"),
                 str(cshow['id']),
                 cshow['lid'],
                 extra
-            )
+            ))
 
     def selectSeries(self, allSeries):
         self._displaySeries(allSeries)
 
         if len(allSeries) == 1:
             # Single result, return it!
-            print "Automatically selecting only result"
+            print("Automatically selecting only result")
             return allSeries[0]
 
         if self.config['select_first'] is True:
-            print "Automatically returning first search result"
+            print("Automatically returning first search result")
             return allSeries[0]
 
         while True: # return breaks this loop
             try:
-                print "Enter choice (first number, return for default, 'all', ? for help):"
-                ans = raw_input()
+                print("Enter choice (first number, return for default, 'all', ? for help):")
+                ans = input()
             except KeyboardInterrupt:
                 raise tvdb_userabort("User aborted (^c keyboard interupt)")
             except EOFError:
@@ -131,13 +130,13 @@ class ConsoleUI(BaseUI):
                     log().debug('Got quit command (q)')
                     raise tvdb_userabort("User aborted ('q' quit command)")
                 elif ans == "?":
-                    print "## Help"
-                    print "# Enter the number that corresponds to the correct show."
-                    print "# a - display all results"
-                    print "# all - display all results"
-                    print "# ? - this help"
-                    print "# q - abort tvnamer"
-                    print "# Press return with no input to select first result"
+                    print("## Help")
+                    print("# Enter the number that corresponds to the correct show.")
+                    print("# a - display all results")
+                    print("# all - display all results")
+                    print("# ? - this help")
+                    print("# q - abort tvnamer")
+                    print("# Press return with no input to select first result")
                 elif ans.lower() in ["a", "all"]:
                     self._displaySeries(allSeries, limit = None)
                 else:
@@ -148,6 +147,6 @@ class ConsoleUI(BaseUI):
                     return allSeries[selected_id]
                 except IndexError:
                     log().debug('Invalid show number entered!')
-                    print "Invalid number (%s) selected!"
+                    print("Invalid number (%s) selected!")
                     self._displaySeries(allSeries)
 

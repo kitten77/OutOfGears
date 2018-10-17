@@ -22,11 +22,11 @@
 # IN THE SOFTWARE.
 import os
 
-import boto
-from boto.compat import json
-from boto.exception import BotoClientError
-from boto.endpoints import BotoEndpointResolver
-from boto.endpoints import StaticEndpointBuilder
+import lib.boto as boto
+from lib.boto.compat import json
+from lib.boto.exception import BotoClientError
+from lib.boto.endpoints import BotoEndpointResolver
+from lib.boto.endpoints import StaticEndpointBuilder
 
 
 _endpoints_cache = {}

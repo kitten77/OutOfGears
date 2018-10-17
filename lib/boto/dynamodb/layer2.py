@@ -20,12 +20,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 #
-from boto.dynamodb.layer1 import Layer1
-from boto.dynamodb.table import Table
-from boto.dynamodb.schema import Schema
-from boto.dynamodb.item import Item
-from boto.dynamodb.batch import BatchList, BatchWriteList
-from boto.dynamodb.types import get_dynamodb_type, Dynamizer, \
+from lib.boto.dynamodb.layer1 import Layer1
+from lib.boto.dynamodb.table import Table
+from lib.boto.dynamodb.schema import Schema
+from lib.boto.dynamodb.item import Item
+from lib.boto.dynamodb.batch import BatchList, BatchWriteList
+from lib.boto.dynamodb.types import get_dynamodb_type, Dynamizer, \
         LossyFloatDynamizer, NonBooleanDynamizer
 
 

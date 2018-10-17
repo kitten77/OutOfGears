@@ -19,8 +19,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 #
-from boto.pyami.installers.ubuntu.installer import Installer
-import boto
+from lib.boto.pyami.installers.ubuntu.installer import Installer
+import lib.boto as boto
 import os
 
 class Trac(Installer):

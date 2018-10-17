@@ -18,13 +18,13 @@
 from __future__ import with_statement
 
 from time import time, sleep
-import aniDBfileInfo as fileInfo
+import lib.adba.aniDBfileInfo as fileInfo
 import xml.etree.cElementTree as etree
 import os, re, string
-from aniDBmaper import AniDBMaper
-from aniDBtvDBmaper import TvDBMap
-from aniDBerrors import *
-from aniDBfileInfo import read_anidb_xml, read_tvdb_map_xml
+from lib.adba.aniDBmaper import AniDBMaper
+from lib.adba.aniDBtvDBmaper import TvDBMap
+from lib.adba.aniDBerrors import *
+from lib.adba.aniDBfileInfo import read_anidb_xml, read_tvdb_map_xml
 
 
 class aniDBabstractObject(object):
@@ -54,7 +54,7 @@ class aniDBabstractObject(object):
                         try:
                             newList.append(int(i))
                         except:
-                            newList.append(unicode(i, "utf-8"))
+                            newList.append(i)
                     self.__dict__[key] = newList
                     continue
             except:
@@ -62,7 +62,7 @@ class aniDBabstractObject(object):
             try:
                 self.__dict__[key] = int(dataline[key])
             except:
-                self.__dict__[key] = unicode(dataline[key], "utf-8")
+                self.__dict__[key] = dataline[key]
             key = property(lambda x: dataline[key])
 
     def __getattr__(self, name):
@@ -274,7 +274,7 @@ class Episode(aniDBabstractObject):
 
         try:
             self.aniDB.mylistadd(size=self.size, ed2k=self.ed2k, state=status)
-        except Exception, e:
+        except Exception as e:
             self.log(u"exception msg: " + str(e))
         else:
             # TODO: add the name or something

@@ -23,8 +23,8 @@
 import os
 import datetime
 
-import boto.utils
-from boto.compat import json
+import lib.boto as boto
+from lib.boto.compat import json
 
 
 class Credentials(object):

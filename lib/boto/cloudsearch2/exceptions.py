@@ -1,7 +1,7 @@
 """
 Exceptions that are specific to the cloudsearch2 module.
 """
-from boto.exception import BotoServerError
+from lib.boto.exception import BotoServerError
 
 
 class InvalidTypeException(BotoServerError):

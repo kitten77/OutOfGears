@@ -21,10 +21,10 @@
 #
 
 from datetime import datetime
-from boto.ec2.cloudwatch.listelement import ListElement
-from boto.ec2.cloudwatch.dimension import Dimension
-from boto.compat import json
-from boto.compat import six
+from lib.boto.ec2.cloudwatch.listelement import ListElement
+from lib.boto.ec2.cloudwatch.dimension import Dimension
+from lib.boto.compat import json
+from lib.boto.compat import six
 
 
 class MetricAlarms(list):

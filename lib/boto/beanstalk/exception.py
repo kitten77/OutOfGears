@@ -1,6 +1,6 @@
 import sys
-from boto.compat import json
-from boto.exception import BotoServerError
+from lib.boto.compat import json
+from lib.boto.exception import BotoServerError
 
 
 def simple(e):

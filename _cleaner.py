@@ -15,7 +15,7 @@ if not os.path.isfile(cleaned_file) or os.path.exists(test):
         for dead_dir in filter(lambda x: x in dead_dirs, [os.path.abspath(os.path.join(dirpath, d)) for d in dirnames]):
             try:
                 shutil.rmtree(dead_dir)
-            except (StandardError, Exception):
+            except StandardError as e:
                 pass
 
         for filename in [fn for fn in filenames if os.path.splitext(fn)[-1].lower() in ('.pyc', '.pyo')]:

@@ -19,14 +19,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-import boto
-from boto.connection import AWSQueryConnection, AWSAuthConnection
-from boto.exception import BotoServerError
-import time
-import urllib
+import lib.boto as boto
+from lib.boto.connection import AWSQueryConnection, AWSAuthConnection
+from lib.boto.exception import BotoServerError
 import xml.sax
-from boto.ecs.item import ItemSet
-from boto import handler
+from lib.boto.ecs.item import ItemSet
+from lib.boto import handler
 
 class ECSConnection(AWSQueryConnection):
     """

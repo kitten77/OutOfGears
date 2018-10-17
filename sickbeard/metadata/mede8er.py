@@ -20,18 +20,18 @@ import datetime
 
 import sickbeard
 
-import mediabrowser
+import sickbeard.metadata.mediabrowser
 
 from sickbeard import logger, exceptions, helpers
 from sickbeard.exceptions import ex
-
+from sickbeard.metadata.mediabrowser import MediaBrowserMetadata
 try:
     import xml.etree.cElementTree as etree
 except ImportError:
     import elementtree.ElementTree as etree
 
 
-class Mede8erMetadata(mediabrowser.MediaBrowserMetadata):
+class Mede8erMetadata(MediaBrowserMetadata):
     """
     Metadata generation class for Mede8er based on the MediaBrowser.
 
@@ -58,7 +58,7 @@ class Mede8erMetadata(mediabrowser.MediaBrowserMetadata):
                  season_all_poster=False,
                  season_all_banner=False):
 
-        mediabrowser.MediaBrowserMetadata.__init__(self,
+        MediaBrowserMetadata.__init__(self,
                                          show_metadata,
                                          episode_metadata,
                                          fanart,
@@ -253,7 +253,7 @@ class Mede8erMetadata(mediabrowser.MediaBrowserMetadata):
 
             try:
                 myEp = myShow[curEpToWrite.season][curEpToWrite.episode]
-            except (StandardError, Exception):
+            except Exception as e:
                 logger.log(u"Unable to find episode " + str(curEpToWrite.season) + "x" + str(curEpToWrite.episode) + " on tvdb... has it been removed? Should I delete from db?")
                 return None
 

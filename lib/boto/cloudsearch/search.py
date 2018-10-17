@@ -22,8 +22,8 @@
 # IN THE SOFTWARE.
 #
 from math import ceil
-from boto.compat import json, map, six
-import requests
+from lib.boto.compat import json, map, six
+import request as requests
 
 
 class SearchServiceException(Exception):

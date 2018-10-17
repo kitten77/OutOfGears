@@ -1,5 +1,5 @@
-from boto.resultset import ResultSet
-from boto.cloudformation.stack import Capability
+from lib.boto.resultset import ResultSet
+from lib.boto.cloudformation.stack import Capability
 
 class Template(object):
     def __init__(self, connection=None):

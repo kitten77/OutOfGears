@@ -25,7 +25,7 @@ THE SOFTWARE.
 import urllib
 import time
 import random
-import urlparse
+import urllib.parse as urlparse
 import hmac
 import binascii
 import lib.httplib2 as httplib2

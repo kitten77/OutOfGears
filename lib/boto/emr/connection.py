@@ -25,19 +25,19 @@ Represents a connection to the EMR service
 """
 import types
 
-import boto
-import boto.utils
-from boto.ec2.regioninfo import RegionInfo
-from boto.emr.emrobject import AddInstanceGroupsResponse, BootstrapActionList, \
+import lib.boto as boto
+import lib.boto.utils
+from lib.boto.ec2.regioninfo import RegionInfo
+from lib.boto.emr.emrobject import AddInstanceGroupsResponse, BootstrapActionList, \
                                Cluster, ClusterSummaryList, HadoopStep, \
                                InstanceGroupList, InstanceList, JobFlow, \
                                JobFlowStepList, \
                                ModifyInstanceGroupsResponse, \
                                RunJobFlowResponse, StepSummaryList
-from boto.emr.step import JarStep
-from boto.connection import AWSQueryConnection
-from boto.exception import EmrResponseError
-from boto.compat import six
+from lib.boto.emr.step import JarStep
+from lib.boto.connection import AWSQueryConnection
+from lib.boto.exception import EmrResponseError
+from lib.boto.compat import six
 
 
 class EmrConnection(AWSQueryConnection):

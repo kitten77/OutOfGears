@@ -1,8 +1,8 @@
 import os
 import sys
-from boto.utils import ShellCommand, get_ts
-import boto
-import boto.utils
+from lib.boto.utils import ShellCommand, get_ts
+import lib.boto as boto
+# import boto.utils
 
 class ScriptBase(object):
 

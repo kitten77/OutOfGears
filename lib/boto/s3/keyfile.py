@@ -27,7 +27,7 @@ in a Key open for reading.
 """
 
 import os
-from boto.exception import StorageResponseError
+from lib.boto.exception import StorageResponseError
 
 class KeyFile():
 

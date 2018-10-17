@@ -20,12 +20,12 @@
 # IN THE SOFTWARE.
 #
 
-import boto
-from boto.compat import json
-from boto.connection import AWSQueryConnection
-from boto.regioninfo import RegionInfo
-from boto.exception import JSONResponseError
-from boto.datapipeline import exceptions
+import lib.boto as boto
+from lib.boto.compat import json
+from lib.boto.connection import AWSQueryConnection
+from lib.boto.regioninfo import RegionInfo
+from lib.boto.exception import JSONResponseError
+from lib.boto.datapipeline import exceptions
 
 
 class DataPipelineConnection(AWSQueryConnection):

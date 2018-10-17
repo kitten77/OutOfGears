@@ -22,7 +22,8 @@
 
 import xml.sax
 import cgi
-from boto.compat import six, StringIO
+from io import StringIO
+#from lib.boto.compat import six, StringIO
 
 class ResponseGroup(xml.sax.ContentHandler):
     """A Generic "Response Group", which can

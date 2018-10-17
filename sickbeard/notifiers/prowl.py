@@ -18,7 +18,7 @@
 
 import socket
 from ssl import SSLError
-from urllib import urlencode
+from urllib.parse import urlencode
 
 import sickbeard
 from sickbeard.notifiers.generic import Notifier

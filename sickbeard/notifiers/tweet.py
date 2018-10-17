@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with SickGear.  If not, see <http://www.gnu.org/licenses/>.
 
-from urlparse import parse_qsl
+from urllib.parse import parse_qsl
 
 import sickbeard
 from sickbeard.exceptions import ex

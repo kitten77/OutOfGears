@@ -20,8 +20,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 #
-from boto.regioninfo import RegionInfo, get_regions
-from boto.regioninfo import connect
+from lib.boto.regioninfo import RegionInfo, get_regions
+from lib.boto.regioninfo import connect
 
 
 def regions():
@@ -31,11 +31,11 @@ def regions():
     :rtype: list
     :return: A list of :class:`boto.regioninfo.RegionInfo`
     """
-    from boto.kinesis.layer1 import KinesisConnection
+    from lib.boto.kinesis.layer1 import KinesisConnection
     return get_regions('kinesis', connection_cls=KinesisConnection)
 
 
 def connect_to_region(region_name, **kw_params):
-    from boto.kinesis.layer1 import KinesisConnection
+    from lib.boto.kinesis.layer1 import KinesisConnection
     return connect('kinesis', region_name,
                    connection_cls=KinesisConnection, **kw_params)

@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from boto.resultset import ResultSet
+from lib.boto.resultset import ResultSet
 
 
 class Stack(object):

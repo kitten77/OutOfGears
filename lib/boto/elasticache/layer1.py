@@ -20,10 +20,10 @@
 # IN THE SOFTWARE.
 #
 
-import boto
-from boto.compat import json
-from boto.connection import AWSQueryConnection
-from boto.regioninfo import RegionInfo
+import lib.boto as boto
+from lib.boto.compat import json
+from lib.boto.connection import AWSQueryConnection
+from lib.boto.regioninfo import RegionInfo
 
 
 class ElastiCacheConnection(AWSQueryConnection):

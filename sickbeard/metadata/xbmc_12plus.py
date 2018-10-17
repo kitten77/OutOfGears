@@ -15,18 +15,19 @@
 # You should have received a copy of the GNU General Public License
 # along with SickGear.  If not, see <http://www.gnu.org/licenses/>.
 
-import generic
+
 import datetime
 
 import sickbeard
 
 from sickbeard import logger, exceptions, helpers
 from sickbeard.exceptions import ex
-
+from sickbeard.metadata import generic
+from sickbeard.metadata.generic import GenericMetadata
 import xml.etree.cElementTree as etree
 
 
-class XBMC_12PlusMetadata(generic.GenericMetadata):
+class XBMC_12PlusMetadata(GenericMetadata):
     """
     Metadata generation class for XBMC 12+.
 
@@ -176,7 +177,7 @@ class XBMC_12PlusMetadata(generic.GenericMetadata):
 
         genre = etree.SubElement(tv_node, "genre")
         if getattr(myShow, 'genre', None) is not None:
-            if isinstance(myShow["genre"], basestring):
+            if isinstance(myShow["genre"], str):
                 genre.text = " / ".join(x.strip() for x in myShow["genre"].split('|') if x.strip())
 
         premiered = etree.SubElement(tv_node, "premiered")
@@ -245,7 +246,7 @@ class XBMC_12PlusMetadata(generic.GenericMetadata):
                     curEpToWrite.episode) + " on " + sickbeard.indexerApi(
                     ep_obj.show.indexer).name + ".. has it been removed? Should I delete from db?")
                 return None
-            except (StandardError, Exception):
+            except Exception as e:
                 logger.log(u"Not generating nfo because failed to fetched tv info data at this time", logger.DEBUG)
                 return None
 
@@ -331,7 +332,7 @@ class XBMC_12PlusMetadata(generic.GenericMetadata):
                 rating.text = rating_text
 
             gueststar_text = getattr(myEp, 'gueststars', None)
-            if isinstance(gueststar_text, basestring):
+            if isinstance(gueststar_text, str):
                 for actor in (x.strip() for x in gueststar_text.split('|') if x.strip()):
                     cur_actor = etree.SubElement(episode, "actor")
                     cur_actor_name = etree.SubElement(cur_actor, "name")

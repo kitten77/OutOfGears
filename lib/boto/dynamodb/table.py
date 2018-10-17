@@ -21,10 +21,10 @@
 # IN THE SOFTWARE.
 #
 
-from boto.dynamodb.batch import BatchList
-from boto.dynamodb.schema import Schema
-from boto.dynamodb.item import Item
-from boto.dynamodb import exceptions as dynamodb_exceptions
+from lib.boto.dynamodb.batch import BatchList
+from lib.boto.dynamodb.schema import Schema
+from lib.boto.dynamodb.item import Item
+from lib.boto.dynamodb import exceptions as dynamodb_exceptions
 import time
 
 

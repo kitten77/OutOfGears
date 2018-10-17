@@ -23,10 +23,11 @@
 import os
 import re
 import warnings
+from io import StringIO
+import lib.boto as boto
 
-import boto
 
-from boto.compat import expanduser, ConfigParser, NoOptionError, NoSectionError, StringIO
+from lib.boto.compat import expanduser, ConfigParser, NoOptionError, NoSectionError
 
 
 # By default we use two locations for the boto configurations,
@@ -202,7 +203,7 @@ class Config(object):
                     fp.write('%s = %s\n' % (option, self.get(section, option)))
 
     def dump_to_sdb(self, domain_name, item_name):
-        from boto.compat import json
+        from lib.boto.compat import json
         sdb = boto.connect_sdb()
         domain = sdb.lookup(domain_name)
         if not domain:
@@ -217,7 +218,7 @@ class Config(object):
         item.save()
 
     def load_from_sdb(self, domain_name, item_name):
-        from boto.compat import json
+        from lib.boto.compat import json
         sdb = boto.connect_sdb()
         domain = sdb.lookup(domain_name)
         item = domain.get_item(item_name)

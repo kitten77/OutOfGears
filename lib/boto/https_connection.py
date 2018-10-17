@@ -23,9 +23,8 @@ import re
 import socket
 import ssl
 
-import boto
-
-from boto.compat import six, http_client
+import lib.boto as boto
+from lib.boto.compat import six, http_client
 
 
 class InvalidCertificateException(http_client.HTTPException):

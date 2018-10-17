@@ -21,14 +21,15 @@
 # IN THE SOFTWARE.
 import re
 import base64
+import urllib
 
-from boto.compat import six, urllib
-from boto.connection import AWSAuthConnection
-from boto.exception import BotoServerError
-from boto.regioninfo import RegionInfo
-import boto
-import boto.jsonresponse
-from boto.ses import exceptions as ses_exceptions
+from lib.boto.compat import six
+from lib.boto.connection import AWSAuthConnection
+from lib.boto.exception import BotoServerError
+from lib.boto.regioninfo import RegionInfo
+import lib.boto as boto
+# import boto.jsonresponse
+from lib.boto.ses import exceptions as ses_exceptions
 
 
 class SESConnection(AWSAuthConnection):

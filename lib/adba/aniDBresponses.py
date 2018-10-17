@@ -15,8 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with aDBa.  If not, see <http://www.gnu.org/licenses/>.
 
-from types import FunctionType
-from aniDBmaper import AniDBMaper
+from lib.adba.aniDBmaper import AniDBMaper
 
 
 class ResponseResolver:

@@ -19,8 +19,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 #
-from boto.regioninfo import get_regions
-from boto.regioninfo import connect
+from lib.boto.regioninfo import get_regions
+from lib.boto.regioninfo import connect
 
 
 def regions():

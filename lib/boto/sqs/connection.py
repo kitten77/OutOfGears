@@ -19,14 +19,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-import boto
-from boto.connection import AWSQueryConnection
-from boto.sqs.regioninfo import SQSRegionInfo
-from boto.sqs.queue import Queue
-from boto.sqs.message import Message
-from boto.sqs.attributes import Attributes
-from boto.sqs.batchresults import BatchResults
-from boto.exception import SQSError, BotoServerError
+import lib.boto as boto
+from lib.boto.connection import AWSQueryConnection
+from lib.boto.sqs.regioninfo import SQSRegionInfo
+from lib.boto.sqs.queue import Queue
+from lib.boto.sqs.message import Message
+from lib.boto.sqs.attributes import Attributes
+from lib.boto.sqs.batchresults import BatchResults
+from lib.boto.exception import SQSError, BotoServerError
 
 
 class SQSConnection(AWSQueryConnection):

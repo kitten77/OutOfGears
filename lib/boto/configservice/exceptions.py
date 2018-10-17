@@ -20,7 +20,7 @@
 # IN THE SOFTWARE.
 #
 
-from boto.exception import BotoServerError
+from lib.boto.exception import BotoServerError
 
 
 class InvalidLimitException(BotoServerError):

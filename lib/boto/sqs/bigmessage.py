@@ -22,9 +22,9 @@
 
 import uuid
 
-import boto
-from boto.sqs.message import RawMessage
-from boto.exception import SQSDecodeError
+import lib.boto as boto
+from lib.boto.sqs.message import RawMessage
+from lib.boto.exception import SQSDecodeError
 
 
 class BigMessage(RawMessage):

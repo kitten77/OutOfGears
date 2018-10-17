@@ -20,9 +20,10 @@
 # along with enzyme.  If not, see <http://www.gnu.org/licenses/>.
 import re
 import logging
-import fourcc
-import language
-from strutils import str_to_unicode, unicode_to_str
+import lib.enzyme.fourcc as fourcc
+import lib.enzyme.language as language
+
+from lib.enzyme.strutils import str_to_unicode, unicode_to_str
 
 UNPRINTABLE_KEYS = ['thumbnail', 'url', 'codec_private']
 MEDIACORE = ['title', 'caption', 'comment', 'size', 'type', 'subtype', 'timestamp',
@@ -84,7 +85,7 @@ class Media(object):
     def __unicode__(self):
         result = u''
 
-        # print normal attributes
+        # # print normal attributes
         lists = []
         for key in self._keys:
             value = getattr(self, key, None)
@@ -93,7 +94,7 @@ class Media(object):
             if isinstance(value, list):
                 if not value:
                     continue
-                elif isinstance(value[0], basestring):
+                elif isinstance(value[0], lists):
                     # Just a list of strings (keywords?), so don't treat it specially.
                     value = u', '.join(value)
                 else:
@@ -104,7 +105,7 @@ class Media(object):
                 continue
             if key in UNPRINTABLE_KEYS:
                 value = '<unprintable data, size=%d>' % len(value)
-            result += u'| %10s: %s\n' % (unicode(key), unicode(value))
+            result += u'| %10s: %s\n' % key, value
 
         # print tags (recursively, to support nested tags).
         def print_tags(tags, suffix, show_label):

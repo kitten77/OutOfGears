@@ -20,9 +20,9 @@
 # IN THE SOFTWARE.
 #
 
-from boto.sdb.regioninfo import SDBRegionInfo
-from boto.regioninfo import get_regions
-from boto.regioninfo import connect
+from lib.boto.sdb.regioninfo import SDBRegionInfo
+from lib.boto.regioninfo import get_regions
+from lib.boto.regioninfo import connect
 
 
 def regions():

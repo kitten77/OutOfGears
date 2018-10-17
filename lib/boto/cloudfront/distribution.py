@@ -22,13 +22,13 @@
 import uuid
 import base64
 import time
-from boto.compat import six, json
-from boto.cloudfront.identity import OriginAccessIdentity
-from boto.cloudfront.object import Object, StreamingObject
-from boto.cloudfront.signers import ActiveTrustedSigners, TrustedSigners
-from boto.cloudfront.logging import LoggingInfo
-from boto.cloudfront.origin import S3Origin, CustomOrigin
-from boto.s3.acl import ACL
+from lib.boto.compat import six, json
+from lib.boto.cloudfront.identity import OriginAccessIdentity
+from lib.boto.cloudfront.object import Object, StreamingObject
+from lib.boto.cloudfront.signers import ActiveTrustedSigners, TrustedSigners
+from lib.boto.cloudfront.logging import LoggingInfo
+from lib.boto.cloudfront.origin import S3Origin, CustomOrigin
+from lib.boto.s3.acl import ACL
 
 class DistributionConfig(object):
 
@@ -396,7 +396,7 @@ class Distribution(object):
             if not self._bucket:
                 bucket_dns_name = self.config.origin.dns_name
                 bucket_name = bucket_dns_name.replace('.s3.amazonaws.com', '')
-                from boto.s3.connection import S3Connection
+                from lib.boto.s3.connection import S3Connection
                 s3 = S3Connection(self.connection.aws_access_key_id,
                                   self.connection.aws_secret_access_key,
                                   proxy=self.connection.proxy,

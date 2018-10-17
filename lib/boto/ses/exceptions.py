@@ -1,7 +1,7 @@
 """
 Various exceptions that are specific to the SES module.
 """
-from boto.exception import BotoServerError
+from lib.boto.exception import BotoServerError
 
 
 class SESError(BotoServerError):

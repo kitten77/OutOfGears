@@ -23,7 +23,7 @@
 Represents a Subnet
 """
 
-from boto.ec2.ec2object import TaggedEC2Object
+from lib.boto.ec2.ec2object import TaggedEC2Object
 
 class Subnet(TaggedEC2Object):
 

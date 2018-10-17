@@ -15,11 +15,11 @@ Note: For PascalStringXX, prefixed value is the number of bytes and not
       of characters!
 """
 
-from hachoir.field import FieldError, Bytes
-from hachoir.core.endian import LITTLE_ENDIAN, BIG_ENDIAN
-from hachoir.core.tools import alignValue, makePrintable
-from hachoir.core.i18n import guessBytesCharset, _
-from hachoir.core import config
+# from lib.hachoir.field import FieldError, Bytes
+from lib.hachoir.core.endian import LITTLE_ENDIAN, BIG_ENDIAN
+from lib.hachoir.core.tools import alignValue, makePrintable
+from lib.hachoir.core.i18n import guessBytesCharset, _
+from lib.hachoir.core import config
 from codecs import BOM_UTF16_LE, BOM_UTF16_BE, BOM_UTF32_LE, BOM_UTF32_BE
 
 # Default charset used to convert byte string to Unicode
@@ -27,7 +27,7 @@ from codecs import BOM_UTF16_LE, BOM_UTF16_BE, BOM_UTF32_LE, BOM_UTF32_BE
 FALLBACK_CHARSET = "ISO-8859-1"
 
 
-class GenericString(Bytes):
+class GenericString(object):
     """
     Generic string class.
 
@@ -247,7 +247,7 @@ class GenericString(Bytes):
                 text = unicode(text + "\0", self._charset, "strict")
                 self.warning("Fix truncated %s string: add missing nul byte" % self._charset)
                 return text
-            except UnicodeDecodeError, err:
+            except UnicodeDecodeError as err:
                 pass
 
         # On error, use FALLBACK_CHARSET

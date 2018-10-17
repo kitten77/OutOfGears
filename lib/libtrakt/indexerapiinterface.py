@@ -3,7 +3,7 @@ import re
 import time
 from .exceptions import TraktShowNotFound, TraktException
 from sickbeard.exceptions import ex
-from trakt import TraktAPI
+from .trakt import TraktAPI
 
 
 class ShowContainer(dict):

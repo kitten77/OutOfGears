@@ -1,8 +1,8 @@
 """
 Exceptions that are specific to the dynamodb module.
 """
-from boto.exception import BotoServerError, BotoClientError
-from boto.exception import DynamoDBResponseError
+from lib.boto.exception import BotoServerError, BotoClientError
+from lib.boto.exception import DynamoDBResponseError
 
 
 class DynamoDBExpiredTokenError(BotoServerError):

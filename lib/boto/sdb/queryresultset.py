@@ -1,4 +1,3 @@
-from boto.compat import six
 # Copyright (c) 2006,2007 Mitch Garnaat http://garnaat.org/
 #
 # Permission is hereby granted, free of charge, to any person obtaining a

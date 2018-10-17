@@ -21,34 +21,34 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-import boto
-from boto import handler
-from boto.resultset import ResultSet
-from boto.exception import BotoClientError
-from boto.s3.acl import Policy, CannedACLStrings, Grant
-from boto.s3.key import Key
-from boto.s3.prefix import Prefix
-from boto.s3.deletemarker import DeleteMarker
-from boto.s3.multipart import MultiPartUpload
-from boto.s3.multipart import CompleteMultiPartUpload
-from boto.s3.multidelete import MultiDeleteResult
-from boto.s3.multidelete import Error
-from boto.s3.bucketlistresultset import BucketListResultSet
-from boto.s3.bucketlistresultset import VersionedBucketListResultSet
-from boto.s3.bucketlistresultset import MultiPartUploadListResultSet
-from boto.s3.lifecycle import Lifecycle
-from boto.s3.tagging import Tags
-from boto.s3.cors import CORSConfiguration
-from boto.s3.bucketlogging import BucketLogging
-from boto.s3 import website
-import boto.jsonresponse
-import boto.utils
+import lib.boto as boto
+from lib.boto import handler
+from lib.boto.resultset import ResultSet
+from lib.boto.exception import BotoClientError
+from lib.boto.s3.acl import Policy, CannedACLStrings, Grant
+from lib.boto.s3.key import Key
+from lib.boto.s3.prefix import Prefix
+from lib.boto.s3.deletemarker import DeleteMarker
+from lib.boto.s3.multipart import MultiPartUpload
+from lib.boto.s3.multipart import CompleteMultiPartUpload
+from lib.boto.s3.multidelete import MultiDeleteResult
+from lib.boto.s3.multidelete import Error
+from lib.boto.s3.bucketlistresultset import BucketListResultSet
+from lib.boto.s3.bucketlistresultset import VersionedBucketListResultSet
+from lib.boto.s3.bucketlistresultset import MultiPartUploadListResultSet
+from lib.boto.s3.lifecycle import Lifecycle
+from lib.boto.s3.tagging import Tags
+from lib.boto.s3.cors import CORSConfiguration
+from lib.boto.s3.bucketlogging import BucketLogging
+from lib.boto.s3 import website
+from lib.boto import jsonresponse
+# import boto.utils
 import xml.sax
 import xml.sax.saxutils
 import re
 import base64
 from collections import defaultdict
-from boto.compat import BytesIO, six, StringIO, urllib
+from lib.boto.compat import BytesIO, six, StringIO, urllib
 
 # as per http://goo.gl/BDuud (02/19/2011)
 
@@ -1520,8 +1520,8 @@ class Bucket(object):
         """
 
         body = self.get_website_configuration_xml(headers=headers)
-        e = boto.jsonresponse.Element()
-        h = boto.jsonresponse.XmlHandler(e, None)
+        e = jsonresponse.Element()
+        h = jsonresponse.XmlHandler(e, None)
         h.parse(body)
         return e, body
 

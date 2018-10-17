@@ -1,9 +1,18 @@
 import unittest
-
-from sickbeard import properFinder
-
 import sickbeard
-import test_lib as test
+
+#added for py3 upgrade
+try:
+    from sickbeard import properFinder
+    import test.test_lib as test
+
+except ImportError:
+    import sickbeard.properFinder
+    import tests.test_lib as test
+
+
+
+
 
 sickbeard.SYS_ENCODING = 'UTF-8'
 

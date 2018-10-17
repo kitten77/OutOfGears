@@ -21,9 +21,9 @@
 #
 import os
 import boto
-from boto.utils import get_instance_metadata, get_instance_userdata
-from boto.pyami.config import Config, BotoConfigPath
-from boto.pyami.scriptbase import ScriptBase
+from lib.boto.utils import get_instance_metadata, get_instance_userdata
+from lib.boto.pyami.config import Config, BotoConfigPath
+from lib.boto.pyami.scriptbase import ScriptBase
 import time
 
 class Bootstrap(ScriptBase):

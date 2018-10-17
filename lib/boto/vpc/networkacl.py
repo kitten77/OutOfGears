@@ -23,8 +23,8 @@
 Represents a Network ACL
 """
 
-from boto.ec2.ec2object import TaggedEC2Object
-from boto.resultset import ResultSet
+from lib.boto.ec2.ec2object import TaggedEC2Object
+from lib.boto.resultset import ResultSet
 
 
 class Icmp(object):

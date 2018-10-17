@@ -20,14 +20,14 @@ __all__ = ['generic', 'helpers', 'kodi', 'mede8er', 'mediabrowser', 'ps3', 'tivo
 
 import sys
 
-import kodi
-import mede8er
-import mediabrowser
-import ps3
-import tivo
-import wdtv
-import xbmc
-import xbmc_12plus
+import sickbeard.metadata.kodi
+import sickbeard.metadata.mede8er
+import sickbeard.metadata.mediabrowser
+import sickbeard.metadata.ps3
+import sickbeard.metadata.tivo
+import sickbeard.metadata.wdtv
+import sickbeard.metadata.xbmc
+import sickbeard.metadata.xbmc_12plus
 
 
 def available_generators():

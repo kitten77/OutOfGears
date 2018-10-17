@@ -24,12 +24,12 @@ import binascii
 import os
 import re
 
-from boto.compat import StringIO
-from boto.exception import BotoClientError
-from boto.s3.key import Key as S3Key
-from boto.s3.keyfile import KeyFile
-from boto.utils import compute_hash
-from boto.utils import get_utf8_value
+from io import StringIO
+from lib.boto.exception import BotoClientError
+from lib.boto.s3.key import Key as S3Key
+from lib.boto.s3.keyfile import KeyFile
+from lib.boto.utils import compute_hash
+from lib.boto.utils import get_utf8_value
 
 class Key(S3Key):
     """

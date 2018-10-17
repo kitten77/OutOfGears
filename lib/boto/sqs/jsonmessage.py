@@ -20,9 +20,9 @@
 # IN THE SOFTWARE.
 import base64
 
-from boto.sqs.message import MHMessage
-from boto.exception import SQSDecodeError
-from boto.compat import json
+from lib.boto.sqs.message import MHMessage
+from lib.boto.exception import SQSDecodeError
+from lib.boto.compat import json
 
 
 class JSONMessage(MHMessage):

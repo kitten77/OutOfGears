@@ -22,8 +22,8 @@
 # IN THE SOFTWARE.
 #
 
-from boto.ec2.cloudwatch.alarm import MetricAlarm
-from boto.ec2.cloudwatch.dimension import Dimension
+from lib.boto.ec2.cloudwatch.alarm import MetricAlarm
+from lib.boto.ec2.cloudwatch.dimension import Dimension
 
 
 class Metric(object):

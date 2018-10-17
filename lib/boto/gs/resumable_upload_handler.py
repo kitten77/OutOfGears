@@ -19,20 +19,20 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 import errno
-import httplib
+import http.client as httplib
 import os
 import random
 import re
 import socket
 import time
-import urlparse
+import urllib.parse as urlparse
 from hashlib import md5
-from boto import config, UserAgent
-from boto.connection import AWSAuthConnection
-from boto.exception import InvalidUriError
-from boto.exception import ResumableTransferDisposition
-from boto.exception import ResumableUploadException
-from boto.s3.keyfile import KeyFile
+from lib.boto import config, UserAgent
+from lib.boto.connection import AWSAuthConnection
+from lib.boto.exception import InvalidUriError
+from lib.boto.exception import ResumableTransferDisposition
+from lib.boto.exception import ResumableUploadException
+from lib.boto.s3.keyfile import KeyFile
 
 """
 Handler for Google Cloud Storage resumable uploads. See
@@ -237,8 +237,8 @@ class ResumableUploadHandler(object):
             # Parse 'bytes=<from>-<to>' range_spec.
             m = re.search('bytes=(\d+)-(\d+)', range_spec)
             if m:
-                server_start = long(m.group(1))
-                server_end = long(m.group(2))
+                server_start = int(m.group(1))
+                server_end = int(m.group(2))
                 got_valid_response = True
         else:
             # No Range header, which means the server does not yet have
@@ -529,13 +529,13 @@ class ResumableUploadHandler(object):
             if debug >= 1:
                 print('Caught non-retryable ResumableUploadException (%s); '
                       'aborting but retaining tracker file' % e.message)
-            raise
+            raise Exception
         elif (e.disposition == ResumableTransferDisposition.ABORT):
             if debug >= 1:
                 print('Caught non-retryable ResumableUploadException (%s); '
                       'aborting and removing tracker file' % e.message)
             self._remove_tracker_file()
-            raise
+            raise Exception
         else:
             if debug >= 1:
                 print('Caught ResumableUploadException (%s) - will retry' %

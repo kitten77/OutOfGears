@@ -20,13 +20,13 @@
 # IN THE SOFTWARE.
 #
 
-import boto
-from boto.compat import json
-from boto.connection import AWSQueryConnection
-from boto.regioninfo import RegionInfo
-from boto.exception import JSONResponseError
-from boto.kms import exceptions
-from boto.compat import six
+import lib.boto as boto
+from lib.boto.compat import json
+from lib.boto.connection import AWSQueryConnection
+from lib.boto.regioninfo import RegionInfo
+from lib.boto.exception import JSONResponseError
+from lib.boto.kms import exceptions
+from lib.boto.compat import six
 import base64
 
 

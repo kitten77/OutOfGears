@@ -19,11 +19,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-from boto.sdb.db.property import Property
-from boto.sdb.db.key import Key
-from boto.sdb.db.query import Query
-import boto
-from boto.compat import filter
+from lib.boto.sdb.db.property import Property
+from lib.boto.sdb.db.key import Key
+from lib.boto.sdb.db.query import Query
+import lib.boto as boto
+# from lib.boto.compat import filter
 
 class ModelMeta(type):
     "Metaclass for all Models"
@@ -34,7 +34,7 @@ class ModelMeta(type):
         cls.__sub_classes__ = []
 
         # Do a delayed import to prevent possible circular import errors.
-        from boto.sdb.db.manager import get_manager
+        from lib.boto.sdb.db.manager import get_manager
 
         try:
             if filter(lambda b: issubclass(b, Model), bases):
@@ -140,7 +140,7 @@ class Model(object):
     @classmethod
     def get_xmlmanager(cls):
         if not hasattr(cls, '_xmlmanager'):
-            from boto.sdb.db.manager.xmlmanager import XMLManager
+            from lib.boto.sdb.db.manager.xmlmanager import XMLManager
             cls._xmlmanager = XMLManager(cls, None, None, None,
                                          None, None, None, None, False)
         return cls._xmlmanager

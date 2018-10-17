@@ -20,8 +20,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 #
-from boto.regioninfo import RegionInfo, get_regions
-from boto.regioninfo import connect
+from lib.boto.regioninfo import RegionInfo, get_regions
+from lib.boto.regioninfo import connect
 
 
 def regions():
@@ -31,11 +31,11 @@ def regions():
     :rtype: list
     :return: A list of :class:`boto.regioninfo.RegionInfo`
     """
-    from boto.kms.layer1 import KMSConnection
+    from lib.boto.kms.layer1 import KMSConnection
     return get_regions('kms', connection_cls=KMSConnection)
 
 
 def connect_to_region(region_name, **kw_params):
-    from boto.kms.layer1 import KMSConnection
+    from lib.boto.kms.layer1 import KMSConnection
     return connect('kms', region_name, connection_cls=KMSConnection,
                    **kw_params)

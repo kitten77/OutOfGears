@@ -1,10 +1,10 @@
 import sys
 from datetime import datetime
 from threading import Thread
-import Queue
+import queue as Queue
 
-from boto.utils import RequestHook
-from boto.compat import long_type
+from lib.boto.utils import RequestHook
+from lib.boto.compat import long_type
 
 
 class RequestLogger(RequestHook):

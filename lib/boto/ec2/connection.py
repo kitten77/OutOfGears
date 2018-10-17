@@ -30,42 +30,42 @@ import warnings
 from datetime import datetime
 from datetime import timedelta
 
-import boto
-from boto.auth import detect_potential_sigv4
-from boto.connection import AWSQueryConnection
-from boto.resultset import ResultSet
-from boto.ec2.image import Image, ImageAttribute, CopyImage
-from boto.ec2.instance import Reservation, Instance
-from boto.ec2.instance import ConsoleOutput, InstanceAttribute
-from boto.ec2.keypair import KeyPair
-from boto.ec2.address import Address
-from boto.ec2.volume import Volume, VolumeAttribute
-from boto.ec2.snapshot import Snapshot
-from boto.ec2.snapshot import SnapshotAttribute
-from boto.ec2.zone import Zone
-from boto.ec2.securitygroup import SecurityGroup
-from boto.ec2.regioninfo import RegionInfo
-from boto.ec2.instanceinfo import InstanceInfo
-from boto.ec2.reservedinstance import ReservedInstancesOffering
-from boto.ec2.reservedinstance import ReservedInstance
-from boto.ec2.reservedinstance import ReservedInstanceListing
-from boto.ec2.reservedinstance import ReservedInstancesConfiguration
-from boto.ec2.reservedinstance import ModifyReservedInstancesResult
-from boto.ec2.reservedinstance import ReservedInstancesModification
-from boto.ec2.spotinstancerequest import SpotInstanceRequest
-from boto.ec2.spotpricehistory import SpotPriceHistory
-from boto.ec2.spotdatafeedsubscription import SpotDatafeedSubscription
-from boto.ec2.bundleinstance import BundleInstanceTask
-from boto.ec2.placementgroup import PlacementGroup
-from boto.ec2.tag import Tag
-from boto.ec2.instancetype import InstanceType
-from boto.ec2.instancestatus import InstanceStatusSet
-from boto.ec2.volumestatus import VolumeStatusSet
-from boto.ec2.networkinterface import NetworkInterface
-from boto.ec2.attributes import AccountAttribute, VPCAttribute
-from boto.ec2.blockdevicemapping import BlockDeviceMapping, BlockDeviceType
-from boto.exception import EC2ResponseError
-from boto.compat import six
+import lib.boto as boto
+from lib.boto.auth import detect_potential_sigv4
+from lib.boto.connection import AWSQueryConnection
+from lib.boto.resultset import ResultSet
+from lib.boto.ec2.image import Image, ImageAttribute, CopyImage
+from lib.boto.ec2.instance import Reservation, Instance
+from lib.boto.ec2.instance import ConsoleOutput, InstanceAttribute
+from lib.boto.ec2.keypair import KeyPair
+from lib.boto.ec2.address import Address
+from lib.boto.ec2.volume import Volume, VolumeAttribute
+from lib.boto.ec2.snapshot import Snapshot
+from lib.boto.ec2.snapshot import SnapshotAttribute
+from lib.boto.ec2.zone import Zone
+from lib.boto.ec2.securitygroup import SecurityGroup
+# from lib.boto.ec2.regioninfo import RegionInfo might be deprecated?
+from lib.boto.ec2.instanceinfo import InstanceInfo
+from lib.boto.ec2.reservedinstance import ReservedInstancesOffering
+from lib.boto.ec2.reservedinstance import ReservedInstance
+from lib.boto.ec2.reservedinstance import ReservedInstanceListing
+from lib.boto.ec2.reservedinstance import ReservedInstancesConfiguration
+from lib.boto.ec2.reservedinstance import ModifyReservedInstancesResult
+from lib.boto.ec2.reservedinstance import ReservedInstancesModification
+from lib.boto.ec2.spotinstancerequest import SpotInstanceRequest
+from lib.boto.ec2.spotpricehistory import SpotPriceHistory
+from lib.boto.ec2.spotdatafeedsubscription import SpotDatafeedSubscription
+from lib.boto.ec2.bundleinstance import BundleInstanceTask
+from lib.boto.ec2.placementgroup import PlacementGroup
+from lib.boto.ec2.tag import Tag
+from lib.boto.ec2.instancetype import InstanceType
+from lib.boto.ec2.instancestatus import InstanceStatusSet
+from lib.boto.ec2.volumestatus import VolumeStatusSet
+from lib.boto.ec2.networkinterface import NetworkInterface
+from lib.boto.ec2.attributes import AccountAttribute, VPCAttribute
+from lib.boto.ec2.blockdevicemapping import BlockDeviceMapping, BlockDeviceType
+from lib.boto.exception import EC2ResponseError
+from lib.boto.compat import six
 
 #boto.set_stream_logger('ec2')
 

@@ -19,16 +19,16 @@
 # WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
-import boto
+import lib.boto as boto
 import re
-from boto.utils import find_class
+from lib.boto.utils import find_class
 import uuid
-from boto.sdb.db.key import Key
-from boto.sdb.db.blob import Blob
-from boto.sdb.db.property import ListProperty, MapProperty
+from lib.boto.sdb.db.key import Key
+from lib.boto.sdb.db.blob import Blob
+from lib.boto.sdb.db.property import ListProperty, MapProperty
 from datetime import datetime, date, time
-from boto.exception import SDBPersistenceError, S3ResponseError
-from boto.compat import map, six, long_type
+from lib.boto.exception import SDBPersistenceError, S3ResponseError
+from lib.boto.compat import six, long_type
 
 ISO8601 = '%Y-%m-%dT%H:%M:%SZ'
 
@@ -54,7 +54,7 @@ class SDBConverter(object):
     """
     def __init__(self, manager):
         # Do a delayed import to prevent possible circular import errors.
-        from boto.sdb.db.model import Model
+        from lib.boto.sdb.db.model import Model
         self.model_class = Model
         self.manager = manager
         self.type_map = {bool: (self.encode_bool, self.decode_bool),
@@ -71,7 +71,7 @@ class SDBConverter(object):
                          str: (self.encode_string, self.decode_string),
                       }
         if six.PY2:
-            self.type_map[long] = (self.encode_long, self.decode_long)
+            self.type_map[int] = (self.encode_long, self.decode_long)
 
     def encode(self, item_type, value):
         try:

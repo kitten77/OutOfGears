@@ -25,12 +25,12 @@ import threading
 import hashlib
 import time
 import logging
-from boto.compat import Queue
+import queue as Queue
 import binascii
 
-from boto.glacier.utils import DEFAULT_PART_SIZE, minimum_part_size, \
+from lib.boto.glacier.utils import DEFAULT_PART_SIZE, minimum_part_size, \
                                chunk_hashes, tree_hash, bytes_to_hex
-from boto.glacier.exceptions import UploadArchiveError, \
+from lib.boto.glacier.exceptions import UploadArchiveError, \
                                     DownloadArchiveError, \
                                     TreeHashDoesNotMatchError
 
@@ -197,7 +197,7 @@ class TransferThread(threading.Thread):
         while self.should_continue:
             try:
                 work = self._worker_queue.get(timeout=1)
-            except Empty:
+            except Exception:
                 continue
             if work is _END_SENTINEL:
                 self._cleanup()

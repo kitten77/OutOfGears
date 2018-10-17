@@ -18,8 +18,8 @@
 # WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
-from boto.regioninfo import get_regions
-from boto.regioninfo import connect
+from lib.boto.regioninfo import get_regions
+from lib.boto.regioninfo import connect
 
 
 def regions():
@@ -29,11 +29,11 @@ def regions():
     :rtype: list
     :return: A list of :class:`boto.regioninfo.RegionInfo`
     """
-    from boto.cloudsearch2.layer1 import CloudSearchConnection
+    from lib.boto.cloudsearch2.layer1 import CloudSearchConnection
     return get_regions('cloudsearch', connection_cls=CloudSearchConnection)
 
 
 def connect_to_region(region_name, **kw_params):
-    from boto.cloudsearch2.layer1 import CloudSearchConnection
+    from lib.boto.cloudsearch2.layer1 import CloudSearchConnection
     return connect('cloudsearch', region_name,
                    connection_cls=CloudSearchConnection, **kw_params)

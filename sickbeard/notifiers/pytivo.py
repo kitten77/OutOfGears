@@ -17,8 +17,10 @@
 # along with SickGear.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
-from urllib import urlencode
-from urllib2 import Request, urlopen, HTTPError
+import urllib
+from urllib.parse import urlencode
+
+# from urllib2 import Request, urlopen, HTTPError
 
 import sickbeard
 # noinspection PyPep8Naming
@@ -70,12 +72,12 @@ class PyTivoNotifier(BaseNotifier):
 
         self._log_debug(u'Requesting ' + request_url)
 
-        request = Request(request_url)
+        request = urllib.request(request_url)
 
         try:
-            urlopen(request)
+            urllib.request.urlopen(request)
 
-        except HTTPError as e:
+        except urllib.HTTPError as e:
             if hasattr(e, 'reason'):
                 self._log_error(u'Error, failed to reach a server - ' + e.reason)
                 return False

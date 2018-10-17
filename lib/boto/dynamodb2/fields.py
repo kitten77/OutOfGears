@@ -1,4 +1,4 @@
-from boto.dynamodb2.types import STRING
+from lib.boto.dynamodb2.types import STRING
 
 
 class BaseSchemaField(object):
@@ -67,7 +67,7 @@ class HashKey(BaseSchemaField):
 
     Example::
 
-        >>> from boto.dynamodb2.types import NUMBER
+        >>> from lib.boto.dynamodb2.types import NUMBER
         >>> HashKey('username')
         >>> HashKey('date_joined', data_type=NUMBER)
 
@@ -81,7 +81,7 @@ class RangeKey(BaseSchemaField):
 
     Example::
 
-        >>> from boto.dynamodb2.types import NUMBER
+        >>> from lib.boto.dynamodb2.types import NUMBER
         >>> HashKey('username')
         >>> HashKey('date_joined', data_type=NUMBER)
 

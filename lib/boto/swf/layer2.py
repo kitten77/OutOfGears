@@ -2,8 +2,8 @@
 
 import time
 from functools import wraps
-from boto.swf.layer1 import Layer1
-from boto.swf.layer1_decisions import Layer1Decisions
+from lib.boto.swf.layer1 import Layer1
+from lib.boto.swf.layer1_decisions import Layer1Decisions
 
 DEFAULT_CREDENTIALS = {
     'aws_access_key_id': None,

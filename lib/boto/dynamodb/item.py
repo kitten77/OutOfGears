@@ -21,7 +21,7 @@
 # IN THE SOFTWARE.
 #
 
-from boto.dynamodb.exceptions import DynamoDBItemError
+from lib.boto.dynamodb.exceptions import DynamoDBItemError
 
 
 class Item(dict):

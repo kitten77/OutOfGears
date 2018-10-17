@@ -21,7 +21,7 @@
 # IN THE SOFTWARE.
 #
 
-from boto.dynamodb.types import dynamize_value
+from lib.boto.dynamodb.types import dynamize_value
 
 
 class Condition(object):

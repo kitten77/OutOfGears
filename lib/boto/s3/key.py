@@ -29,20 +29,24 @@ import re
 import base64
 import binascii
 import math
-from hashlib import md5
-import boto.utils
-from boto.compat import BytesIO, six, urllib, encodebytes
 
-from boto.exception import BotoClientError
-from boto.exception import StorageDataError
-from boto.exception import PleaseRetryException
-from boto.provider import Provider
-from boto.s3.keyfile import KeyFile
-from boto.s3.user import User
-from boto import UserAgent
-from boto.utils import compute_md5, compute_hash
-from boto.utils import find_matching_headers
-from boto.utils import merge_headers_by_name
+from io import BytesIO
+import urllib
+from hashlib import md5
+# import boto.utils
+import lib.boto as boto
+from lib.boto.compat import six, encodebytes
+
+from lib.boto.exception import BotoClientError
+from lib.boto.exception import StorageDataError
+from lib.boto.exception import PleaseRetryException
+# from boto.provider import Provider
+from lib.boto.s3.keyfile import KeyFile
+from lib.boto.s3.user import User
+from lib.boto import UserAgent
+from lib.boto.utils import compute_md5, compute_hash
+from lib.boto.utils import find_matching_headers
+from lib.boto.utils import merge_headers_by_name
 
 
 class Key(object):

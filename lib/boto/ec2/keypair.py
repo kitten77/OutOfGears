@@ -24,8 +24,8 @@ Represents an EC2 Keypair
 """
 
 import os
-from boto.ec2.ec2object import EC2Object
-from boto.exception import BotoClientError
+from lib.boto.ec2.ec2object import EC2Object
+from lib.boto.exception import BotoClientError
 
 
 class KeyPair(EC2Object):

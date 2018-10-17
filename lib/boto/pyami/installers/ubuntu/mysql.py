@@ -27,11 +27,11 @@ a different location.  By default, this is /mnt but that can be
 configured in the [MySQL] section of the boto config file passed
 to the instance.
 """
-from boto.pyami.installers.ubuntu.installer import Installer
+from lib.boto.pyami.installers.ubuntu.installer import Installer
 import os
-import boto
-from boto.utils import ShellCommand
-from boto.compat import ConfigParser
+import lib.boto as boto
+from lib.boto.utils import ShellCommand
+from lib.boto.compat import ConfigParser
 import time
 
 ConfigSection = """
