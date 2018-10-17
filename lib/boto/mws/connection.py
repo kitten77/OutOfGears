@@ -22,12 +22,12 @@ import xml.sax
 import hashlib
 import string
 import collections
-from boto.connection import AWSQueryConnection
-from boto.exception import BotoServerError
-import boto.mws.exception
-import boto.mws.response
-from boto.handler import XmlHandler
-from boto.compat import filter, map, six, encodebytes
+from lib.boto.connection import AWSQueryConnection
+from lib.boto.exception import BotoServerError
+import lib.boto.mws.exception
+import lib.boto.mws.response
+from lib.boto.handler import XmlHandler
+from lib.boto.compat import filter, map, six, encodebytes
 
 __all__ = ['MWSConnection']
 

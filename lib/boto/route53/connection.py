@@ -24,18 +24,18 @@
 # IN THE SOFTWARE.
 #
 
-from boto.route53 import exception
+from lib.boto.route53 import exception
 import random
 import uuid
 import xml.sax
 
-import boto
-from boto.connection import AWSAuthConnection
-from boto import handler
-import boto.jsonresponse
-from boto.route53.record import ResourceRecordSets
-from boto.route53.zone import Zone
-from boto.compat import six, urllib
+import lib.boto as boto
+from lib.boto.connection import AWSAuthConnection
+from lib.boto import handler
+import lib.boto.jsonresponse
+from lib.boto.route53.record import ResourceRecordSets
+from lib.boto.route53.zone import Zone
+from lib.boto.compat import six, urllib
 
 
 HZXML = """<?xml version="1.0" encoding="UTF-8"?>
@@ -124,9 +124,9 @@ class Route53Connection(AWSAuthConnection):
             raise exception.DNSServerError(response.status,
                                            response.reason,
                                            body)
-        e = boto.jsonresponse.Element(list_marker='HostedZones',
+        e = lib.boto.jsonresponse.Element(list_marker='HostedZones',
                                       item_marker=('HostedZone',))
-        h = boto.jsonresponse.XmlHandler(e, None)
+        h = lib.boto.jsonresponse.XmlHandler(e, None)
         h.parse(body)
         if zone_list:
             e['ListHostedZonesResponse']['HostedZones'].extend(zone_list)
@@ -152,9 +152,9 @@ class Route53Connection(AWSAuthConnection):
             raise exception.DNSServerError(response.status,
                                            response.reason,
                                            body)
-        e = boto.jsonresponse.Element(list_marker='NameServers',
+        e = lib.boto.jsonresponse.Element(list_marker='NameServers',
                                       item_marker=('NameServer',))
-        h = boto.jsonresponse.XmlHandler(e, None)
+        h = lib.boto.jsonresponse.XmlHandler(e, None)
         h.parse(body)
         return e
 
@@ -237,9 +237,9 @@ class Route53Connection(AWSAuthConnection):
         body = response.read()
         boto.log.debug(body)
         if response.status == 201:
-            e = boto.jsonresponse.Element(list_marker='NameServers',
+            e = lib.boto.jsonresponse.Element(list_marker='NameServers',
                                           item_marker=('NameServer',))
-            h = boto.jsonresponse.XmlHandler(e, None)
+            h = lib.boto.jsonresponse.XmlHandler(e, None)
             h.parse(body)
             return e
         else:
@@ -263,8 +263,8 @@ class Route53Connection(AWSAuthConnection):
             raise exception.DNSServerError(response.status,
                                            response.reason,
                                            body)
-        e = boto.jsonresponse.Element()
-        h = boto.jsonresponse.XmlHandler(e, None)
+        e = lib.boto.jsonresponse.Element()
+        h = lib.boto.jsonresponse.XmlHandler(e, None)
         h.parse(body)
         return e
 
@@ -302,8 +302,8 @@ class Route53Connection(AWSAuthConnection):
         body = response.read()
         boto.log.debug(body)
         if response.status == 201:
-            e = boto.jsonresponse.Element()
-            h = boto.jsonresponse.XmlHandler(e, None)
+            e = lib.boto.jsonresponse.Element()
+            h = lib.boto.jsonresponse.XmlHandler(e, None)
             h.parse(body)
             return e
         else:
@@ -335,9 +335,9 @@ class Route53Connection(AWSAuthConnection):
             raise exception.DNSServerError(response.status,
                                            response.reason,
                                            body)
-        e = boto.jsonresponse.Element(list_marker='HealthChecks',
+        e = lib.boto.jsonresponse.Element(list_marker='HealthChecks',
                                       item_marker=('HealthCheck',))
-        h = boto.jsonresponse.XmlHandler(e, None)
+        h = lib.boto.jsonresponse.XmlHandler(e, None)
         h.parse(body)
         return e
 
@@ -353,8 +353,8 @@ class Route53Connection(AWSAuthConnection):
             raise exception.DNSServerError(response.status,
                                            response.reason,
                                            body)
-        e = boto.jsonresponse.Element(list_marker='CheckerIpRanges', item_marker=('member',))
-        h = boto.jsonresponse.XmlHandler(e, None)
+        e = lib.boto.jsonresponse.Element(list_marker='CheckerIpRanges', item_marker=('member',))
+        h = lib.boto.jsonresponse.XmlHandler(e, None)
         h.parse(body)
         return e
 
@@ -374,8 +374,8 @@ class Route53Connection(AWSAuthConnection):
             raise exception.DNSServerError(response.status,
                                            response.reason,
                                            body)
-        e = boto.jsonresponse.Element()
-        h = boto.jsonresponse.XmlHandler(e, None)
+        e = lib.boto.jsonresponse.Element()
+        h = lib.boto.jsonresponse.XmlHandler(e, None)
         h.parse(body)
         return e
 
@@ -473,8 +473,8 @@ class Route53Connection(AWSAuthConnection):
             raise exception.DNSServerError(response.status,
                                            response.reason,
                                            body)
-        e = boto.jsonresponse.Element()
-        h = boto.jsonresponse.XmlHandler(e, None)
+        e = lib.boto.jsonresponse.Element()
+        h = lib.boto.jsonresponse.XmlHandler(e, None)
         h.parse(body)
         return e
 
@@ -498,8 +498,8 @@ class Route53Connection(AWSAuthConnection):
             raise exception.DNSServerError(response.status,
                                            response.reason,
                                            body)
-        e = boto.jsonresponse.Element()
-        h = boto.jsonresponse.XmlHandler(e, None)
+        e = lib.boto.jsonresponse.Element()
+        h = lib.boto.jsonresponse.XmlHandler(e, None)
         h.parse(body)
         return e
 

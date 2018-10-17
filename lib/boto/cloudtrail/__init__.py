@@ -20,8 +20,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 #
-from boto.regioninfo import RegionInfo, get_regions
-from boto.regioninfo import connect
+from lib.boto.regioninfo import RegionInfo, get_regions
+from lib.boto.regioninfo import connect
 
 
 def regions():
@@ -31,11 +31,11 @@ def regions():
     :rtype: list
     :return: A list of :class:`boto.regioninfo.RegionInfo`
     """
-    from boto.cloudtrail.layer1 import CloudTrailConnection
+    from lib.boto.cloudtrail.layer1 import CloudTrailConnection
     return get_regions('cloudtrail', connection_cls=CloudTrailConnection)
 
 
 def connect_to_region(region_name, **kw_params):
-    from boto.cloudtrail.layer1 import CloudTrailConnection
+    from lib.boto.cloudtrail.layer1 import CloudTrailConnection
     return connect('cloudtrail', region_name,
                    connection_cls=CloudTrailConnection, **kw_params)

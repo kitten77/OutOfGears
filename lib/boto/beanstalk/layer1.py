@@ -22,11 +22,11 @@
 # IN THE SOFTWARE.
 #
 
-import boto
-import boto.jsonresponse
-from boto.compat import json
-from boto.regioninfo import RegionInfo
-from boto.connection import AWSQueryConnection
+import lib.boto as boto
+import lib.boto.jsonresponse as jsonresponse
+from lib.boto.compat import json
+from lib.boto.regioninfo import RegionInfo
+from lib.boto.connection import AWSQueryConnection
 
 
 class Layer1(AWSQueryConnection):

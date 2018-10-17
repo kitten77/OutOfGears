@@ -18,7 +18,7 @@
 # WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
-import boto
+import lib.boto as boto
 
 
 def get_manager(cls):
@@ -74,11 +74,11 @@ def get_manager(cls):
     elif hasattr(cls.__bases__[0], "_manager"):
         return cls.__bases__[0]._manager
     if db_type == 'SimpleDB':
-        from boto.sdb.db.manager.sdbmanager import SDBManager
+        from lib.boto.sdb.db.manager.sdbmanager import SDBManager
         return SDBManager(cls, db_name, db_user, db_passwd,
                           db_host, db_port, db_table, sql_dir, enable_ssl)
     elif db_type == 'XML':
-        from boto.sdb.db.manager.xmlmanager import XMLManager
+        from lib.boto.sdb.db.manager.xmlmanager import XMLManager
         return XMLManager(cls, db_name, db_user, db_passwd,
                           db_host, db_port, db_table, sql_dir, enable_ssl)
     else:

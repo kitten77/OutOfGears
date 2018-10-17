@@ -22,7 +22,7 @@
 # IN THE SOFTWARE.
 #
 
-from boto.regioninfo import RegionInfo
+from lib.boto.regioninfo import RegionInfo
 
 class SQSRegionInfo(RegionInfo):
 

@@ -20,12 +20,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 from optparse import OptionParser
-from boto.services.servicedef import ServiceDef
-from boto.services.submit import Submitter
-from boto.services.result import ResultProcessor
-import boto
+from lib.boto.services.servicedef import ServiceDef
+from lib.boto.services.submit import Submitter
+from lib.boto.services.result import ResultProcessor
+import lib.boto as boto
 import sys, os
-from boto.compat import StringIO
+from io import StringIO
 
 class BS(object):
 

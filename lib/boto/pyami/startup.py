@@ -20,10 +20,10 @@
 # IN THE SOFTWARE.
 #
 import sys
-import boto
-from boto.utils import find_class
-from boto import config
-from boto.pyami.scriptbase import ScriptBase
+import lib.boto as boto
+from lib.boto.utils import find_class
+from lib.boto import config
+from lib.boto.pyami.scriptbase import ScriptBase
 
 
 class Startup(ScriptBase):

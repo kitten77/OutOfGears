@@ -21,12 +21,12 @@
 #
 from binascii import crc32
 
-import boto
-from boto.compat import json
-from boto.connection import AWSQueryConnection
-from boto.regioninfo import RegionInfo
-from boto.exception import JSONResponseError
-from boto.dynamodb2 import exceptions
+import lib.boto as boto
+from lib.boto.compat import json
+from lib.boto.connection import AWSQueryConnection
+from lib.boto.regioninfo import RegionInfo
+from lib.boto.exception import JSONResponseError
+from lib.boto.dynamodb2 import exceptions
 
 
 class DynamoDBConnection(AWSQueryConnection):

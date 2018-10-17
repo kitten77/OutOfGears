@@ -1,6 +1,3 @@
-from boto import handler
-import xml.sax
-
 
 class Tag(object):
     def __init__(self, key=None, value=None):

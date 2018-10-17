@@ -46,10 +46,10 @@ if PY3:
 
     MAXSIZE = sys.maxsize
 else:
-    string_types = basestring,
+    string_types = str,
     integer_types = (int, long)
     class_types = (type, types.ClassType)
-    text_type = unicode
+    text_type = str
     binary_type = str
 
     if sys.platform.startswith("java"):
@@ -645,7 +645,7 @@ else:
 
     def u(s):
         return unicode(s.replace(r'\\', r'\\\\'), "unicode_escape")
-    unichr = unichr
+    unichr = str
     int2byte = chr
 
     def byte2int(bs):

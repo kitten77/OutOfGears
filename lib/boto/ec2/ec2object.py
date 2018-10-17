@@ -23,7 +23,7 @@
 """
 Represents an EC2 Object
 """
-from boto.ec2.tag import TagSet
+from lib.boto.ec2.tag import TagSet
 
 
 class EC2Object(object):

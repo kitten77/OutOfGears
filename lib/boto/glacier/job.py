@@ -23,9 +23,9 @@
 import math
 import socket
 
-from boto.glacier.exceptions import TreeHashDoesNotMatchError, \
+from lib.boto.glacier.exceptions import TreeHashDoesNotMatchError, \
                                     DownloadArchiveError
-from boto.glacier.utils import tree_hash_from_str
+from lib.boto.glacier.utils import tree_hash_from_str
 
 
 class Job(object):

@@ -24,8 +24,8 @@ to the servers that are represented by instance objects. The module has
 functions for running commands, managing files, and opening interactive
 shell sessions over those connections.
 """
-from boto.mashups.interactive import interactive_shell
-import boto
+from lib.boto.mashups.interactive import interactive_shell
+import lib.boto as boto
 import os
 import time
 import shutil
@@ -33,7 +33,7 @@ import paramiko
 import socket
 import subprocess
 
-from boto.compat import StringIO
+from io import StringIO
 
 class SSHClient(object):
     """

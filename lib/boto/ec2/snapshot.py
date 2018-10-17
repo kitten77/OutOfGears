@@ -23,8 +23,8 @@
 """
 Represents an EC2 Elastic Block Store Snapshot
 """
-from boto.ec2.ec2object import TaggedEC2Object
-from boto.ec2.zone import Zone
+from lib.boto.ec2.ec2object import TaggedEC2Object
+from lib.boto.ec2.zone import Zone
 
 
 class Snapshot(TaggedEC2Object):

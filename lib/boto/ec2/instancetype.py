@@ -20,7 +20,7 @@
 # IN THE SOFTWARE.
 
 
-from boto.ec2.ec2object import EC2Object
+from lib.boto.ec2.ec2object import EC2Object
 
 
 class InstanceType(EC2Object):

@@ -23,10 +23,10 @@
 
 import urllib
 import uuid
-from boto.connection import AWSQueryConnection
-from boto.fps.exception import ResponseErrorFactory
-from boto.fps.response import ResponseFactory
-import boto.fps.response
+from lib.boto.connection import AWSQueryConnection
+from lib.boto.fps.exception import ResponseErrorFactory
+from lib.boto.fps.response import ResponseFactory
+import lib.boto.fps.response as boto_response
 
 __all__ = ['FPSConnection']
 
@@ -88,8 +88,8 @@ def api_action(*api):
     def decorator(func):
         action = ''.join(api or map(str.capitalize, func.__name__.split('_')))
         response = ResponseFactory(action)
-        if hasattr(boto.fps.response, action + 'Response'):
-            response = getattr(boto.fps.response, action + 'Response')
+        if hasattr(boto_response, action + 'Response'):
+            response = getattr(boto_response, action + 'Response')
 
         def wrapper(self, *args, **kw):
             return func(self, action, response, *args, **kw)

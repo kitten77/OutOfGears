@@ -24,7 +24,7 @@ import getopt
 import sys
 import imp
 import time
-import boto
+import lib.boto as boto
 
 usage_string = """
 SYNOPSIS

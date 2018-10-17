@@ -4,7 +4,7 @@ Exceptions that are specific to the swf module.
 This module subclasses the base SWF response exception, 
 boto.exceptions.SWFResponseError, for some of the SWF specific faults.
 """
-from boto.exception import SWFResponseError
+from lib.boto.exception import SWFResponseError
 
 
 class SWFDomainAlreadyExistsError(SWFResponseError):

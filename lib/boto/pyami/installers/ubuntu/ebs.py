@@ -43,11 +43,11 @@ Config file section::
     mount_point = <directory to mount device, defaults to /ebs>
 
 """
-import boto
-from boto.manage.volume import Volume
-from boto.exception import EC2ResponseError
+import lib.boto as boto
+from lib.boto.manage.volume import Volume
+from lib.boto.exception import EC2ResponseError
 import os, time
-from boto.pyami.installers.ubuntu.installer import Installer
+from lib.boto.pyami.installers.ubuntu.installer import Installer
 from string import Template
 
 BackupScriptTemplate = """#!/usr/bin/env python

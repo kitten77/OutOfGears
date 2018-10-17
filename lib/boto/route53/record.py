@@ -24,7 +24,7 @@
 
 RECORD_TYPES = ['A', 'AAAA', 'TXT', 'CNAME', 'MX', 'PTR', 'SRV', 'SPF']
 
-from boto.resultset import ResultSet
+from lib.boto.resultset import ResultSet
 
 
 class ResourceRecordSets(ResultSet):

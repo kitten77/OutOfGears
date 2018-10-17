@@ -20,7 +20,7 @@
 # IN THE SOFTWARE.
 #
 import os
-
+# TODO here it will break when it comes to py3 maybe
 # This allows boto modules to say "from boto.compat import json".  This is
 # preferred so that all modules don't have to repeat this idiom.
 try:
@@ -52,8 +52,7 @@ from lib.boto.vendored import six
 # from lib.boto.vendored.six.moves import filter, http_client, map, _thread, \
 #                                     urllib, zip
 # from lib.boto.vendored.six.moves.queue import Queue
-from lib.boto.vendored.six.moves.urllib.parse import parse_qs, quote, unquote, \
-                                                 urlparse, urlsplit
+from lib.boto.vendored.six.moves.urllib.parse import parse_qs, quote, unquote, urlparse, urlsplit
 from lib.boto.vendored.six.moves.urllib.parse import unquote_plus
 # from boto.vendored.six.moves.urllib.request import urlopen
 

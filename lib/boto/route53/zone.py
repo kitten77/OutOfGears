@@ -25,9 +25,9 @@
 default_ttl = 60
 
 import copy
-from boto.exception import TooManyRecordsException
-from boto.route53.record import ResourceRecordSets
-from boto.route53.status import Status
+from lib.boto.exception import TooManyRecordsException
+from lib.boto.route53.record import ResourceRecordSets
+from lib.boto.route53.status import Status
 
 
 class Zone(object):

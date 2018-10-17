@@ -21,10 +21,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-import boto
-import boto.jsonresponse
-from boto.connection import AWSQueryConnection
-from boto.regioninfo import RegionInfo
+import lib.boto as boto
+import lib.boto.jsonresponse
+from lib.boto.connection import AWSQueryConnection
+from lib.boto.regioninfo import RegionInfo
 
 #boto.set_stream_logger('cloudsearch')
 

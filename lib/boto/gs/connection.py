@@ -19,11 +19,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-from boto.gs.bucket import Bucket
-from boto.s3.connection import S3Connection
-from boto.s3.connection import SubdomainCallingFormat
-from boto.s3.connection import check_lowercase_bucketname
-from boto.utils import get_utf8_value
+from lib.boto.gs.bucket import Bucket
+from lib.boto.s3.connection import S3Connection
+from lib.boto.s3.connection import SubdomainCallingFormat
+from lib.boto.s3.connection import check_lowercase_bucketname
+from lib.boto.utils import get_utf8_value
 
 class Location(object):
     DEFAULT = 'US'

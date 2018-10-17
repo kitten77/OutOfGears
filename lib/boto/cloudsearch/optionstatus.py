@@ -23,7 +23,7 @@
 #
 
 import time
-from boto.compat import json
+from lib.boto.compat import json
 
 
 class OptionStatus(dict):

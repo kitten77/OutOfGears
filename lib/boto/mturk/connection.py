@@ -22,14 +22,14 @@ import xml.sax
 import datetime
 import itertools
 
-from boto import handler
-from boto import config
-from boto.mturk.price import Price
-import boto.mturk.notification
-from boto.connection import AWSQueryConnection
-from boto.exception import EC2ResponseError
-from boto.resultset import ResultSet
-from boto.mturk.question import QuestionForm, ExternalQuestion, HTMLQuestion
+from lib.boto import handler
+from lib.boto import config
+from lib.boto.mturk.price import Price
+import lib.boto.mturk.notification
+from lib.boto.connection import AWSQueryConnection
+from lib.boto.exception import EC2ResponseError
+from lib.boto.resultset import ResultSet
+from lib.boto.mturk.question import QuestionForm, ExternalQuestion, HTMLQuestion
 
 
 class MTurkRequestError(EC2ResponseError):
@@ -153,7 +153,7 @@ class MTurkConnection(AWSQueryConnection):
         # begin with their notification specifications in the "inactive" status.
         notification_params = {'Destination': destination,
                                'Transport': transport,
-                               'Version': boto.mturk.notification.NotificationMessage.NOTIFICATION_VERSION,
+                               'Version': lib.boto.mturk.notification.NotificationMessage.NOTIFICATION_VERSION,
                                'Active': True,
                                }
 

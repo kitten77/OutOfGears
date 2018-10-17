@@ -23,7 +23,7 @@ import hashlib
 import math
 import binascii
 
-from boto.compat import six
+from lib.boto.compat import six
 
 
 _MEGABYTE = 1024 * 1024

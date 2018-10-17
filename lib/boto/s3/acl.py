@@ -19,7 +19,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-from boto.s3.user import User
+from lib.boto.s3.user import User
 
 
 CannedACLStrings = ['private', 'public-read',

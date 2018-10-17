@@ -19,10 +19,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-import boto
-
-from boto.file.connection import FileConnection as Connection
-from boto.file.key import Key
-from boto.file.bucket import Bucket
+from lib.boto.file.connection import FileConnection as Connection
+from lib.boto.file.key import Key
+from lib.boto.file.bucket import Bucket
 
 __all__ = ['Connection', 'Key', 'Bucket']

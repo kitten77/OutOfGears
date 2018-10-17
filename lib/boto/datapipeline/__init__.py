@@ -20,8 +20,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 #
-from boto.regioninfo import get_regions
-from boto.regioninfo import connect
+from lib.boto.regioninfo import get_regions
+from lib.boto.regioninfo import connect
 
 
 def regions():
@@ -31,11 +31,11 @@ def regions():
     :rtype: list
     :return: A list of :class:`boto.regioninfo.RegionInfo`
     """
-    from boto.datapipeline.layer1 import DataPipelineConnection
+    from lib.boto.datapipeline.layer1 import DataPipelineConnection
     return get_regions('datapipeline', connection_cls=DataPipelineConnection)
 
 
 def connect_to_region(region_name, **kw_params):
-    from boto.datapipeline.layer1 import DataPipelineConnection
+    from lib.boto.datapipeline.layer1 import DataPipelineConnection
     return connect('datapipeline', region_name,
                    connection_cls=DataPipelineConnection, **kw_params)

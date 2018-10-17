@@ -22,9 +22,9 @@
 # IN THE SOFTWARE.
 #
 
-from boto.cloudsearch2.layer1 import CloudSearchConnection
-from boto.cloudsearch2.domain import Domain
-from boto.compat import six
+from lib.boto.cloudsearch2.layer1 import CloudSearchConnection
+from lib.boto.cloudsearch2.domain import Domain
+from lib.boto.compat import six
 
 
 class Layer2(object):

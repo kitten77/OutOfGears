@@ -19,9 +19,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-import types
-from boto.gs.user import User
-from boto.exception import InvalidEncryptionConfigError
+
+from lib.boto.exception import InvalidEncryptionConfigError
 from xml.sax import handler
 
 # Relevant tags for the EncryptionConfiguration XML document.

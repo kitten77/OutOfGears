@@ -19,9 +19,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-import boto
-from boto.services.service import Service
-from boto.services.message import ServiceMessage
+import lib.boto as boto
+from lib.boto.services.service import Service
+from lib.boto.services.message import ServiceMessage
 import os
 import mimetypes
 

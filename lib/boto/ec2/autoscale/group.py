@@ -19,12 +19,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-from boto.ec2.elb.listelement import ListElement
-from boto.resultset import ResultSet
-from boto.ec2.autoscale.launchconfig import LaunchConfiguration
-from boto.ec2.autoscale.request import Request
-from boto.ec2.autoscale.instance import Instance
-from boto.ec2.autoscale.tag import Tag
+from lib.boto.ec2.elb.listelement import ListElement
+from lib.boto.resultset import ResultSet
+from lib.boto.ec2.autoscale.launchconfig import LaunchConfiguration
+from lib.boto.ec2.autoscale.request import Request
+from lib.boto.ec2.autoscale.instance import Instance
+from lib.boto.ec2.autoscale.tag import Tag
 
 
 class ProcessType(object):

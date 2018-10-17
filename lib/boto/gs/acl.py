@@ -19,8 +19,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-from boto.gs.user import User
-from boto.exception import InvalidAclError
+from lib.boto.gs.user import User
+from lib.boto.exception import InvalidAclError
 
 ACCESS_CONTROL_LIST = 'AccessControlList'
 ALL_AUTHENTICATED_USERS = 'AllAuthenticatedUsers'

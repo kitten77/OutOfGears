@@ -23,8 +23,8 @@
 """
 Represents an EC2 Security Group
 """
-from boto.ec2.ec2object import TaggedEC2Object
-from boto.exception import BotoClientError
+from lib.boto.ec2.ec2object import TaggedEC2Object
+from lib.boto.exception import BotoClientError
 
 
 class SecurityGroup(TaggedEC2Object):

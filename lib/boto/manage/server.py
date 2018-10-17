@@ -23,18 +23,18 @@
 High-level abstraction of an EC2 server
 """
 
-import boto.ec2
-from boto.mashups.iobject import IObject
-from boto.pyami.config import BotoConfigPath, Config
-from boto.sdb.db.model import Model
-from boto.sdb.db.property import StringProperty, IntegerProperty, BooleanProperty, CalculatedProperty
-from boto.manage import propget
-from boto.ec2.zone import Zone
-from boto.ec2.keypair import KeyPair
+import lib.boto.ec2 as boto_ec2
+from lib.boto.mashups.iobject import IObject
+from lib.boto.pyami.config import BotoConfigPath, Config
+from lib.boto.sdb.db.model import Model
+from lib.boto.sdb.db.property import StringProperty, IntegerProperty, BooleanProperty, CalculatedProperty
+from lib.boto.manage import propget
+from lib.boto.ec2.zone import Zone
+from lib.boto.ec2.keypair import KeyPair
 import os, time
 from contextlib import closing
-from boto.exception import EC2ResponseError
-from boto.compat import six, StringIO
+from lib.boto.exception import EC2ResponseError
+from io import StringIO
 
 InstanceTypes = ['m1.small', 'm1.large', 'm1.xlarge',
                  'c1.medium', 'c1.xlarge',
@@ -138,11 +138,11 @@ class CommandLineGetter(object):
     def get_region(self, params):
         region = params.get('region', None)
         if isinstance(region, basestring):
-            region = boto.ec2.get_region(region)
+            region = boto_ec2.get_region(region)
             params['region'] = region
         if not region:
             prop = self.cls.find_property('region_name')
-            params['region'] = propget.get(prop, choices=boto.ec2.regions)
+            params['region'] = propget.get(prop, choices=boto_ec2.regions)
         self.ec2 = params['region'].connect()
 
     def get_name(self, params):
@@ -349,7 +349,7 @@ class Server(Model):
 
     @classmethod
     def create_from_instance_id(cls, instance_id, name, description=''):
-        regions = boto.ec2.regions()
+        regions = boto_ec2.regions()
         for region in regions:
             ec2 = region.connect()
             try:
@@ -374,7 +374,7 @@ class Server(Model):
     @classmethod
     def create_from_current_instances(cls):
         servers = []
-        regions = boto.ec2.regions()
+        regions = boto_ec2.regions()
         for region in regions:
             ec2 = region.connect()
             rs = ec2.get_all_reservations()
@@ -408,7 +408,7 @@ class Server(Model):
             return
         if self.id:
             if self.region_name:
-                for region in boto.ec2.regions():
+                for region in boto_ec2.regions():
                     if region.name == self.region_name:
                         self.ec2 = region.connect()
                         if self.instance_id and not self._instance:

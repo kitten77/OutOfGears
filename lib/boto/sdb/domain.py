@@ -24,8 +24,8 @@ from __future__ import print_function
 Represents an SDB Domain
 """
 
-from boto.sdb.queryresultset import SelectResultSet
-from boto.compat import six
+from lib.boto.sdb.queryresultset import SelectResultSet
+from lib.boto.compat import six
 
 class Domain(object):
 

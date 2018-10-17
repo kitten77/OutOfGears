@@ -20,8 +20,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-from boto.resultset import ResultSet
-from boto.ec2.elb.listelement import ListElement
+from lib.boto.resultset import ResultSet
+#from lib.boto.ec2.elb.listelement import ListElement
 
 
 class Alarm(object):

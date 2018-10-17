@@ -20,14 +20,14 @@
 # IN THE SOFTWARE.
 
 import datetime
-from boto.sdb.db.key import Key
-from boto.utils import Password
-from boto.sdb.db.query import Query
+from lib.boto.sdb.db.key import Key
+from lib.boto.utils import Password
+from lib.boto.sdb.db.query import Query
 import re
-import boto
-import boto.s3.key
-from boto.sdb.db.blob import Blob
-from boto.compat import six, long_type
+import lib.boto as boto
+from lib.boto.s3 import key as s3_key
+from lib.boto.sdb.db.blob import Blob
+from lib.boto.compat import six, long_type
 
 
 class Property(object):
@@ -260,7 +260,7 @@ class BlobProperty(Property):
 
 class S3KeyProperty(Property):
 
-    data_type = boto.s3.key.Key
+    data_type = s3_key.Key
     type_name = 'S3Key'
     validate_regex = "^s3:\/\/([^\/]*)\/(.*)$"
 

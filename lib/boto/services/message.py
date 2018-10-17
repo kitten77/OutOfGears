@@ -19,8 +19,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-from boto.sqs.message import MHMessage
-from boto.utils import get_ts
+from lib.boto.sqs.message import MHMessage
+from lib.boto.utils import get_ts
 from socket import gethostname
 import os, mimetypes, time
 

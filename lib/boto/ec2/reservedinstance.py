@@ -18,9 +18,9 @@
 # WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
-from boto.resultset import ResultSet
-from boto.ec2.ec2object import EC2Object
-from boto.utils import parse_ts
+from lib.boto.resultset import ResultSet
+from lib.boto.ec2.ec2object import EC2Object
+from lib.boto.utils import parse_ts
 
 
 class ReservedInstancesOffering(EC2Object):

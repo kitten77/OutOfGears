@@ -20,13 +20,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-import boto
-from boto.cloudformation.stack import Stack, StackSummary, StackEvent
-from boto.cloudformation.stack import StackResource, StackResourceSummary
-from boto.cloudformation.template import Template
-from boto.connection import AWSQueryConnection
-from boto.regioninfo import RegionInfo
-from boto.compat import json
+import lib.boto as boto
+from lib.boto.cloudformation.stack import Stack, StackSummary, StackEvent
+from lib.boto.cloudformation.stack import StackResource, StackResourceSummary
+from lib.boto.cloudformation.template import Template
+from lib.boto.connection import AWSQueryConnection
+from lib.boto.regioninfo import RegionInfo
+from lib.boto.compat import json
 
 
 class CloudFormationConnection(AWSQueryConnection):

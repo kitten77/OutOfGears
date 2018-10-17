@@ -19,8 +19,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-from boto.exception import SDBResponseError
-from boto.compat import six
+from lib.boto.exception import SDBResponseError
+from lib.boto.compat import six
 
 class SequenceGenerator(object):
     """Generic Sequence Generator object, this takes a single

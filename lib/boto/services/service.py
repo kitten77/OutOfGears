@@ -19,11 +19,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-import boto
-from boto.services.message import ServiceMessage
-from boto.services.servicedef import ServiceDef
-from boto.pyami.scriptbase import ScriptBase
-from boto.utils import get_ts
+import lib.boto as boto
+from lib.boto.services.message import ServiceMessage
+from lib.boto.services.servicedef import ServiceDef
+from lib.boto.pyami.scriptbase import ScriptBase
+from lib.boto.utils import get_ts
 import time
 import os
 import mimetypes

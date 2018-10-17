@@ -22,14 +22,14 @@
 High-level abstraction of an EC2 order for servers
 """
 
-import boto
-import boto.ec2
-from boto.mashups.server import Server, ServerSet
-from boto.mashups.iobject import IObject
-from boto.pyami.config import Config
-from boto.sdb.persist import get_domain, set_domain
+import lib.boto as boto
+import lib.boto.ec2 as boto_ec2
+from lib.boto.mashups.server import Server, ServerSet
+from lib.boto.mashups.iobject import IObject
+from lib.boto.pyami.config import Config
+from lib.boto.sdb.persist import get_domain, set_domain
 import time
-from boto.compat import StringIO
+from io import StringIO
 
 InstanceTypes = ['m1.small', 'm1.large', 'm1.xlarge', 'c1.medium', 'c1.xlarge']
 
@@ -57,7 +57,7 @@ class Item(IObject):
         if region:
             self.region = region
         else:
-            l = [(r, r.name, r.endpoint) for r in boto.ec2.regions()]
+            l = [(r, r.name, r.endpoint) for r in boto_ec2.regions()]
             self.region = self.choose_from_list(l, prompt='Choose Region')
 
     def set_name(self, name=None):

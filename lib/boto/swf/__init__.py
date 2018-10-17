@@ -22,10 +22,9 @@
 # IN THE SOFTWARE.
 #
 
-from boto.ec2.regioninfo import RegionInfo
-from boto.regioninfo import get_regions, load_regions
-from boto.regioninfo import connect
-import boto.swf.layer1
+from lib.boto.regioninfo import get_regions, load_regions
+from lib.boto.regioninfo import connect
+import lib.boto.swf.layer1
 
 REGION_ENDPOINTS = load_regions().get('swf', {})
 
@@ -37,9 +36,9 @@ def regions(**kw_params):
     :rtype: list
     :return: A list of :class:`boto.regioninfo.RegionInfo`
     """
-    return get_regions('swf', connection_cls=boto.swf.layer1.Layer1)
+    return get_regions('swf', connection_cls=lib.boto.swf.layer1.Layer1)
 
 
 def connect_to_region(region_name, **kw_params):
     return connect('swf', region_name,
-                   connection_cls=boto.swf.layer1.Layer1, **kw_params)
+                   connection_cls=lib.boto.swf.layer1.Layer1, **kw_params)

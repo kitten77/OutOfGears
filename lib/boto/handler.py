@@ -21,7 +21,7 @@
 
 import xml.sax
 from io import StringIO
-#from lib.boto.compat import StringIO
+# from lib.boto.compat import
 
 
 class XmlHandler(xml.sax.ContentHandler):

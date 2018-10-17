@@ -22,12 +22,12 @@
 # IN THE SOFTWARE.
 #
 import codecs
-from boto.glacier.exceptions import UploadArchiveError
-from boto.glacier.job import Job
-from boto.glacier.writer import compute_hashes_from_fileobj, \
+from lib.boto.glacier.exceptions import UploadArchiveError
+from lib.boto.glacier.job import Job
+from lib.boto.glacier.writer import compute_hashes_from_fileobj, \
                                 resume_file_upload, Writer
-from boto.glacier.concurrent import ConcurrentUploader
-from boto.glacier.utils import minimum_part_size, DEFAULT_PART_SIZE
+from lib.boto.glacier.concurrent import ConcurrentUploader
+from lib.boto.glacier.utils import minimum_part_size, DEFAULT_PART_SIZE
 import os.path
 
 

@@ -2,11 +2,11 @@ import logging
 import time
 from datetime import datetime
 
-from boto.sdb.db.model import Model
-from boto.sdb.db.property import StringProperty, IntegerProperty, BooleanProperty
-from boto.sdb.db.property import DateTimeProperty, FloatProperty, ReferenceProperty
-from boto.sdb.db.property import PasswordProperty, ListProperty, MapProperty
-from boto.exception import SDBPersistenceError
+from lib.boto.sdb.db.model import Model
+from lib.boto.sdb.db.property import StringProperty, IntegerProperty, BooleanProperty
+from lib.boto.sdb.db.property import DateTimeProperty, FloatProperty, ReferenceProperty
+from lib.boto.sdb.db.property import PasswordProperty, ListProperty, MapProperty
+from lib.boto.exception import SDBPersistenceError
 
 logging.basicConfig()
 log = logging.getLogger('test_db')

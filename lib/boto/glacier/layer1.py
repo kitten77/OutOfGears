@@ -24,12 +24,12 @@
 
 import os
 
-import boto.glacier
-from boto.compat import json
-from boto.connection import AWSAuthConnection
-from boto.glacier.exceptions import UnexpectedHTTPResponseError
-from boto.glacier.response import GlacierResponse
-from boto.glacier.utils import ResettingFileSender
+import lib.boto.glacier as glacier
+from lib.boto.compat import json
+from lib.boto.connection import AWSAuthConnection
+from lib.boto.glacier.exceptions import UnexpectedHTTPResponseError
+from lib.boto.glacier.response import GlacierResponse
+from lib.boto.glacier.utils import ResettingFileSender
 
 
 class Layer1(AWSAuthConnection):
@@ -81,7 +81,7 @@ class Layer1(AWSAuthConnection):
                  profile_name=None):
 
         if not region:
-            for reg in boto.glacier.regions():
+            for reg in glacier.regions():
                 if reg.name == region_name:
                     region = reg
                     break

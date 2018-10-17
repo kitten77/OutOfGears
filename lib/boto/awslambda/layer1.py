@@ -21,11 +21,11 @@
 #
 import os
 
-from boto.compat import json
-from boto.exception import JSONResponseError
-from boto.connection import AWSAuthConnection
-from boto.regioninfo import RegionInfo
-from boto.awslambda import exceptions
+from lib.boto.compat import json
+from lib.boto.exception import JSONResponseError
+from lib.boto.connection import AWSAuthConnection
+from lib.boto.regioninfo import RegionInfo
+from lib.boto.awslambda import exceptions
 
 
 class AWSLambdaConnection(AWSAuthConnection):

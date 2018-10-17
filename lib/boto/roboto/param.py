@@ -27,7 +27,7 @@ class Converter(object):
     @classmethod
     def convert_string(cls, param, value):
         # TODO: could do length validation, etc. here
-        if not isinstance(value, basestring):
+        if not isinstance(value):
             raise ValueError
         return value
 
@@ -65,7 +65,7 @@ class Converter(object):
                 mthd = cls.convert_string
             return mthd(param, value)
         except:
-            raise ValidationException(param, '')
+            raise Exception(param, '')
 
 class Param(Converter):
 

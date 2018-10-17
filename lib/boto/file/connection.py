@@ -21,7 +21,7 @@
 
 # File representation of connection, for use with "file://" URIs.
 
-from boto.file.bucket import Bucket
+from lib.boto.file.bucket import Bucket
 
 class FileConnection(object):
 

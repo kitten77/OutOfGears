@@ -25,7 +25,7 @@
 This module contains EMR response objects
 """
 
-from boto.resultset import ResultSet
+from lib.boto.resultset import ResultSet
 
 
 class EmrObject(object):

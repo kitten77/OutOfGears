@@ -18,11 +18,11 @@
 # WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
-import boto
-from boto.utils import find_class, Password
-from boto.sdb.db.key import Key
-from boto.sdb.db.model import Model
-from boto.compat import six, encodebytes
+import lib.boto as boto
+from lib.boto.utils import find_class, Password
+from lib.boto.sdb.db.key import Key
+from lib.boto.sdb.db.model import Model
+from lib.boto.compat import six, encodebytes
 from datetime import datetime
 from xml.dom.minidom import getDOMImplementation, parse, parseString, Node
 
@@ -49,7 +49,7 @@ class XMLConverter(object):
                           Password : (self.encode_password, self.decode_password),
                           datetime : (self.encode_datetime, self.decode_datetime)}
         if six.PY2:
-            self.type_map[long] = (self.encode_long, self.decode_long)
+            self.type_map[int] = (self.encode_long, self.decode_long)
 
     def get_text_value(self, parent_node):
         value = ''
@@ -116,12 +116,12 @@ class XMLConverter(object):
         return value
 
     def encode_long(self, value):
-        value = long(value)
+        value = int(value)
         return '%d' % value
 
     def decode_long(self, value):
         value = self.get_text_value(value)
-        return long(value)
+        return int(value)
 
     def encode_bool(self, value):
         if value == True:
@@ -210,9 +210,9 @@ class XMLManager(object):
     def _connect(self):
         if self.db_host:
             if self.enable_ssl:
-                from httplib import HTTPSConnection as Connection
+                from http.client import HTTPSConnection as Connection
             else:
-                from httplib import HTTPConnection as Connection
+                from http.client import HTTPConnection as Connection
 
             self.connection = Connection(self.db_host, self.db_port)
 
@@ -348,7 +348,7 @@ class XMLManager(object):
         if not self.connection:
             raise NotImplementedError("Can't query without a database connection")
 
-        from urllib import urlencode
+        from urllib.parse import urlencode
 
         query = str(self._build_query(cls, filters, limit, order_by))
         if query:

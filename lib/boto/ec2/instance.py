@@ -24,14 +24,13 @@
 """
 Represents an EC2 Instance
 """
-import boto
-from boto.ec2.ec2object import EC2Object, TaggedEC2Object
-from boto.resultset import ResultSet
-from boto.ec2.address import Address
-from boto.ec2.blockdevicemapping import BlockDeviceMapping
-from boto.ec2.image import ProductCodes
-from boto.ec2.networkinterface import NetworkInterface
-from boto.ec2.group import Group
+from lib.boto.ec2.ec2object import EC2Object, TaggedEC2Object
+from lib.boto.resultset import ResultSet
+from lib.boto.ec2.address import Address
+from lib.boto.ec2.blockdevicemapping import BlockDeviceMapping
+from lib.boto.ec2.image import ProductCodes
+from lib.boto.ec2.networkinterface import NetworkInterface
+from lib.boto.ec2.group import Group
 import base64
 
 

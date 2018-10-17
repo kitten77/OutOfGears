@@ -20,14 +20,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-from boto.ec2.elb.healthcheck import HealthCheck
-from boto.ec2.elb.listener import Listener
-from boto.ec2.elb.listelement import ListElement
-from boto.ec2.elb.policies import Policies, OtherPolicy
-from boto.ec2.elb.securitygroup import SecurityGroup
-from boto.ec2.instanceinfo import InstanceInfo
-from boto.resultset import ResultSet
-from boto.compat import six
+from lib.boto.ec2.elb.healthcheck import HealthCheck
+from lib.boto.ec2.elb.listener import Listener
+from lib.boto.ec2.elb.listelement import ListElement
+from lib.boto.ec2.elb.policies import Policies, OtherPolicy
+from lib.boto.ec2.elb.securitygroup import SecurityGroup
+from lib.boto.ec2.instanceinfo import InstanceInfo
+from lib.boto.resultset import ResultSet
+from lib.boto.compat import six
 
 
 class Backend(object):

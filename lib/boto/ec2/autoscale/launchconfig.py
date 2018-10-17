@@ -20,11 +20,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-from boto.ec2.elb.listelement import ListElement
+from lib.boto.ec2.elb.listelement import ListElement
 # Namespacing issue with deprecated local class
-from boto.ec2.blockdevicemapping import BlockDeviceMapping as BDM
-from boto.resultset import ResultSet
-import boto.utils
+from lib.boto.ec2.blockdevicemapping import BlockDeviceMapping as BDM
+from lib.boto.resultset import ResultSet
+import lib.boto.utils as utils
 import base64
 
 
@@ -229,7 +229,7 @@ class LaunchConfiguration(object):
         elif name == 'ImageId':
             self.image_id = value
         elif name == 'CreatedTime':
-            self.created_time = boto.utils.parse_ts(value)
+            self.created_time = utils.parse_ts(value)
         elif name == 'KernelId':
             self.kernel_id = value
         elif name == 'RamdiskId':

@@ -1,5 +1,5 @@
-from boto.manage.server import Server
-from boto.manage.volume import Volume
+from lib.boto.manage.server import Server
+from lib.boto.manage.volume import Volume
 import time
 
 print('--> Creating New Volume')

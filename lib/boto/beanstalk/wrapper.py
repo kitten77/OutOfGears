@@ -1,8 +1,8 @@
 """Wraps layer1 api methods and converts layer1 dict responses to objects."""
-from boto.beanstalk.layer1 import Layer1
-import boto.beanstalk.response
-from boto.exception import BotoServerError
-import boto.beanstalk.exception as exception
+from lib.boto.beanstalk.layer1 import Layer1
+import lib.boto.beanstalk.response as bresponse
+from lib.boto.exception import BotoServerError
+import lib.boto.beanstalk.exception as exception
 
 
 def beanstalk_wrapper(func, name):
@@ -13,7 +13,7 @@ def beanstalk_wrapper(func, name):
             raise exception.simple(e)
         # Turn 'this_is_a_function_name' into 'ThisIsAFunctionNameResponse'.
         cls_name = ''.join([part.capitalize() for part in name.split('_')]) + 'Response'
-        cls = getattr(boto.beanstalk.response, cls_name)
+        cls = getattr(bresponse, cls_name)
         return cls(response)
     return _wrapped_low_level_api
 

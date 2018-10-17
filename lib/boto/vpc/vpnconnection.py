@@ -26,7 +26,7 @@ from boto.resultset import ResultSet
 Represents a VPN Connectionn
 """
 
-from boto.ec2.ec2object import TaggedEC2Object
+from lib.boto.ec2.ec2object import TaggedEC2Object
 
 class VpnConnectionOptions(object):
     """

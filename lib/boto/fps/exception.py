@@ -1,4 +1,4 @@
-from boto.exception import BotoServerError
+from lib.boto.exception import BotoServerError
 
 
 class ResponseErrorFactory(BotoServerError):

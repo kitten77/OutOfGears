@@ -26,7 +26,7 @@
 #
 from lib.boto.pyami.config import Config, BotoConfigLocations
 from lib.boto.storage_uri import BucketStorageUri, FileStorageUri
-import boto.plugin
+import lib.boto as boto
 import datetime
 import os
 import platform
@@ -35,7 +35,7 @@ import sys
 import logging
 import logging.config
 
-from lib.boto.compat import urlparse
+from urllib.parse import urlparse
 from lib.boto.exception import InvalidUriError
 
 __version__ = '2.49.0'
@@ -122,7 +122,7 @@ def connect_sqs(aws_access_key_id=None, aws_secret_access_key=None, **kwargs):
     :rtype: :class:`boto.sqs.connection.SQSConnection`
     :return: A connection to Amazon's SQS
     """
-    from boto.sqs.connection import SQSConnection
+    from lib.boto.sqs.connection import SQSConnection
     return SQSConnection(aws_access_key_id, aws_secret_access_key, **kwargs)
 
 
@@ -137,7 +137,7 @@ def connect_s3(aws_access_key_id=None, aws_secret_access_key=None, **kwargs):
     :rtype: :class:`boto.s3.connection.S3Connection`
     :return: A connection to Amazon's S3
     """
-    from boto.s3.connection import S3Connection
+    from lib.boto.s3.connection import S3Connection
     return S3Connection(aws_access_key_id, aws_secret_access_key, **kwargs)
 
 
@@ -152,7 +152,7 @@ def connect_gs(gs_access_key_id=None, gs_secret_access_key=None, **kwargs):
     @rtype: L{GSConnection<boto.gs.connection.GSConnection>}
     @return: A connection to Google's Storage service
     """
-    from boto.gs.connection import GSConnection
+    from lib.boto.gs.connection import GSConnection
     return GSConnection(gs_access_key_id, gs_secret_access_key, **kwargs)
 
 
@@ -167,7 +167,7 @@ def connect_ec2(aws_access_key_id=None, aws_secret_access_key=None, **kwargs):
     :rtype: :class:`boto.ec2.connection.EC2Connection`
     :return: A connection to Amazon's EC2
     """
-    from boto.ec2.connection import EC2Connection
+    from lib.boto.ec2.connection import EC2Connection
     return EC2Connection(aws_access_key_id, aws_secret_access_key, **kwargs)
 
 
@@ -182,7 +182,7 @@ def connect_elb(aws_access_key_id=None, aws_secret_access_key=None, **kwargs):
     :rtype: :class:`boto.ec2.elb.ELBConnection`
     :return: A connection to Amazon's Load Balancing Service
     """
-    from boto.ec2.elb import ELBConnection
+    from lib.boto.ec2.elb import ELBConnection
     return ELBConnection(aws_access_key_id, aws_secret_access_key, **kwargs)
 
 
@@ -203,7 +203,7 @@ def connect_autoscale(aws_access_key_id=None, aws_secret_access_key=None,
         block device types, or a list of old style block device mappings (deprecated).  This defaults to false for compatability
         with the old incorrect style.
     """
-    from boto.ec2.autoscale import AutoScaleConnection
+    from lib.boto.ec2.autoscale import AutoScaleConnection
     return AutoScaleConnection(aws_access_key_id, aws_secret_access_key,
                                **kwargs)
 
@@ -220,7 +220,7 @@ def connect_cloudwatch(aws_access_key_id=None, aws_secret_access_key=None,
     :rtype: :class:`boto.ec2.cloudwatch.CloudWatchConnection`
     :return: A connection to Amazon's EC2 Monitoring service
     """
-    from boto.ec2.cloudwatch import CloudWatchConnection
+    from lib.boto.ec2.cloudwatch import CloudWatchConnection
     return CloudWatchConnection(aws_access_key_id, aws_secret_access_key,
                                 **kwargs)
 
@@ -236,7 +236,7 @@ def connect_sdb(aws_access_key_id=None, aws_secret_access_key=None, **kwargs):
     :rtype: :class:`boto.sdb.connection.SDBConnection`
     :return: A connection to Amazon's SDB
     """
-    from boto.sdb.connection import SDBConnection
+    from lib.boto.sdb.connection import SDBConnection
     return SDBConnection(aws_access_key_id, aws_secret_access_key, **kwargs)
 
 
@@ -251,7 +251,7 @@ def connect_fps(aws_access_key_id=None, aws_secret_access_key=None, **kwargs):
     :rtype: :class:`boto.fps.connection.FPSConnection`
     :return: A connection to FPS
     """
-    from boto.fps.connection import FPSConnection
+    from lib.boto.fps.connection import FPSConnection
     return FPSConnection(aws_access_key_id, aws_secret_access_key, **kwargs)
 
 
@@ -267,7 +267,7 @@ def connect_mturk(aws_access_key_id=None, aws_secret_access_key=None,
     :rtype: :class:`boto.mturk.connection.MTurkConnection`
     :return: A connection to MTurk
     """
-    from boto.mturk.connection import MTurkConnection
+    from lib.boto.mturk.connection import MTurkConnection
     return MTurkConnection(aws_access_key_id, aws_secret_access_key, **kwargs)
 
 
@@ -283,7 +283,7 @@ def connect_cloudfront(aws_access_key_id=None, aws_secret_access_key=None,
     :rtype: :class:`boto.fps.connection.FPSConnection`
     :return: A connection to FPS
     """
-    from boto.cloudfront import CloudFrontConnection
+    from lib.boto.cloudfront import CloudFrontConnection
     return CloudFrontConnection(aws_access_key_id, aws_secret_access_key,
                                 **kwargs)
 
@@ -299,7 +299,7 @@ def connect_vpc(aws_access_key_id=None, aws_secret_access_key=None, **kwargs):
     :rtype: :class:`boto.vpc.VPCConnection`
     :return: A connection to VPC
     """
-    from boto.vpc import VPCConnection
+    from lib.boto.vpc import VPCConnection
     return VPCConnection(aws_access_key_id, aws_secret_access_key, **kwargs)
 
 
@@ -314,7 +314,7 @@ def connect_rds(aws_access_key_id=None, aws_secret_access_key=None, **kwargs):
     :rtype: :class:`boto.rds.RDSConnection`
     :return: A connection to RDS
     """
-    from boto.rds import RDSConnection
+    from lib.boto.rds import RDSConnection
     return RDSConnection(aws_access_key_id, aws_secret_access_key, **kwargs)
 
 
@@ -329,7 +329,7 @@ def connect_rds2(aws_access_key_id=None, aws_secret_access_key=None, **kwargs):
     :rtype: :class:`boto.rds2.layer1.RDSConnection`
     :return: A connection to RDS
     """
-    from boto.rds2.layer1 import RDSConnection
+    from lib.boto.rds2.layer1 import RDSConnection
     return RDSConnection(
         aws_access_key_id=aws_access_key_id,
         aws_secret_access_key=aws_secret_access_key,
@@ -348,7 +348,7 @@ def connect_emr(aws_access_key_id=None, aws_secret_access_key=None, **kwargs):
     :rtype: :class:`boto.emr.EmrConnection`
     :return: A connection to Elastic mapreduce
     """
-    from boto.emr import EmrConnection
+    from lib.boto.emr import EmrConnection
     return EmrConnection(aws_access_key_id, aws_secret_access_key, **kwargs)
 
 
@@ -363,8 +363,9 @@ def connect_sns(aws_access_key_id=None, aws_secret_access_key=None, **kwargs):
     :rtype: :class:`boto.sns.SNSConnection`
     :return: A connection to Amazon's SNS
     """
-    from boto.sns import SNSConnection
-    return SNSConnection(aws_access_key_id, aws_secret_access_key, **kwargs)
+    raise Exception("deprecated!")
+    # from lib.boto.sns import SNSConnection
+    # return SNSConnection(aws_access_key_id, aws_secret_access_key, **kwargs)
 
 
 def connect_iam(aws_access_key_id=None, aws_secret_access_key=None, **kwargs):
@@ -378,7 +379,7 @@ def connect_iam(aws_access_key_id=None, aws_secret_access_key=None, **kwargs):
     :rtype: :class:`boto.iam.IAMConnection`
     :return: A connection to Amazon's IAM
     """
-    from boto.iam import IAMConnection
+    from lib.boto.iam import IAMConnection
     return IAMConnection(aws_access_key_id, aws_secret_access_key, **kwargs)
 
 
@@ -394,7 +395,7 @@ def connect_route53(aws_access_key_id=None, aws_secret_access_key=None,
     :rtype: :class:`boto.dns.Route53Connection`
     :return: A connection to Amazon's Route53 DNS Service
     """
-    from boto.route53 import Route53Connection
+    from lib.boto.route53 import Route53Connection
     return Route53Connection(aws_access_key_id, aws_secret_access_key,
                              **kwargs)
 
@@ -411,7 +412,7 @@ def connect_cloudformation(aws_access_key_id=None, aws_secret_access_key=None,
     :rtype: :class:`boto.cloudformation.CloudFormationConnection`
     :return: A connection to Amazon's CloudFormation Service
     """
-    from boto.cloudformation import CloudFormationConnection
+    from lib.boto.cloudformation import CloudFormationConnection
     return CloudFormationConnection(aws_access_key_id, aws_secret_access_key,
                                     **kwargs)
 
@@ -434,8 +435,8 @@ def connect_euca(host=None, aws_access_key_id=None, aws_secret_access_key=None,
     :rtype: :class:`boto.ec2.connection.EC2Connection`
     :return: A connection to Eucalyptus server
     """
-    from boto.ec2 import EC2Connection
-    from boto.ec2.regioninfo import RegionInfo
+    from lib.boto.ec2 import EC2Connection
+    from lib.boto.ec2.regioninfo import RegionInfo
 
     # Check for values in boto config, if not supplied as args
     if not aws_access_key_id:
@@ -467,7 +468,7 @@ def connect_glacier(aws_access_key_id=None, aws_secret_access_key=None,
     :rtype: :class:`boto.glacier.layer2.Layer2`
     :return: A connection to Amazon's Glacier Service
     """
-    from boto.glacier.layer2 import Layer2
+    from lib.boto.glacier.layer2 import Layer2
     return Layer2(aws_access_key_id, aws_secret_access_key,
                   **kwargs)
 
@@ -491,7 +492,7 @@ def connect_ec2_endpoint(url, aws_access_key_id=None,
     :rtype: :class:`boto.ec2.connection.EC2Connection`
     :return: A connection to Eucalyptus server
     """
-    from boto.ec2.regioninfo import RegionInfo
+    from lib.boto.ec2.regioninfo import RegionInfo
 
     purl = urlparse(url)
     kwargs['port'] = purl.port
@@ -527,8 +528,8 @@ def connect_walrus(host=None, aws_access_key_id=None,
     :rtype: :class:`boto.s3.connection.S3Connection`
     :return: A connection to Walrus
     """
-    from boto.s3.connection import S3Connection
-    from boto.s3.connection import OrdinaryCallingFormat
+    from lib.boto.s3.connection import S3Connection
+    from lib.boto.s3.connection import OrdinaryCallingFormat
 
     # Check for values in boto config, if not supplied as args
     if not aws_access_key_id:
@@ -559,7 +560,7 @@ def connect_ses(aws_access_key_id=None, aws_secret_access_key=None, **kwargs):
     :rtype: :class:`boto.ses.SESConnection`
     :return: A connection to Amazon's SES
     """
-    from boto.ses import SESConnection
+    from lib.boto.ses import SESConnection
     return SESConnection(aws_access_key_id, aws_secret_access_key, **kwargs)
 
 
@@ -574,7 +575,7 @@ def connect_sts(aws_access_key_id=None, aws_secret_access_key=None, **kwargs):
     :rtype: :class:`boto.sts.STSConnection`
     :return: A connection to Amazon's STS
     """
-    from boto.sts import STSConnection
+    from lib.boto.sts import STSConnection
     return STSConnection(aws_access_key_id, aws_secret_access_key, **kwargs)
 
 
@@ -596,8 +597,8 @@ def connect_ia(ia_access_key_id=None, ia_secret_access_key=None,
     :rtype: :class:`boto.s3.connection.S3Connection`
     :return: A connection to the Internet Archive
     """
-    from boto.s3.connection import S3Connection
-    from boto.s3.connection import OrdinaryCallingFormat
+    from lib.boto.s3.connection import S3Connection
+    from lib.boto.s3.connection import OrdinaryCallingFormat
 
     access_key = config.get('Credentials', 'ia_access_key_id',
                             ia_access_key_id)
@@ -623,7 +624,7 @@ def connect_dynamodb(aws_access_key_id=None,
     :rtype: :class:`boto.dynamodb.layer2.Layer2`
     :return: A connection to the Layer2 interface for DynamoDB.
     """
-    from boto.dynamodb.layer2 import Layer2
+    from lib.boto.dynamodb.layer2 import Layer2
     return Layer2(aws_access_key_id, aws_secret_access_key, **kwargs)
 
 
@@ -640,7 +641,7 @@ def connect_swf(aws_access_key_id=None,
     :rtype: :class:`boto.swf.layer1.Layer1`
     :return: A connection to the Layer1 interface for SWF.
     """
-    from boto.swf.layer1 import Layer1
+    from lib.boto.swf.layer1 import Layer1
     return Layer1(aws_access_key_id, aws_secret_access_key, **kwargs)
 
 
@@ -657,7 +658,7 @@ def connect_cloudsearch(aws_access_key_id=None,
     :rtype: :class:`boto.cloudsearch.layer2.Layer2`
     :return: A connection to Amazon's CloudSearch service
     """
-    from boto.cloudsearch.layer2 import Layer2
+    from lib.boto.cloudsearch.layer2 import Layer2
     return Layer2(aws_access_key_id, aws_secret_access_key,
                   **kwargs)
 
@@ -680,7 +681,7 @@ def connect_cloudsearch2(aws_access_key_id=None,
     :rtype: :class:`boto.cloudsearch2.layer2.Layer2`
     :return: A connection to Amazon's CloudSearch2 service
     """
-    from boto.cloudsearch2.layer2 import Layer2
+    from lib.boto.cloudsearch2.layer2 import Layer2
     return Layer2(aws_access_key_id, aws_secret_access_key,
                   sign_request=sign_request,
                   **kwargs)
@@ -699,7 +700,7 @@ def connect_cloudsearchdomain(aws_access_key_id=None,
     :rtype: :class:`boto.cloudsearchdomain.layer1.CloudSearchDomainConnection`
     :return: A connection to Amazon's CloudSearch Domain service
     """
-    from boto.cloudsearchdomain.layer1 import CloudSearchDomainConnection
+    from lib.boto.cloudsearchdomain.layer1 import CloudSearchDomainConnection
     return CloudSearchDomainConnection(aws_access_key_id,
                                        aws_secret_access_key, **kwargs)
 
@@ -717,7 +718,7 @@ def connect_beanstalk(aws_access_key_id=None,
     :rtype: :class:`boto.beanstalk.layer1.Layer1`
     :return: A connection to Amazon's Elastic Beanstalk service
     """
-    from boto.beanstalk.layer1 import Layer1
+    from lib.boto.beanstalk.layer1 import Layer1
     return Layer1(aws_access_key_id, aws_secret_access_key, **kwargs)
 
 
@@ -734,7 +735,7 @@ def connect_elastictranscoder(aws_access_key_id=None,
     :rtype: :class:`boto.ets.layer1.ElasticTranscoderConnection`
     :return: A connection to Amazon's Elastic Transcoder service
     """
-    from boto.elastictranscoder.layer1 import ElasticTranscoderConnection
+    from lib.boto.elastictranscoder.layer1 import ElasticTranscoderConnection
     return ElasticTranscoderConnection(
         aws_access_key_id=aws_access_key_id,
         aws_secret_access_key=aws_secret_access_key,
@@ -744,7 +745,7 @@ def connect_elastictranscoder(aws_access_key_id=None,
 def connect_opsworks(aws_access_key_id=None,
                      aws_secret_access_key=None,
                      **kwargs):
-    from boto.opsworks.layer1 import OpsWorksConnection
+    from lib.boto.opsworks.layer1 import OpsWorksConnection
     return OpsWorksConnection(
         aws_access_key_id=aws_access_key_id,
         aws_secret_access_key=aws_secret_access_key,
@@ -764,7 +765,7 @@ def connect_redshift(aws_access_key_id=None,
     :rtype: :class:`boto.redshift.layer1.RedshiftConnection`
     :return: A connection to Amazon's Redshift service
     """
-    from boto.redshift.layer1 import RedshiftConnection
+    from lib.boto.redshift.layer1 import RedshiftConnection
     return RedshiftConnection(
         aws_access_key_id=aws_access_key_id,
         aws_secret_access_key=aws_secret_access_key,
@@ -785,7 +786,7 @@ def connect_support(aws_access_key_id=None,
     :rtype: :class:`boto.support.layer1.SupportConnection`
     :return: A connection to Amazon's Support service
     """
-    from boto.support.layer1 import SupportConnection
+    from lib.boto.support.layer1 import SupportConnection
     return SupportConnection(
         aws_access_key_id=aws_access_key_id,
         aws_secret_access_key=aws_secret_access_key,
@@ -808,7 +809,7 @@ def connect_cloudtrail(aws_access_key_id=None,
     :rtype: :class:`boto.cloudtrail.layer1.CloudtrailConnection`
     :return: A connection to the AWS Cloudtrail service
     """
-    from boto.cloudtrail.layer1 import CloudTrailConnection
+    from lib.boto.cloudtrail.layer1 import CloudTrailConnection
     return CloudTrailConnection(
         aws_access_key_id=aws_access_key_id,
         aws_secret_access_key=aws_secret_access_key,
@@ -831,7 +832,7 @@ def connect_directconnect(aws_access_key_id=None,
     :rtype: :class:`boto.directconnect.layer1.DirectConnectConnection`
     :return: A connection to the AWS DirectConnect service
     """
-    from boto.directconnect.layer1 import DirectConnectConnection
+    from lib.boto.directconnect.layer1 import DirectConnectConnection
     return DirectConnectConnection(
         aws_access_key_id=aws_access_key_id,
         aws_secret_access_key=aws_secret_access_key,
@@ -853,7 +854,7 @@ def connect_kinesis(aws_access_key_id=None,
     rtype: :class:`boto.kinesis.layer1.KinesisConnection`
     :return: A connection to the Amazon Kinesis service
     """
-    from boto.kinesis.layer1 import KinesisConnection
+    from lib.boto.kinesis.layer1 import KinesisConnection
     return KinesisConnection(
         aws_access_key_id=aws_access_key_id,
         aws_secret_access_key=aws_secret_access_key,
@@ -875,7 +876,7 @@ def connect_logs(aws_access_key_id=None,
     rtype: :class:`boto.kinesis.layer1.CloudWatchLogsConnection`
     :return: A connection to the Amazon CloudWatch Logs service
     """
-    from boto.logs.layer1 import CloudWatchLogsConnection
+    from lib.boto.logs.layer1 import CloudWatchLogsConnection
     return CloudWatchLogsConnection(
         aws_access_key_id=aws_access_key_id,
         aws_secret_access_key=aws_secret_access_key,
@@ -898,7 +899,7 @@ def connect_route53domains(aws_access_key_id=None,
     rtype: :class:`boto.route53.domains.layer1.Route53DomainsConnection`
     :return: A connection to the Amazon Route 53 Domains service
     """
-    from boto.route53.domains.layer1 import Route53DomainsConnection
+    from lib.boto.route53.domains.layer1 import Route53DomainsConnection
     return Route53DomainsConnection(
         aws_access_key_id=aws_access_key_id,
         aws_secret_access_key=aws_secret_access_key,
@@ -921,7 +922,7 @@ def connect_cognito_identity(aws_access_key_id=None,
     rtype: :class:`boto.cognito.identity.layer1.CognitoIdentityConnection`
     :return: A connection to the Amazon Cognito Identity service
     """
-    from boto.cognito.identity.layer1 import CognitoIdentityConnection
+    from lib.boto.cognito.identity.layer1 import CognitoIdentityConnection
     return CognitoIdentityConnection(
         aws_access_key_id=aws_access_key_id,
         aws_secret_access_key=aws_secret_access_key,
@@ -944,7 +945,7 @@ def connect_cognito_sync(aws_access_key_id=None,
     rtype: :class:`boto.cognito.sync.layer1.CognitoSyncConnection`
     :return: A connection to the Amazon Cognito Sync service
     """
-    from boto.cognito.sync.layer1 import CognitoSyncConnection
+    from lib.boto.cognito.sync.layer1 import CognitoSyncConnection
     return CognitoSyncConnection(
         aws_access_key_id=aws_access_key_id,
         aws_secret_access_key=aws_secret_access_key,
@@ -967,7 +968,7 @@ def connect_kms(aws_access_key_id=None,
     rtype: :class:`boto.kms.layer1.KMSConnection`
     :return: A connection to the AWS Key Management Service
     """
-    from boto.kms.layer1 import KMSConnection
+    from lib.boto.kms.layer1 import KMSConnection
     return KMSConnection(
         aws_access_key_id=aws_access_key_id,
         aws_secret_access_key=aws_secret_access_key,
@@ -990,7 +991,7 @@ def connect_awslambda(aws_access_key_id=None,
     rtype: :class:`boto.awslambda.layer1.AWSLambdaConnection`
     :return: A connection to the AWS Lambda service
     """
-    from boto.awslambda.layer1 import AWSLambdaConnection
+    from lib.boto.awslambda.layer1 import AWSLambdaConnection
     return AWSLambdaConnection(
         aws_access_key_id=aws_access_key_id,
         aws_secret_access_key=aws_secret_access_key,
@@ -1013,7 +1014,7 @@ def connect_codedeploy(aws_access_key_id=None,
     rtype: :class:`boto.cognito.sync.layer1.CodeDeployConnection`
     :return: A connection to the AWS CodeDeploy service
     """
-    from boto.codedeploy.layer1 import CodeDeployConnection
+    from lib.boto.codedeploy.layer1 import CodeDeployConnection
     return CodeDeployConnection(
         aws_access_key_id=aws_access_key_id,
         aws_secret_access_key=aws_secret_access_key,
@@ -1036,7 +1037,7 @@ def connect_configservice(aws_access_key_id=None,
     rtype: :class:`boto.kms.layer1.ConfigServiceConnection`
     :return: A connection to the AWS Config service
     """
-    from boto.configservice.layer1 import ConfigServiceConnection
+    from lib.boto.configservice.layer1 import ConfigServiceConnection
     return ConfigServiceConnection(
         aws_access_key_id=aws_access_key_id,
         aws_secret_access_key=aws_secret_access_key,
@@ -1059,7 +1060,7 @@ def connect_cloudhsm(aws_access_key_id=None,
     rtype: :class:`boto.cloudhsm.layer1.CloudHSMConnection`
     :return: A connection to the AWS CloudHSM service
     """
-    from boto.cloudhsm.layer1 import CloudHSMConnection
+    from lib.boto.cloudhsm.layer1 import CloudHSMConnection
     return CloudHSMConnection(
         aws_access_key_id=aws_access_key_id,
         aws_secret_access_key=aws_secret_access_key,
@@ -1075,7 +1076,7 @@ def connect_ec2containerservice(aws_access_key_id=None,
     rtype: :class:`boto.ec2containerservice.layer1.EC2ContainerServiceConnection`
     :return: A connection to the Amazon EC2 Container Service
     """
-    from boto.ec2containerservice.layer1 import EC2ContainerServiceConnection
+    from lib.boto.ec2containerservice.layer1 import EC2ContainerServiceConnection
     return EC2ContainerServiceConnection(
         aws_access_key_id=aws_access_key_id,
         aws_secret_access_key=aws_secret_access_key,
@@ -1091,7 +1092,7 @@ def connect_machinelearning(aws_access_key_id=None,
     rtype: :class:`boto.machinelearning.layer1.MachineLearningConnection`
     :return: A connection to the Amazon Machine Learning service
     """
-    from boto.machinelearning.layer1 import MachineLearningConnection
+    from lib.boto.machinelearning.layer1 import MachineLearningConnection
     return MachineLearningConnection(
         aws_access_key_id=aws_access_key_id,
         aws_secret_access_key=aws_secret_access_key,

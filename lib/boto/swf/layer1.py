@@ -24,12 +24,12 @@
 
 import time
 
-import boto
-from boto.connection import AWSAuthConnection
-from boto.provider import Provider
-from boto.exception import SWFResponseError
-from boto.swf import exceptions as swf_exceptions
-from boto.compat import json
+import lib.boto as boto
+from lib.boto.connection import AWSAuthConnection
+from lib.boto.provider import Provider
+from lib.boto.exception import SWFResponseError
+from lib.boto.swf import exceptions as swf_exceptions
+from lib.boto.compat import json
 
 #
 # To get full debug output, uncomment the following line and set the

@@ -22,9 +22,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-from boto.s3 import user
-from boto.s3 import key
-from boto import handler
+from lib.boto.s3 import user
+# from lib.boto.s3 import key
+from lib.boto import handler
 import xml.sax
 
 

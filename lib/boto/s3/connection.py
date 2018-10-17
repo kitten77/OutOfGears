@@ -24,17 +24,18 @@
 
 import xml.sax
 import base64
-from boto.compat import six, urllib
+import urllib
+from lib.boto.compat import six
 import time
 
-from boto.auth import detect_potential_s3sigv4
-import boto.utils
-from boto.connection import AWSAuthConnection
-from boto import handler
-from boto.s3.bucket import Bucket
-from boto.s3.key import Key
-from boto.resultset import ResultSet
-from boto.exception import BotoClientError, S3ResponseError
+from lib.boto.auth import detect_potential_s3sigv4
+import lib.boto as boto
+from lib.boto.connection import AWSAuthConnection
+from lib.boto import handler
+from lib.boto.s3.bucket import Bucket
+from lib.boto.s3.key import Key
+from lib.boto.resultset import ResultSet
+from lib.boto.exception import BotoClientError, S3ResponseError
 
 
 def check_lowercase_bucketname(n):

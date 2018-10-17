@@ -23,7 +23,7 @@
 Defines an interface which all Auth handlers need to implement.
 """
 
-from boto.plugin import Plugin
+from lib.boto.plugin import Plugin
 
 
 class NotReadyToAuthenticate(Exception):

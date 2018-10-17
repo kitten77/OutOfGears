@@ -23,9 +23,9 @@
 This module provides an interface to the Elastic Compute Cloud (EC2)
 service from AWS.
 """
-from boto.ec2.connection import EC2Connection
-from boto.regioninfo import RegionInfo, get_regions, load_regions
-from boto.regioninfo import connect
+from lib.boto.ec2.connection import EC2Connection
+from lib.boto.regioninfo import RegionInfo, get_regions, load_regions
+from lib.boto.regioninfo import connect
 
 
 RegionData = load_regions().get('ec2', {})

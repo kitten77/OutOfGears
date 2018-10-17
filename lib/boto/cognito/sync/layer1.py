@@ -19,11 +19,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 #
-from boto.compat import json
-from boto.exception import JSONResponseError
-from boto.connection import AWSAuthConnection
-from boto.regioninfo import RegionInfo
-from boto.cognito.sync import exceptions
+from lib.boto.compat import json
+from lib.boto.exception import JSONResponseError
+from lib.boto.connection import AWSAuthConnection
+from lib.boto.regioninfo import RegionInfo
+from lib.boto.cognito.sync import exceptions
 
 
 class CognitoSyncConnection(AWSAuthConnection):

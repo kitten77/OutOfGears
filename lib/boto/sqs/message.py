@@ -65,13 +65,13 @@ in the format in which it would be stored in SQS.
 
 import base64
 
-import boto
-
-from boto.compat import StringIO
-from boto.compat import six
-from boto.sqs.attributes import Attributes
-from boto.sqs.messageattributes import MessageAttributes
-from boto.exception import SQSDecodeError
+import lib.boto as boto
+from io import StringIO
+# from boto.compat import StringIO
+from lib.boto.compat import six
+from lib.boto.sqs.attributes import Attributes
+from lib.boto.sqs.messageattributes import MessageAttributes
+from lib.boto.exception import SQSDecodeError
 
 class RawMessage(object):
     """

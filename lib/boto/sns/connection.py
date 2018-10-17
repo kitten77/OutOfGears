@@ -23,10 +23,10 @@
 import uuid
 import hashlib
 
-from boto.connection import AWSQueryConnection
-from boto.regioninfo import RegionInfo
-from boto.compat import json
-import boto
+from lib.boto.connection import AWSQueryConnection
+from lib.boto.regioninfo import RegionInfo
+from lib.boto.compat import json
+import lib.boto as boto
 
 
 class SNSConnection(AWSQueryConnection):

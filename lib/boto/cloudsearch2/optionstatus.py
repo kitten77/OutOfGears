@@ -22,7 +22,7 @@
 # IN THE SOFTWARE.
 #
 
-from boto.compat import json
+from lib.boto.compat import json
 
 
 class OptionStatus(dict):

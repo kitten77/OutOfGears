@@ -29,24 +29,24 @@ Auto Scaling service.
 
 import base64
 
-import boto
-from boto.connection import AWSQueryConnection
-from boto.regioninfo import RegionInfo, get_regions, load_regions
-from boto.regioninfo import connect
-from boto.ec2.autoscale.request import Request
-from boto.ec2.autoscale.launchconfig import LaunchConfiguration
-from boto.ec2.autoscale.group import AutoScalingGroup
-from boto.ec2.autoscale.group import ProcessType
-from boto.ec2.autoscale.activity import Activity
-from boto.ec2.autoscale.policy import AdjustmentType
-from boto.ec2.autoscale.policy import MetricCollectionTypes
-from boto.ec2.autoscale.policy import ScalingPolicy
-from boto.ec2.autoscale.policy import TerminationPolicies
-from boto.ec2.autoscale.instance import Instance
-from boto.ec2.autoscale.scheduled import ScheduledUpdateGroupAction
-from boto.ec2.autoscale.tag import Tag
-from boto.ec2.autoscale.limits import AccountLimits
-from boto.compat import six
+import lib.boto as boto
+from lib.boto.connection import AWSQueryConnection
+from lib.boto.regioninfo import RegionInfo, get_regions, load_regions
+from lib.boto.regioninfo import connect
+from lib.boto.ec2.autoscale.request import Request
+from lib.boto.ec2.autoscale.launchconfig import LaunchConfiguration
+from lib.boto.ec2.autoscale.group import AutoScalingGroup
+from lib.boto.ec2.autoscale.group import ProcessType
+from lib.boto.ec2.autoscale.activity import Activity
+from lib.boto.ec2.autoscale.policy import AdjustmentType
+from lib.boto.ec2.autoscale.policy import MetricCollectionTypes
+from lib.boto.ec2.autoscale.policy import ScalingPolicy
+from lib.boto.ec2.autoscale.policy import TerminationPolicies
+from lib.boto.ec2.autoscale.instance import Instance
+from lib.boto.ec2.autoscale.scheduled import ScheduledUpdateGroupAction
+from lib.boto.ec2.autoscale.tag import Tag
+from lib.boto.ec2.autoscale.limits import AccountLimits
+from lib.boto.compat import six
 
 RegionData = load_regions().get('autoscaling', {})
 

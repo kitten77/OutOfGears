@@ -18,10 +18,10 @@
 # WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
-import boto.ec2
-from boto.sdb.db.property import StringProperty, IntegerProperty
-from boto.manage import propget
-from boto.compat import six
+import lib.boto.ec2 as boto_ec2
+from lib.boto.sdb.db.property import StringProperty, IntegerProperty
+from lib.boto.manage import propget
+from lib.boto.compat import six
 
 InstanceTypes = ['m1.small', 'm1.large', 'm1.xlarge',
                  'c1.medium', 'c1.xlarge', 'm2.xlarge',
@@ -34,8 +34,8 @@ class BuyReservation(object):
     def get_region(self, params):
         if not params.get('region', None):
             prop = StringProperty(name='region', verbose_name='EC2 Region',
-                                  choices=boto.ec2.regions)
-            params['region'] = propget.get(prop, choices=boto.ec2.regions)
+                                  choices=boto_ec2.regions)
+            params['region'] = propget.get(prop, choices=boto_ec2.regions)
 
     def get_instance_type(self, params):
         if not params.get('instance_type', None):

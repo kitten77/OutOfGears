@@ -19,9 +19,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-from boto.pyami.config import Config
-from boto.services.message import ServiceMessage
-import boto
+from lib.boto.pyami.config import Config
+from lib.boto.services.message import ServiceMessage
+import lib.boto as boto
 
 class ServiceDef(Config):
 

@@ -19,12 +19,12 @@
 # WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
-import boto
-import boto.jsonresponse
-from boto.compat import json, six
-from boto.resultset import ResultSet
-from boto.iam.summarymap import SummaryMap
-from boto.connection import AWSQueryConnection
+import lib.boto as boto
+import lib.boto.jsonresponse
+from lib.boto.compat import json, six
+from lib.boto.resultset import ResultSet
+from lib.boto.iam.summarymap import SummaryMap
+from lib.boto.connection import AWSQueryConnection
 
 DEFAULT_POLICY_DOCUMENTS = {
     'default': {

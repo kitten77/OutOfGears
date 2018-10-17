@@ -19,9 +19,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-import types
-from boto.gs.user import User
-from boto.exception import InvalidCorsError
+from lib.boto.exception import InvalidCorsError
 from xml.sax import handler
 
 # Relevant tags for the CORS XML document.

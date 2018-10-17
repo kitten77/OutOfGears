@@ -21,19 +21,19 @@
 #
 
 import urllib
-from boto.connection import AWSQueryConnection
-from boto.rds.dbinstance import DBInstance
-from boto.rds.dbsecuritygroup import DBSecurityGroup
-from boto.rds.optiongroup  import OptionGroup, OptionGroupOption
-from boto.rds.parametergroup import ParameterGroup
-from boto.rds.dbsnapshot import DBSnapshot
-from boto.rds.event import Event
-from boto.rds.regioninfo import RDSRegionInfo
-from boto.rds.dbsubnetgroup import DBSubnetGroup
-from boto.rds.vpcsecuritygroupmembership import VPCSecurityGroupMembership
-from boto.regioninfo import get_regions
-from boto.regioninfo import connect
-from boto.rds.logfile import LogFile, LogFileObject
+from lib.boto.connection import AWSQueryConnection
+from lib.boto.rds.dbinstance import DBInstance
+from lib.boto.rds.dbsecuritygroup import DBSecurityGroup
+from lib.boto.rds.optiongroup  import OptionGroup, OptionGroupOption
+from lib.boto.rds.parametergroup import ParameterGroup
+from lib.boto.rds.dbsnapshot import DBSnapshot
+from lib.boto.rds.event import Event
+from lib.boto.rds.regioninfo import RDSRegionInfo
+from lib.boto.rds.dbsubnetgroup import DBSubnetGroup
+from lib.boto.rds.vpcsecuritygroupmembership import VPCSecurityGroupMembership
+from lib.boto.regioninfo import get_regions
+from lib.boto.regioninfo import connect
+from lib.boto.rds.logfile import LogFile, LogFileObject
 
 
 def regions():

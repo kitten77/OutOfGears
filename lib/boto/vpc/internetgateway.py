@@ -23,8 +23,8 @@
 Represents an Internet Gateway
 """
 
-from boto.ec2.ec2object import TaggedEC2Object
-from boto.resultset import ResultSet
+from lib.boto.ec2.ec2object import TaggedEC2Object
+from lib.boto.resultset import ResultSet
 
 class InternetGateway(TaggedEC2Object):
     def __init__(self, connection=None):

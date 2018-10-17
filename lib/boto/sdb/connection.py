@@ -20,13 +20,13 @@
 # IN THE SOFTWARE.
 import xml.sax
 import threading
-import boto
-from boto import handler
-from boto.connection import AWSQueryConnection
-from boto.sdb.domain import Domain, DomainMetaData
-from boto.sdb.item import Item
-from boto.sdb.regioninfo import SDBRegionInfo
-from boto.exception import SDBResponseError
+import lib.boto as boto
+from lib.boto import handler
+from lib.boto.connection import AWSQueryConnection
+from lib.boto.sdb.domain import Domain, DomainMetaData
+from lib.boto.sdb.item import Item
+# from lib.boto.sdb.regioninfo import SDBRegionInfo
+from lib.boto.exception import SDBResponseError
 
 class ItemThread(threading.Thread):
     """

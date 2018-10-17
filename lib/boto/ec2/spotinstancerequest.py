@@ -24,8 +24,8 @@
 Represents an EC2 Spot Instance Request
 """
 
-from boto.ec2.ec2object import TaggedEC2Object
-from boto.ec2.launchspecification import LaunchSpecification
+from lib.boto.ec2.ec2object import TaggedEC2Object
+from lib.boto.ec2.launchspecification import LaunchSpecification
 
 
 class SpotInstanceStateFault(object):

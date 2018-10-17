@@ -1,13 +1,13 @@
 from __future__ import print_function
 import os
-import urlparse
-import boto
-import boto.connection
-import boto.jsonresponse
-import boto.exception
-from boto.roboto import awsqueryrequest
+import urllib.parse as urlparse
+import lib.boto as boto
+import lib.boto.connection
+import lib.boto.jsonresponse
+import lib.boto.exception
+from lib.boto.roboto import awsqueryrequest
 
-class NoCredentialsError(boto.exception.BotoClientError):
+class NoCredentialsError(lib.boto.exception.BotoClientError):
 
     def __init__(self):
         s = 'Unable to find credentials'
@@ -44,7 +44,7 @@ class AWSQueryService(boto.connection.AWSQueryConnection):
         try:
             super(AWSQueryService, self).__init__(**self.args)
             self.aws_response = None
-        except boto.exception.NoAuthHandlerFound:
+        except lib.boto.exception.NoAuthHandlerFound:
             raise NoCredentialsError()
 
     def check_for_credential_file(self):
